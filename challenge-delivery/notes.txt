@@ -1,0 +1,11 @@
+TODO: convert the GCP stuff into gcloud commands
+
+1. Create Discord role "channel-X"
+2. Create Discord channel with access for "channel-X"
+3. Create GCP SA named "Challenge Author X", description: "Used to deliver challenge X", id: "challenge-author-X"
+4. Create GCP bucket named "potluckctf-challenge-X"
+  a. Edit Access
+  b. Principal: challenge-author-X
+  c. Role: Storage Admin
+5. Create SA key
+  a. Download and share in Discord
