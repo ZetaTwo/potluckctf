@@ -251,6 +251,7 @@ resource "google_compute_backend_service" "challenge_service" {
   load_balancing_scheme = "EXTERNAL"
   timeout_sec           = 10
   health_checks         = [google_compute_health_check.challenge_healthcheck[each.key].id]
+  session_affinity      = "CLIENT_IP"
   backend {
     group           = google_compute_instance_group.challenge_group[each.key].id
     balancing_mode  = "UTILIZATION"
