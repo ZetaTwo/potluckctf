@@ -74,6 +74,7 @@ resource "google_compute_instance" "challenge_server" {
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
+      size = 16
     }
   }
 
@@ -104,6 +105,7 @@ resource "google_compute_instance" "scoreboard_server" {
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
+      size = 32
     }
   }
 
@@ -134,6 +136,7 @@ resource "google_compute_instance" "monitor_server" {
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
+      size = 128
     }
   }
 
