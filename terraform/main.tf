@@ -17,7 +17,7 @@ terraform {
 locals {
   server_settings = {
     scoreboard = {
-      "scoreboard" = { hostname = "scoreboard.livectf.local", ip = "10.0.0.10", type = "e2-micro", labels = { bastion = 1 } },
+      "scoreboard-a" = { hostname = "scoreboard.livectf.local", ip = "10.0.0.10", type = "e2-micro", labels = { bastion = 1 } },
     }
     challenges = {
       "challenge01" = {
@@ -51,7 +51,7 @@ locals {
 
     }
     monitor = {
-      "monitor" = { hostname = "monitor.potluckctf.local", ip = "10.0.0.100", type = "e2-micro", labels = { monitor = 1 } },
+      "monitor-a" = { hostname = "monitor.potluckctf.local", ip = "10.0.0.100", type = "e2-micro", labels = { monitor = 1 } },
     }
   }
   challenge_servers = merge([for challenge_name, challenge in local.server_settings.challenges : { for server_name, server in challenge.servers : server_name => merge(server, { challenge_id : challenge_name }) }]...)
@@ -279,27 +279,23 @@ resource "google_compute_health_check" "challenge_healthcheck" {
 #  server_id      = hcloud_server.livectf-web["web1.livectf.local"].id
 #}
 
-#
-## generate inventory file for Ansible
-#resource "local_file" "hosts_ansible_inventory" {
-#  content = templatefile("${path.module}/hosts.tpl",
-#    {
-#      livectf-web             = hcloud_server.livectf-web
-#      livectf-builder         = hcloud_server.livectf-builder
-#      livectf-builder-volumes = hcloud_volume.livectf-builder
-#      livectf-runner          = hcloud_server.livectf-runner
-#      livectf-runner-volumes  = hcloud_volume.livectf-runner
-#      livectf-monitor         = hcloud_server.livectf-monitor
-#      livectf-all             = merge(hcloud_server.livectf-web, hcloud_server.livectf-builder, hcloud_server.livectf-runner, hcloud_server.livectf-monitor)
-#
-#      server_settings = merge(local.server_settings.web, local.server_settings.builders, local.server_settings.runners, local.server_settings.monitor)
-#      subnet          = hcloud_network_subnet.network-subnet
-#    }
-#  )
-#  filename        = "hosts.yml"
-#  file_permission = "0644"
-#}
-#
+
+# generate inventory file for Ansible
+resource "local_file" "hosts_ansible_inventory" {
+  content = templatefile("${path.module}/hosts.tpl",
+    {
+      potluckctf-scoreboard      = google_compute_instance.scoreboard_server
+      potluckctf-challenges      = google_compute_instance.challenge_server
+      potluckctf-monitor         = google_compute_instance.monitor_server
+      potluckctf-all             = merge(google_compute_instance.scoreboard_server, google_compute_instance.challenge_server, google_compute_instance.monitor_server)
+
+      server_settings = merge(local.server_settings.scoreboard, local.challenge_servers, local.server_settings.monitor)
+    }
+  )
+  filename        = "hosts.yml"
+  file_permission = "0644"
+}
+
 ## generate SSH config file
 #resource "local_file" "hosts_ssh_config" {
 #  content = templatefile("${path.module}/hosts.ssh.tpl",
