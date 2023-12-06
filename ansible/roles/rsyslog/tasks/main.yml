@@ -7,6 +7,7 @@
       - rsyslog
 
 - name: Send logs to monitor server
+  become: true
   ansible.builtin.template:
     src: 20-send-logs.conf
     dest: /etc/rsyslog.d/20-send-logs.conf

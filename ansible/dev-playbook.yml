@@ -5,15 +5,8 @@
       ansible.builtin.set_fact:
         potluckctf_monitor_host: "{{ groups['monitor'][0] }}"
 
-- name: Basic setup
-  hosts: all
-  roles:
-    - role: serversetup
-    - role: rsyslog
-      vars:
-        syslog_server: "{{ potluckctf_monitor_host }}"
-
 - name: Setup monitor server
   hosts: monitor
   roles:
     - role: graylog
+

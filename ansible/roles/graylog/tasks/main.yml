@@ -4,6 +4,12 @@
   register: deb_architecture
   changed_when: false
 
+- name: Get OS dist name
+  ansible.builtin.command:
+    cmd: 'lsb_release -is'
+  register: os_dist_name
+  changed_when: false
+
 - name: Get OS version
   ansible.builtin.command:
     cmd: 'lsb_release -cs'
@@ -14,6 +20,7 @@
   ansible.builtin.set_fact:
     deb_architecture: "{{ deb_architecture.stdout }}"
     os_version_codename: "{{ os_version_codename.stdout }}"
+    os_dist_name: "{{ os_dist_name.stdout | lower }}"
 
 - name: Install graylog pre-dependencies
   become: true
@@ -35,7 +42,7 @@
 - name: Download MongoDB GPG key
   become: true
   ansible.builtin.get_url:
-    url: "https://www.mongodb.org/static/pgp/server-6.0.asc"
+    url: "https://pgp.mongodb.com/server-7.0.asc"
     dest: /etc/apt/keyrings/mongodb-server.asc
     mode: '0644'
     owner: root
@@ -53,7 +60,7 @@
 - name: Add MongoDB repository to sources.list.d
   become: true
   ansible.builtin.apt_repository:
-    repo: "deb [ arch=amd64,arm64 signed-by=/etc/apt/keyrings/mongodb-server.asc ] https://repo.mongodb.org/apt/ubuntu {{ os_version_codename }}/mongodb-org/6.0 multiverse"
+    repo: "deb [ arch=amd64,arm64 signed-by=/etc/apt/keyrings/mongodb-server.asc ] https://repo.mongodb.org/apt/{{ os_dist_name }} {{ os_version_codename }}/mongodb-org/6.0 multiverse"
     update_cache: false
     state: present
   register: apt_source1
@@ -124,8 +131,8 @@
 - name: Download GrayLog package
   become: true
   ansible.builtin.get_url:
-    url: https://packages.graylog2.org/repo/packages/graylog-5.0-repository_latest.deb
-    dest: /var/cache/apt/archives/graylog-5.0-repository_latest.deb
+    url: https://packages.graylog2.org/repo/packages/graylog-5.2-repository_latest.deb
+    dest: /var/cache/apt/archives/graylog-5.2-repository_latest.deb
     owner: root
     group: root
     mode: '644'
@@ -133,7 +140,7 @@
 - name: Install GrayLog deb file
   become: true
   ansible.builtin.apt:
-    deb: /var/cache/apt/archives/graylog-5.0-repository_latest.deb
+    deb: /var/cache/apt/archives/graylog-5.2-repository_latest.deb
   register: install_graylog
 
 - name: Update apt cache
@@ -175,6 +182,7 @@
   notify: restart graylog
 
 - name: Create graylog-server.service.d directory
+  become: true
   ansible.builtin.file:
     path: /etc/systemd/system/graylog-server.service.d
     state: directory
@@ -183,6 +191,7 @@
     mode: '755'
 
 - name: Copy graylog-server.service drop-in
+  become: true
   ansible.builtin.copy:
     src: graylog-server.service
     dest: /etc/systemd/system/graylog-server.service.d/override.conf

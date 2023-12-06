@@ -1,5 +1,6 @@
 ---
 gcp_zone: europe-west3-b
+gcp_project: potluck-ctf
 ansible_ssh_args: --tunnel-through-iap --zone={{ gcp_zone }} --no-user-output-enabled --quiet
 ansible_scp_extra_args: --tunnel-through-iap --zone={{ gcp_zone }} --quiet
 
