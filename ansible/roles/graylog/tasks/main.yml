@@ -167,7 +167,7 @@
   ansible.builtin.lineinfile:
     path: /etc/graylog/server/server.conf
     regexp: '^elasticsearch_hosts ='
-    line: "elasticsearch_hosts = http://127.0.1.1:9200"
+    line: "elasticsearch_hosts = http://127.0.0.1:9200"
   notify: restart graylog
 
 - name: Create graylog-server.service.d directory
