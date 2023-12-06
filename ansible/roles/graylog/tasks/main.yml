@@ -21,6 +21,7 @@
     deb_architecture: "{{ deb_architecture.stdout }}"
     os_version_codename: "{{ os_version_codename.stdout }}"
     os_dist_name: "{{ os_dist_name.stdout | lower }}"
+    apt_branch: "{{ 'multiverse' if (os_dist_name == 'ubuntu') else 'main' }}"
 
 - name: Install graylog pre-dependencies
   become: true
@@ -60,7 +61,7 @@
 - name: Add MongoDB repository to sources.list.d
   become: true
   ansible.builtin.apt_repository:
-    repo: "deb [ arch=amd64,arm64 signed-by=/etc/apt/keyrings/mongodb-server.asc ] https://repo.mongodb.org/apt/{{ os_dist_name }} {{ os_version_codename }}/mongodb-org/6.0 multiverse"
+    repo: "deb [ arch=amd64,arm64 signed-by=/etc/apt/keyrings/mongodb-server.asc ] https://repo.mongodb.org/apt/{{ os_dist_name }} {{ os_version_codename }}/mongodb-org/6.0 {{ apt_branch }}"
     update_cache: false
     state: present
   register: apt_source1
@@ -109,7 +110,9 @@
 # TODO (P2): /etc/opensearch/jvm.options
 # TODO (P2): validate vm.max_map_count
 
-- ansible.posix.sysctl:
+- name: Adjust vm.max_map_count
+  become: true
+  ansible.posix.sysctl:
     name: vm.max_map_count
     value: '262144'
     state: present
