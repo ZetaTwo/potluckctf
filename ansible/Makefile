@@ -7,4 +7,7 @@ dev:
 inventory:
 	ansible-inventory -i ../terraform/hosts.yml --list
 
-.PHONY: deploy dev inventory
+dependencies:
+	$$(gcloud info --format="value(basic.python_location)") -m pip install numpy
+
+.PHONY: deploy dev inventory dependencies
