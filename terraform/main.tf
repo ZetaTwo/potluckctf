@@ -74,7 +74,7 @@ resource "google_compute_instance" "challenge_server" {
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
-      size = 16
+      size  = 16
     }
   }
 
@@ -105,7 +105,7 @@ resource "google_compute_instance" "scoreboard_server" {
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
-      size = 32
+      size  = 32
     }
   }
 
@@ -136,7 +136,7 @@ resource "google_compute_instance" "monitor_server" {
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
-      size = 128
+      size  = 128
     }
   }
 
@@ -162,7 +162,7 @@ resource "google_compute_firewall" "potlucktf_firewall_ssh" {
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["35.235.240.0/20"] # IAP IP range
 
   allow {
     protocol = "tcp"
@@ -175,7 +175,8 @@ resource "google_compute_firewall" "potlucktf_firewall_healthcheck" {
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
 
-  source_ranges = ["35.191.0.0/16", "130.211.0.0/22"]
+  source_ranges = ["35.191.0.0/16", "130.211.0.0/22"] # GFE IP range
+  target_tags   = ["challenge"]
 
   allow {
     protocol = "tcp"
@@ -188,11 +189,26 @@ resource "google_compute_firewall" "potlucktf_firewall_challenge" {
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
 
-  source_ranges = ["35.191.0.0/16", "130.211.0.0/22"]
+  source_ranges = ["35.191.0.0/16", "130.211.0.0/22"] # GFE IP range
+  target_tags   = ["challenge"]
 
   allow {
     protocol = "tcp"
     ports    = ["31337"]
+  }
+}
+
+resource "google_compute_firewall" "potlucktf_firewall_syslog" {
+  name     = "potluckctf-fw-syslog"
+  provider = google-beta
+  network  = google_compute_network.potluckctf_network.name
+
+  source_ranges = ["10.0.0.0/8"] # Internal IP range
+  target_tags   = ["monitor"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["514"]
   }
 }
 
@@ -283,10 +299,10 @@ resource "google_compute_health_check" "challenge_healthcheck" {
 resource "local_file" "hosts_ansible_inventory" {
   content = templatefile("${path.module}/hosts.tpl",
     {
-      potluckctf-scoreboard      = google_compute_instance.scoreboard_server
-      potluckctf-challenges      = google_compute_instance.challenge_server
-      potluckctf-monitor         = google_compute_instance.monitor_server
-      potluckctf-all             = merge(google_compute_instance.scoreboard_server, google_compute_instance.challenge_server, google_compute_instance.monitor_server)
+      potluckctf-scoreboard = google_compute_instance.scoreboard_server
+      potluckctf-challenges = google_compute_instance.challenge_server
+      potluckctf-monitor    = google_compute_instance.monitor_server
+      potluckctf-all        = merge(google_compute_instance.scoreboard_server, google_compute_instance.challenge_server, google_compute_instance.monitor_server)
 
       server_settings = merge(local.server_settings.scoreboard, local.challenge_servers, local.server_settings.monitor)
     }
