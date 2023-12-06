@@ -17,50 +17,31 @@ terraform {
 locals {
   server_settings = {
     scoreboard = {
-      "scoreboard-a" = { hostname = "scoreboard.livectf.local", ip = "10.0.0.10", type = "e2-micro", labels = { bastion = 1 } },
+      "scoreboard-a" = { hostname = "scoreboard.livectf.local", ip = "10.0.0.10", type = "e2-standard-8", labels = { bastion = 1 } },
     }
     challenges = {
       "challenge01" = {
         subnet = "10.0.1.0/24",
         servers = {
-          "challenge01-a" = { hostname = "a.challenge01.potluckctf.local", ip = "10.0.1.10", type = "e2-micro", labels = { challenge = 1 } },
-          "challenge01-b" = { hostname = "b.challenge01.potluckctf.local", ip = "10.0.1.11", type = "e2-micro", labels = { challenge = 1 } },
+          "challenge01-a" = { hostname = "a.challenge01.potluckctf.local", ip = "10.0.1.10", type = "e2-standard-2", labels = { challenge = 1 } },
+          "challenge01-b" = { hostname = "b.challenge01.potluckctf.local", ip = "10.0.1.11", type = "e2-standard-2", labels = { challenge = 1 } },
         }
       },
       "challenge02" = {
         subnet = "10.0.2.0/24",
         servers = {
-          "challenge02-a" = { hostname = "a.challenge02.potluckctf.local", ip = "10.0.2.10", type = "e2-micro", labels = { challenge = 1 } },
-          "challenge02-b" = { hostname = "b.challenge02.potluckctf.local", ip = "10.0.2.11", type = "e2-micro", labels = { challenge = 1 } },
+          "challenge02-a" = { hostname = "a.challenge02.potluckctf.local", ip = "10.0.2.10", type = "e2-standard-2", labels = { challenge = 1 } },
+          "challenge02-b" = { hostname = "b.challenge02.potluckctf.local", ip = "10.0.2.11", type = "e2-standard-2", labels = { challenge = 1 } },
         }
       }
-      #"challenge02.potluckctf.local" = { ip = "10.0.1.22", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge03.potluckctf.local" = { ip = "10.0.1.23", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge04.potluckctf.local" = { ip = "10.0.1.24", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge05.potluckctf.local" = { ip = "10.0.1.25", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge06.potluckctf.local" = { ip = "10.0.1.26", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge07.potluckctf.local" = { ip = "10.0.1.27", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge08.potluckctf.local" = { ip = "10.0.1.28", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge09.potluckctf.local" = { ip = "10.0.1.29", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge10.potluckctf.local" = { ip = "10.0.1.30", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge11.potluckctf.local" = { ip = "10.0.1.31", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge12.potluckctf.local" = { ip = "10.0.1.32", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge13.potluckctf.local" = { ip = "10.0.1.33", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge14.potluckctf.local" = { ip = "10.0.1.34", type = "e2-micro", labels = { challenge = 1 } },
-      #"challenge15.potluckctf.local" = { ip = "10.0.1.35", type = "e2-micro", labels = { challenge = 1 } },
-
     }
     monitor = {
-      "monitor-a" = { hostname = "monitor.potluckctf.local", ip = "10.0.0.100", type = "e2-micro", labels = { monitor = 1 } },
+      "monitor-a" = { hostname = "monitor.potluckctf.local", ip = "10.0.0.100", type = "e2-standard-8", labels = { monitor = 1 } },
     }
   }
   challenge_servers = merge([for challenge_name, challenge in local.server_settings.challenges : { for server_name, server in challenge.servers : server_name => merge(server, { challenge_id : challenge_name }) }]...)
 
   sshkeys = ["ZetaTwo2018"]
-}
-
-output "test" {
-  value = local.challenge_servers
 }
 
 resource "google_compute_instance_group" "challenge_group" {
@@ -87,6 +68,8 @@ resource "google_compute_instance" "challenge_server" {
   labels = {
     challenge = 1
   }
+
+  allow_stopping_for_update = true
 
   boot_disk {
     initialize_params {
@@ -116,6 +99,8 @@ resource "google_compute_instance" "scoreboard_server" {
     scoreboard = 1
   }
 
+  allow_stopping_for_update = true
+
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
@@ -143,6 +128,8 @@ resource "google_compute_instance" "monitor_server" {
   labels = {
     monitor = 1
   }
+
+  allow_stopping_for_update = true
 
   boot_disk {
     initialize_params {
