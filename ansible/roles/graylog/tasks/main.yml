@@ -4,24 +4,10 @@
   register: deb_architecture
   changed_when: false
 
-- name: Get OS dist name
-  ansible.builtin.command:
-    cmd: 'lsb_release -is'
-  register: os_dist_name
-  changed_when: false
-
-- name: Get OS version
-  ansible.builtin.command:
-    cmd: 'lsb_release -cs'
-  register: os_version_codename
-  changed_when: false
-
 - name: Capture deb architecture
   ansible.builtin.set_fact:
     deb_architecture: "{{ deb_architecture.stdout }}"
-    os_version_codename: "{{ os_version_codename.stdout }}"
-    os_dist_name: "{{ os_dist_name.stdout | lower }}"
-    apt_branch: "{{ 'multiverse' if (os_dist_name == 'ubuntu') else 'main' }}"
+    apt_branch: "{{ 'multiverse' if (ansible_distribution == 'Ubuntu') else 'main' }}"
 
 - name: Install graylog pre-dependencies
   become: true
@@ -31,20 +17,20 @@
     name:
       - ca-certificates
 
-- name: Create keyrings directory
-  become: true
-  ansible.builtin.file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: '755'
-    owner: root
-    group: root
+#- name: Create keyrings directory
+#  become: true
+#  ansible.builtin.file:
+#    path: /etc/apt/keyrings
+#    state: directory
+#    mode: '755'
+#    owner: root
+#    group: root
 
 - name: Download MongoDB GPG key
   become: true
   ansible.builtin.get_url:
-    url: "https://pgp.mongodb.com/server-7.0.asc"
-    dest: /etc/apt/keyrings/mongodb-server.asc
+    url: "https://pgp.mongodb.com/server-6.0.asc"
+    dest: /usr/share/keyrings/mongodb-server.asc
     mode: '0644'
     owner: root
     group: root
@@ -53,7 +39,7 @@
   become: true
   ansible.builtin.get_url:
     url: "https://artifacts.opensearch.org/publickeys/opensearch.pgp"
-    dest: /etc/apt/keyrings/opensearch.asc
+    dest: /usr/share/keyrings/opensearch.asc
     mode: '0644'
     owner: root
     group: root
@@ -61,7 +47,7 @@
 - name: Add MongoDB repository to sources.list.d
   become: true
   ansible.builtin.apt_repository:
-    repo: "deb [ arch=amd64,arm64 signed-by=/etc/apt/keyrings/mongodb-server.asc ] https://repo.mongodb.org/apt/{{ os_dist_name }} {{ os_version_codename }}/mongodb-org/6.0 {{ apt_branch }}"
+    repo: "deb [ arch={{ deb_architecture }} signed-by=/usr/share/keyrings/mongodb-server.asc ] https://repo.mongodb.org/apt/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}/mongodb-org/6.0 {{ apt_branch }}"
     update_cache: false
     state: present
   register: apt_source1
@@ -69,7 +55,7 @@
 - name: Add OpenSearch repository to sources.list.d
   become: true
   ansible.builtin.apt_repository:
-    repo: "deb [ signed-by=/etc/apt/keyrings/opensearch.asc ] https://artifacts.opensearch.org/releases/bundle/opensearch/2.x/apt stable main"
+    repo: "deb [ signed-by=/usr/share/keyrings/opensearch.asc ] https://artifacts.opensearch.org/releases/bundle/opensearch/2.x/apt stable main"
     update_cache: false
     state: present
   register: apt_source2
