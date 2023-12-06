@@ -1,7 +1,4 @@
 all:
-  vars:
-    ansible_user: root
-    ansible_ssh_extra_args: '-R 5001:localhost:5001'
   hosts:
   children:
     scoreboard:

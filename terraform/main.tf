@@ -84,6 +84,9 @@ resource "google_compute_instance" "challenge_server" {
   machine_type = each.value.type
 
   tags = ["potluckctf", "challenge", each.value.challenge_id]
+  labels = {
+    challenge = 1
+  }
 
   boot_disk {
     initialize_params {
@@ -109,6 +112,9 @@ resource "google_compute_instance" "scoreboard_server" {
   zone         = "europe-west3-b"
 
   tags = ["potluckctf", "scoreboard"]
+  labels = {
+    scoreboard = 1
+  }
 
   boot_disk {
     initialize_params {
@@ -134,6 +140,9 @@ resource "google_compute_instance" "monitor_server" {
   zone         = "europe-west3-b"
 
   tags = ["potluckctf", "monitor"]
+  labels = {
+    monitor = 1
+  }
 
   boot_disk {
     initialize_params {
