@@ -1,0 +1,25 @@
+- name: Setup variables
+  hosts: all
+  tasks:
+    - name: Setup private ips
+      ansible.builtin.set_fact:
+        potluckctf_monitor_host: "{{ groups['monitor'][0] }}"
+        web_static_ip: "[DELETED]" # TODO (P0): Create new and get this from terraform
+
+- name: Basic setup
+  hosts: all
+  roles:
+    - role: serversetup
+    - role: rsyslog
+      vars:
+        syslog_server: "{{ potluckctf_monitor_host }}"
+    #- role: podman
+    #- role: docker
+    #  vars:
+    #    registry_ip: "{{ livectf_registry_ip }}"
+
+- name: Setup monitor server
+  hosts: monitor
+  roles:
+    - role: graylog
+

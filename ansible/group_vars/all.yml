@@ -1,0 +1,7 @@
+---
+gcp_zone: europe-west3-b
+ansible_ssh_args: --tunnel-through-iap --zone={{ gcp_zone }} --no-user-output-enabled --quiet
+ansible_scp_extra_args: --tunnel-through-iap --zone={{ gcp_zone }} --quiet
+
+graylog_root_password: "potluckctf"
+graylog_secret: "dcYHLAZNWxPwSMqqprrxzdfC7sBRJBHSbpfpBAUXKL/rVUoJUjA4l6OpmzDcmSNc"
