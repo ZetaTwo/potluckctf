@@ -21,7 +21,6 @@ apply:
 	terraform apply
 
 destroy:
-	python3 cleanup-hostkeys.py
 	terraform destroy
 
 .PHONY: default install init plan apply destroy inventory
