@@ -9,6 +9,7 @@
   hosts: all
   roles:
     - role: serversetup
+    - role: node_exporter
     - role: rsyslog
       vars:
         syslog_server: "{{ potluckctf_monitor_host }}"
@@ -17,3 +18,4 @@
   hosts: monitor
   roles:
     - role: graylog
+    - role: prometheus

@@ -212,6 +212,19 @@ resource "google_compute_firewall" "potlucktf_firewall_syslog" {
   }
 }
 
+resource "google_compute_firewall" "potlucktf_firewall_node_exporter" {
+  name     = "potluckctf-fw-node-exporter"
+  provider = google-beta
+  network  = google_compute_network.potluckctf_network.name
+
+  source_ranges = ["10.0.0.0/8"] # Internal IP range
+
+  allow {
+    protocol = "tcp"
+    ports    = ["9100"]
+  }
+}
+
 resource "google_compute_subnetwork" "potluckctf_subnet" {
   name          = "potluckctf-subnet"
   provider      = google-beta

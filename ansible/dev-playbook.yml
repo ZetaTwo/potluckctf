@@ -8,5 +8,4 @@
 - name: Setup monitor server
   hosts: monitor
   roles:
-    - role: graylog
-
+    - role: prometheus

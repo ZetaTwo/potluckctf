@@ -1,0 +1,88 @@
+- name: Install unarchive dependencies
+  become: true
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+    state: present
+    name:
+      - unzip
+
+- name: Create node_exporter group
+  become: true
+  ansible.builtin.group:
+    name: node_exporter
+    state: present
+
+- name: Create node_exporter user
+  become: true
+  ansible.builtin.user:
+    name: node_exporter
+    group: node_exporter
+    comment: Prometheus node_exporter
+    create_home: no
+    shell: /usr/sbin/nologin
+    state: present
+    system: true
+
+- name: Download and unpack node_exporter
+  become: true
+  ansible.builtin.unarchive:
+    src: https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz
+    include: node_exporter-1.7.0.linux-amd64/node_exporter
+    dest: /usr/sbin
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+
+- name: Prometheus node_exporter systemd service
+  become: true
+  ansible.builtin.copy:
+    src: node_exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+    owner: root
+    group: root
+    mode: '644'
+  notify:
+    - daemon-reload
+    - restart node_exporter
+
+- name: Prometheus node_exporter systemd socket
+  become: true
+  ansible.builtin.copy:
+    src: node_exporter.socket
+    dest: /etc/systemd/system/node_exporter.socket
+    owner: root
+    group: root
+    mode: '644'
+  notify:
+    - daemon-reload
+    - restart node_exporter
+
+- name: Create sysconfig directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/sysconfig
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Prometheus node_exporter environment file
+  become: true
+  ansible.builtin.copy:
+    src: sysconfig.node_exporter
+    dest: /etc/sysconfig/node_exporter
+    owner: root
+    group: root
+    mode: '644'
+  notify:
+    - daemon-reload
+    - restart node_exporter
+
+- name: Create textfile_collector directory
+  become: true
+  ansible.builtin.file:
+    path: /var/lib/node_exporter/textfile_collector
+    state: directory
+    recurse: true
+    owner: node_exporter
+    group: node_exporter
+    mode: '0755'
