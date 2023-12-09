@@ -1,7 +1,7 @@
 TODO: convert the GCP stuff into gcloud commands
 
-1. Create Discord role "channel-X"
-2. Create Discord channel with access for "channel-X"
+1. Create Discord role "challenge-X"
+2. Create Discord channel with access for "challenge-X"
 3. Create GCP SA named "Challenge Author X", description: "Used to deliver challenge X", id: "challenge-author-X"
 4. Create GCP bucket named "potluckctf-challenge-X"
   a. Edit Access
