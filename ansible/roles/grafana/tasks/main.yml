@@ -1,0 +1,17 @@
+
+- name: Install Grafana dependencies
+  become: true
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+    state: present
+    name:
+      - adduser
+      - libfontconfig1
+      - musl
+
+- name: Install Grafana
+  become: true
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+    state: present
+    deb: https://dl.grafana.com/enterprise/release/grafana-enterprise_10.2.2_amd64.deb

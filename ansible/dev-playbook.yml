@@ -8,4 +8,4 @@
 - name: Setup monitor server
   hosts: monitor
   roles:
-    - role: prometheus
+    - role: grafana
