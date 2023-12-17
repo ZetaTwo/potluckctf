@@ -1,0 +1,8 @@
+{
+    "log-driver": "syslog",
+    "log-opts": {
+        "syslog-facility": "daemon",
+        "tag": "docker/{{ '{{.Name}}' }}"
+    },
+    "insecure-registries": []
+}

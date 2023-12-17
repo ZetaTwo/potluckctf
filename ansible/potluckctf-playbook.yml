@@ -19,3 +19,8 @@
   roles:
     - role: graylog
     - role: prometheus
+
+- name: Setup Docker servers
+  hosts: docker
+  roles:
+    - role: docker

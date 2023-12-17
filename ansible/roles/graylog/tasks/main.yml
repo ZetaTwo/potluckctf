@@ -17,15 +17,6 @@
     name:
       - ca-certificates
 
-#- name: Create keyrings directory
-#  become: true
-#  ansible.builtin.file:
-#    path: /etc/apt/keyrings
-#    state: directory
-#    mode: '755'
-#    owner: root
-#    group: root
-
 - name: Download MongoDB GPG key
   become: true
   ansible.builtin.get_url:
