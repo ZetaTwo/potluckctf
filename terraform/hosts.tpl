@@ -12,6 +12,12 @@ all:
         ${server.name}:
 %{ endfor ~}
 
+    docker:
+      hosts:
+%{ for server in [for s in potluckctf-all: s if contains(keys(s.labels), "docker")] ~}
+        ${server.name}:
+%{ endfor ~}
+
     monitor:
       hosts:
 %{ for server in [for s in potluckctf-all: s if contains(s.tags, "monitor")] ~}

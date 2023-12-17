@@ -14,36 +14,6 @@ terraform {
   required_version = ">= 1.4.4"
 }
 
-locals {
-  server_settings = {
-    scoreboard = {
-      "scoreboard-a" = { hostname = "scoreboard.livectf.local", ip = "10.0.0.10", type = "e2-standard-8", labels = { bastion = 1 } },
-    }
-    challenges = {
-      "challenge01" = {
-        subnet = "10.0.1.0/24",
-        servers = {
-          "challenge01-a" = { hostname = "a.challenge01.potluckctf.local", ip = "10.0.1.10", type = "e2-standard-2", labels = { challenge = 1 } },
-          "challenge01-b" = { hostname = "b.challenge01.potluckctf.local", ip = "10.0.1.11", type = "e2-standard-2", labels = { challenge = 1 } },
-        }
-      },
-      "challenge02" = {
-        subnet = "10.0.2.0/24",
-        servers = {
-          "challenge02-a" = { hostname = "a.challenge02.potluckctf.local", ip = "10.0.2.10", type = "e2-standard-2", labels = { challenge = 1 } },
-          "challenge02-b" = { hostname = "b.challenge02.potluckctf.local", ip = "10.0.2.11", type = "e2-standard-2", labels = { challenge = 1 } },
-        }
-      }
-    }
-    monitor = {
-      "monitor-a" = { hostname = "monitor.potluckctf.local", ip = "10.0.0.100", type = "e2-standard-8", labels = { monitor = 1 } },
-    }
-  }
-  challenge_servers = merge([for challenge_name, challenge in local.server_settings.challenges : { for server_name, server in challenge.servers : server_name => merge(server, { challenge_id : challenge_name }) }]...)
-
-  sshkeys = ["ZetaTwo2018"]
-}
-
 resource "google_compute_instance_group" "challenge_group" {
   provider    = google-beta
   for_each    = local.server_settings.challenges
@@ -188,9 +158,23 @@ resource "google_compute_firewall" "potlucktf_firewall_challenge" {
   name     = "potluckctf-fw-challenge"
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
+  count    = local.ctf_started ? 1 : 0
 
   source_ranges = ["35.191.0.0/16", "130.211.0.0/22"] # GFE IP range
   target_tags   = ["challenge"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["31337"]
+  }
+}
+
+resource "google_compute_firewall" "potlucktf_firewall_challenge_iap" {
+  name     = "potluckctf-fw-ssh"
+  provider = google-beta
+  network  = google_compute_network.potluckctf_network.name
+
+  source_ranges = ["35.235.240.0/20"] # IAP IP range
 
   allow {
     protocol = "tcp"
