@@ -1,8 +1,6 @@
-# TODO: assign static ip to scoreboard
 # TODO: firewall for monitor server
 # TODO: firewall for scoreboard server
 # TODO: server hostname not currently used
-# TODO: output ansible inventory
 
 provider "google-beta" {
   project = "potluck-ctf"
