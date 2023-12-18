@@ -14,6 +14,12 @@ terraform {
   required_version = ">= 1.4.4"
 }
 
+resource "google_dns_managed_zone" "play" {
+  name     = "play-zone"
+  provider        = google-beta
+  dns_name = "play.potluckctf.com."
+}
+
 resource "google_compute_instance_group" "challenge_group" {
   provider    = google-beta
   for_each    = local.server_settings.challenges
@@ -87,6 +93,17 @@ resource "google_compute_instance" "scoreboard_server" {
       // Ephemeral public IP
     }
   }
+}
+
+resource "google_dns_record_set" "scoreboard_subdomain" {
+  provider        = google-beta
+  name     = "${google_dns_managed_zone.play.dns_name}"
+  type     = "A"
+  ttl      = 300
+
+  managed_zone = google_dns_managed_zone.play.name
+
+  rrdatas = [google_compute_instance.scoreboard_server["scoreboard-a"].network_interface[0].access_config[0].nat_ip]
 }
 
 resource "google_compute_instance" "monitor_server" {
@@ -250,6 +267,18 @@ resource "google_compute_target_tcp_proxy" "challenge_proxy" {
   provider        = google-beta
   name            = "${each.key}-health-check"
   backend_service = google_compute_backend_service.challenge_service[each.key].id
+}
+
+resource "google_dns_record_set" "challenge_subdomain" {
+  for_each = local.server_settings.challenges
+  provider        = google-beta
+  name     = "${each.key}.${google_dns_managed_zone.play.dns_name}"
+  type     = "A"
+  ttl      = 300
+
+  managed_zone = google_dns_managed_zone.play.name
+
+  rrdatas = [google_compute_global_address.challenge_ip[each.key].address]
 }
 
 # backend service
