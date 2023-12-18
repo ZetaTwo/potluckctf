@@ -11,6 +11,9 @@ docker-push:
 challenge01-dist.tgz: rootfs.tar.zst
 	tar czvf challenge01-dist.tgz rootfs.tar.zst
 
+clean:
+	rm -f Dockerfile cake-of-paranoia-with-flag entrypoint.sh rootfs.tar.zst README.md solve-scripts
+
 download: Dockerfile cake-of-paranoia-with-flag entrypoint.sh rootfs.tar.zst README.md solve-scripts
 
 Dockerfile:
@@ -29,6 +32,6 @@ rootfs.tar.zst:
 	gsutil cp gs://potluckctf-challenge-1/rootfs.tar.zst .
 
 solve-scripts:
-	gsutil cp gs://potluckctf-challenge-1/solve-scripts .
+	gsutil cp -r gs://potluckctf-challenge-1/solve-scripts/ .
 
 .PHONY: build docker-build docker-push download
