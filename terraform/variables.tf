@@ -94,7 +94,6 @@ locals {
 #          "challenge01-a" = { hostname = "a.challenge19.potluckctf.local", ip = "10.0.19.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
 #        }
 #      },
-#      #"challenge20" = {}, # No server
 #      "challenge21" = {
 #        subnet = "10.0.21.0/24",
 #        servers = {
