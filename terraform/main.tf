@@ -170,7 +170,7 @@ resource "google_compute_firewall" "potlucktf_firewall_challenge" {
 }
 
 resource "google_compute_firewall" "potlucktf_firewall_challenge_iap" {
-  name     = "potluckctf-fw-ssh"
+  name     = "potluckctf-fw-challenge-iap"
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
 

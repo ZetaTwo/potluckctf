@@ -14,8 +14,8 @@ all:
 
     docker:
       hosts:
-%{ for server in [for s in potluckctf-all: s if contains(keys(s.labels), "docker")] ~}
-        ${server.name}:
+%{ for name, server in {for name, server in server_settings: name => server if contains(keys(server.labels), "docker")} ~}
+        ${name}:
 %{ endfor ~}
 
     monitor:
