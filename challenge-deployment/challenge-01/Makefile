@@ -1,8 +1,12 @@
 
-build: docker challenge01-dist.tgz
+build: docker-build docker-push challenge01-dist.tgz
 
-docker: Dockerfile cake-of-paranoia-with-flag entrypoint.sh
+docker-build: Dockerfile cake-of-paranoia-with-flag entrypoint.sh
 	docker build -t potluckctf:challenge-01 .
+
+docker-push:
+	docker tag potluckctf:challenge-01 localhost:5001/potluckctf:challenge-01
+	docker push localhost:5001/potluckctf:challenge-01
 
 challenge01-dist.tgz: rootfs.tar.zst
 	tar czvf challenge01-dist.tgz rootfs.tar.zst
@@ -27,4 +31,4 @@ rootfs.tar.zst:
 solve-scripts:
 	gsutil cp gs://potluckctf-challenge-1/solve-scripts .
 
-.PHONY: build docker download
+.PHONY: build docker-build docker-push download
