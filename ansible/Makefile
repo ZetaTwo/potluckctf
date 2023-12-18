@@ -10,4 +10,13 @@ inventory:
 dependencies:
 	$$(gcloud info --format="value(basic.python_location)") -m pip install numpy
 
-.PHONY: deploy dev inventory dependencies
+registry:
+	docker run --rm -d -p 127.0.0.1:5001:5000 -p 172.17.0.1:5001:5000 --name registry registry:2
+
+cleanup:
+	docker stop registry
+
+inventory:
+	ansible-inventory -i ../terraform/hosts.yml --list
+
+.PHONY: deploy dev inventory dependencies registry cleanup inventory
