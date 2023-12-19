@@ -1,6 +1,7 @@
 
 locals {
   ctf_started = false
+  deploy_challenges = false
 
   server_settings = {
     scoreboard = {
@@ -143,6 +144,4 @@ locals {
     }
   }
   challenge_servers = merge([for challenge_name, challenge in local.server_settings.challenges : { for server_name, server in challenge.servers : server_name => merge(server, { challenge_id : challenge_name }) }]...)
-
-  sshkeys = ["ZetaTwo2018"]
 }
