@@ -6,7 +6,9 @@ categories: web
 flag_format_prefix: potluck{
 flags: I_Put_1T_On_3vErYThin6!!
 
-downloadable_files: TODO
-service: TODO
+downloadable_files: https://storage.cloud.google.com/potluckctf/challenge02-dist.tgz
+predefined_services:
+  - type: website
+    url: http://challenge02.play.potluckctf.com
 
 spec: 0.0.1

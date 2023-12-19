@@ -6,7 +6,9 @@ categories: web
 flag_format_prefix: potluck{
 flags: concocted_cyber_casserole
 
-downloadable_files: TODO
-service: TODO
+downloadable_files: https://storage.cloud.google.com/potluckctf/challenge24-dist.tgz
+predefined_services:
+  - type: website
+    url: http://challenge24.play.potluckctf.com
 
 spec: 0.0.1

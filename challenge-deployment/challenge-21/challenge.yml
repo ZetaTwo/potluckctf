@@ -6,7 +6,10 @@ categories: pwn
 flag_format_prefix: potluck{
 flags: c2e46b2752c11eb49d48e535d0e0b857
 
-downloadable_files: TODO
-service: TODO
+downloadable_files: https://storage.cloud.google.com/potluckctf/challenge21-dist.tgz
+predefined_services:
+  - type: tcp
+    host: challenge21.play.potluckctf.com
+    port: 31337
 
 spec: 0.0.1

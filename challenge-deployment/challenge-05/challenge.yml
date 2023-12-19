@@ -6,7 +6,9 @@ categories: web
 flag_format_prefix: potluck{
 flags: Its_Raining_0days_13E7
 
-downloadable_files: TODO
-service: TODO
+downloadable_files: https://storage.cloud.google.com/potluckctf/challenge05-dist.tgz
+predefined_services:
+  - type: website
+    url: http://challenge05.play.potluckctf.com
 
 spec: 0.0.1

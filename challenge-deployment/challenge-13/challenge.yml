@@ -6,7 +6,10 @@ categories: misc
 flag_format_prefix: potluck{
 flags: theres-only-one-answer '(https://youtu.be/V3QF1uAvbkU))
 
-downloadable_files: TODO
-service: TODO
+downloadable_files: https://storage.cloud.google.com/potluckctf/challenge13-dist.tgz
+predefined_services:
+  - type: tcp
+    host: challenge13.play.potluckctf.com
+    port: 31337
 
 spec: 0.0.1

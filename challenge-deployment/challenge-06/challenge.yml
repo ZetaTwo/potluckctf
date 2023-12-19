@@ -6,6 +6,7 @@ categories: reversing
 flag_format_prefix: potluck{
 flags: Th3_1nt3rn3t_1s_mY_f1L3SYst3m
 
-downloadable_files: TODO
+downloadable_files: https://storage.cloud.google.com/potluckctf/challenge06-dist.tgz
+# secret_service: http://challenge07.play.potluckctf.com
 
 spec: 0.0.1

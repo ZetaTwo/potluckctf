@@ -6,6 +6,13 @@ categories: reversing
 flag_format_prefix: potluck{
 flags: estas_muy_bien
 
-service: TODO
+custom_service_types:
+  - type: dns
+    user_display: "{host}"
+    hyperlink: false
+
+predefined_services:
+  - type: dns
+    host: challenge08.play.potluckctf.com
 
 spec: 0.0.1

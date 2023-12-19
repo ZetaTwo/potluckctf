@@ -12,6 +12,9 @@ categories:
 flag_format_prefix: potluck{
 flags: 7h15_m3m0ry_w45n7_c0rrup73d_by_c4p174l15m
 
-service: TODO
+predefined_services:
+  - type: tcp
+    host: challenge17.play.potluckctf.com
+    port: 31337
 
 spec: 0.0.1

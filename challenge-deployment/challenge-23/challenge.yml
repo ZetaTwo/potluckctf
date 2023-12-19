@@ -8,6 +8,10 @@ categories:
 flag_format_prefix: potluck{
 flags: y_i5_s3curb007_s0_h4rD
 
-service: TODO
+# TODO: same remote, right?
+predefined_services:
+  - type: tcp
+    host: challenge22.play.potluckctf.com
+    port: 31337
 
 spec: 0.0.1

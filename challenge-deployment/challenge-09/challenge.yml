@@ -6,6 +6,9 @@ categories: pwn
 flag_format_prefix: potluck{
 flags: TODO
 
-service: TODO
+predefined_services:
+  - type: tcp
+    host: challenge09.play.potluckctf.com
+    port: 31337
 
 spec: 0.0.1
