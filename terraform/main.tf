@@ -1,7 +1,3 @@
-# TODO: firewall for monitor server
-# TODO: firewall for scoreboard server
-# TODO: server hostname not currently used
-
 provider "google-beta" {
   project = "potluck-ctf"
   region  = "europe-west3"
