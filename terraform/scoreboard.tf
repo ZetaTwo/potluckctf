@@ -30,6 +30,21 @@ resource "google_compute_instance" "scoreboard_server" {
   }
 }
 
+resource "google_compute_firewall" "potlucktf_firewall_scoreboard_http" {
+  name     = "potluckctf-fw-scoreboard-http"
+  provider = google-beta
+  network  = google_compute_network.potluckctf_network.name
+  count = local.open_scoreboard ? 1 : 0
+
+  source_ranges = ["0.0.0.0/0"] # IAP IP range
+  target_tags   = ["scoreboard"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
+  }
+}
+
 resource "google_dns_record_set" "scoreboard_subdomain" {
   provider = google-beta
   name     = google_dns_managed_zone.play.dns_name

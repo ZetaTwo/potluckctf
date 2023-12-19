@@ -29,6 +29,33 @@ resource "google_compute_instance" "monitor_server" {
   }
 }
 
+
+resource "google_compute_firewall" "potlucktf_firewall_monitor_http" {
+  name     = "potluckctf-fw-monitor-http"
+  provider = google-beta
+  network  = google_compute_network.potluckctf_network.name
+
+  source_ranges = ["0.0.0.0/0"] # IAP IP range
+  target_tags   = ["monitor"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
+  }
+}
+
+resource "google_dns_record_set" "monitor_subdomain" {
+  provider = google-beta
+  name     = "monitor.${google_dns_managed_zone.play.dns_name}"
+  type     = "A"
+  ttl      = 300
+
+  managed_zone = google_dns_managed_zone.play.name
+
+  rrdatas = [google_compute_instance.monitor_server["monitor-a"].network_interface[0].access_config[0].nat_ip]
+}
+
+
 resource "google_compute_firewall" "potlucktf_firewall_syslog" {
   name     = "potluckctf-fw-syslog"
   provider = google-beta

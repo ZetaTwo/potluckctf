@@ -1,5 +1,6 @@
 
 locals {
+  open_scoreboard = false
   ctf_started = false
   deploy_challenges = false
 
