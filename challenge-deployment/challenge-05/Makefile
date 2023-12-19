@@ -8,7 +8,7 @@ docker-push:
 	docker tag potluckctf:challenge-05 localhost:5001/potluckctf:challenge-05
 	docker push localhost:5001/potluckctf:challenge-05
 
-challenge05-dist.tgz: DIST-DEPENDENCIES # TODO
+challenge05-dist.tgz: DIST-DEPENDENCIES # TODO: docker/ but edit "admin.properties" and "build.sh" for dist
 	tar czvf challenge05-dist.tgz DIST-DEPENDENCIES
 
 clean:
