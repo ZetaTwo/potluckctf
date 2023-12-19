@@ -1,5 +1,5 @@
 title: Sekurbutloader
-description: This weird arcade machine just got delivered to you. It seems broken, but there's a serial port on the back. You connect, and are greeted with a weird shell...
+description: "This weird arcade machine just got delivered to you. It seems broken, but there's a serial port on the back. You connect, and are greeted with a weird shell..."
 authors: plonk
 categories: 
   - misc
@@ -8,7 +8,6 @@ categories:
 flag_format_prefix: potluck{
 flags: duMp1n6_th3_b0o7l0ad3r_4_fuN_&_pr0f1t
 
-downloadable_files: TODO
 service: TODO
 
 spec: 0.0.1

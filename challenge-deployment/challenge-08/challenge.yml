@@ -1,12 +1,11 @@
 title: Enchiladas
-description: Ever been to Mexico?
+description: "Ever been to Mexico?"
 authors: Noobtracker, hanemile, maride
 categories: reversing
 
 flag_format_prefix: potluck{
 flags: estas_muy_bien
 
-downloadable_files: TODO
 service: TODO
 
 spec: 0.0.1

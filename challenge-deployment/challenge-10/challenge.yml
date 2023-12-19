@@ -1,5 +1,5 @@
 title: Hungry Helmsman
-description: Welcome, chefs of the Kubernetes kitchen! The hungry Helmsman is on the lookout for a unique feast, and his palate is set on flags. Embark on the "Hungry Helmsman" challenge, where Kubernetes prowess meets culinary finesse. Craft the ultimate deployment to reveal the flag!
+description: 'Welcome, chefs of the Kubernetes kitchen! The hungry Helmsman is on the lookout for a unique feast, and his palate is set on flags. Embark on the "Hungry Helmsman" challenge, where Kubernetes prowess meets culinary finesse. Craft the ultimate deployment to reveal the flag!'
 authors: p4ck3t0, diff-fusion
 categories:
   - misc
@@ -8,7 +8,6 @@ categories:
 flag_format_prefix: potluck{
 flags: kubernetes_can_be_a_bit_weird
 
-downloadable_files: TODO
 service: TODO
 
 spec: 0.0.1

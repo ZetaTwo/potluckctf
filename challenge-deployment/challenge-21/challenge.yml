@@ -1,10 +1,10 @@
-title: 
-description:
-authors: 
-categories: 
+title: Schrödinger's P1G
+description: "A Virtual Machine containing a poor pig. And 0 and 1"
+authors: TODO
+categories: pwn
 
 flag_format_prefix: potluck{
-flags: 
+flags: c2e46b2752c11eb49d48e535d0e0b857
 
 downloadable_files: TODO
 service: TODO
