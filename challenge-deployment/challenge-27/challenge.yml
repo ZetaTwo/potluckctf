@@ -1,0 +1,14 @@
+title: Pot Of Gold
+description: TODO
+authors: blasty
+categories: 
+  - pwn
+  - reversing
+
+flag_format_prefix: potluck{
+flags: TODO
+
+downloadable_files: TODO
+service: TODO
+
+spec: 0.0.1

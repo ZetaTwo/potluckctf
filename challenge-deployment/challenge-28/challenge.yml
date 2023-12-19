@@ -1,0 +1,12 @@
+title: tacocat
+description: We weren't sure what to bring to the potluck, but we figured another pyjail would always be welcome. 
+authors: "Les Amateurs: HELLOPERSON, unvariant.winter, stuxf"
+categories: misc
+
+flag_format_prefix: potluck{
+flags: tac0_fun_can_you_g0lf_it_m0re
+
+downloadable_files: TODO
+service: TODO
+
+spec: 0.0.1

@@ -1,0 +1,12 @@
+title: Cake of Paranoia
+description: A layer cake of paranoia. Please enjoy, and don't be afraid to take seconds.
+authors: Addison Crump
+categories: sandbox
+
+flag_format_prefix: potluck{
+flags: sometimes-we-all-get-in-a-little-over-our-heads-dont-we
+
+downloadable_files: TODO
+service: TODO
+
+spec: 0.0.1

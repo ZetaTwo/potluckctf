@@ -1,0 +1,12 @@
+title: "Traditional Feast: Nginx Spagetthi"
+description: TODO
+authors: BitK, XeR
+categories: web
+
+flag_format_prefix: potluck{
+flags: concocted_cyber_casserole
+
+downloadable_files: TODO
+service: TODO
+
+spec: 0.0.1

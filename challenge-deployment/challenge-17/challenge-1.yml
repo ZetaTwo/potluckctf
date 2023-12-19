@@ -1,0 +1,18 @@
+title: CanGoSpace 1
+description: "Welcome to SpaceForce! One of our critical communication satellites went silent, is unresponsive to remote control and its orbit is unstable. The only solution: you must venture into space and hack your way directly into its systems to avert an impending disaster.
+We even have a copy of the satellites internal systems ready for you, so you can test everything before your departure!
+
+Flag 1: Can you access the system and extract the error information?
+Flag 2: Great, you got system access! Now all that’s left to do, hack the system and return the satellite to a safe orbit!"
+authors: gmerz & cluosh from We_0wn_Y0u
+categories: 
+  - cryptograhy
+  - reversing
+
+flag_format_prefix: potluck{
+flags: w17h_b4ck6r0und_r4d14710n_n0nc35_4r3_53cur3
+
+downloadable_files: TODO
+service: TODO
+
+spec: 0.0.1

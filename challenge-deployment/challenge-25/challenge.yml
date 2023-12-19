@@ -1,0 +1,12 @@
+title: sandboxes
+description: With our state-of-the-art sandbox, you can nuke anything without any worries. Can you get the flag though?
+authors: borysp, valis
+categories: pwn
+
+flag_format_prefix: potluck{
+flags: TODO
+
+downloadable_files: TODO
+service: TODO
+
+spec: 0.0.1

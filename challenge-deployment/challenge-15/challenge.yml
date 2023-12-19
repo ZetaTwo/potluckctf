@@ -1,0 +1,16 @@
+title: Santa's Secret Host
+description: "I found this shop that claims to provide ""delivery via reindeer sleigh"". I ordered a few things, but the cards did not arrive on time! Please find out, what went wrong. 
+
+Theres probably something in it for you. If they have delivery problems, there might also be a flag that never reached its destination.
+
+Anyway, this is their web page: <ip or address TBD>"
+authors: 13x1, basti564, Alkalem
+categories: TODO
+
+flag_format_prefix: potluck{
+flags: christmas_brings_the_categories_together
+
+downloadable_files: TODO
+service: TODO
+
+spec: 0.0.1

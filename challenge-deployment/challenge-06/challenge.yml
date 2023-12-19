@@ -1,0 +1,12 @@
+title: Hypertext O's
+description: Who needs a local file system anyways.
+authors: Leeky
+categories: reversing
+
+flag_format_prefix: potluck{
+flags: Th3_1nt3rn3t_1s_mY_f1L3SYst3m
+
+downloadable_files: TODO
+service: TODO
+
+spec: 0.0.1

@@ -1,0 +1,12 @@
+title: auxv
+description: "Closing all currently open file descriptors on Linux is not easy (see, e.g., `close_fd`: https://github.com/cptpcrd/close_fds). I wrote a simple kernel patch to make it much simpler: https://gist.github.com/dfyz/9afb315567bf622c87d28adbe0b4fdc8. I did my best to ensure all memory accesses in this patch are safe, so this patch should definitely NOT introduce any new security vulnerabilities, such as, say, local privilege escalation to root. Right?"
+authors: dfyz (Ivan Komarov)
+categories: pwn
+
+flag_format_prefix: potluck{
+flags: TODO
+
+downloadable_files: TODO
+service: TODO
+
+spec: 0.0.1
