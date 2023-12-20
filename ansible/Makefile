@@ -16,7 +16,4 @@ registry:
 cleanup:
 	docker stop registry
 
-inventory:
-	ansible-inventory -i ../terraform/hosts.yml --list
-
 .PHONY: deploy dev inventory dependencies registry cleanup inventory
