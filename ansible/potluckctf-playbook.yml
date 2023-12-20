@@ -24,3 +24,9 @@
   hosts: docker
   roles:
     - role: docker
+
+- name: Setup scoreboard servers
+  hosts: scoreboard
+  roles:
+    - role: scoreboard
+    - role: docker
