@@ -45,11 +45,11 @@ resource "local_file" "hosts_ansible_inventory" {
   content = templatefile("${path.module}/hosts.tpl",
     {
       potluckctf-scoreboard = google_compute_instance.scoreboard_server
-      potluckctf-challenges = google_compute_instance.challenge_server
+      potluckctf-challenges = local.deploy_challenges ? google_compute_instance.challenge_server : {}
       potluckctf-monitor    = google_compute_instance.monitor_server
-      potluckctf-all        = merge(google_compute_instance.scoreboard_server, google_compute_instance.challenge_server, google_compute_instance.monitor_server)
+      potluckctf-all        = merge(google_compute_instance.scoreboard_server, local.deploy_challenges ? google_compute_instance.challenge_server : {}, google_compute_instance.monitor_server)
 
-      server_settings = merge(local.server_settings.scoreboard, local.challenge_servers, local.server_settings.monitor)
+      server_settings = merge(local.server_settings.scoreboard, local.deploy_challenges ? local.challenge_servers : {}, local.server_settings.monitor)
     }
   )
   filename        = "hosts.yml"
