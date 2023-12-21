@@ -1,0 +1,35 @@
+$ sudo docker compose exec web pipenv run python manage.py shell
+Python 3.10.13 (main, Dec 19 2023, 20:54:55) [GCC 10.2.1 20210110] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from core.models import *
+>>> # set up config object
+>>> c = Config()
+>>> import datetime
+>>> # times can be fixed easier in the admin ui later
+>>> c.start_time = datetime.datetime.now()
+>>> c.end_time = datetime.datetime.now()+datetime.timedelta(days=1)
+>>> c.oauth_callback = "https://play.potluckctf.com/callback"
+>>> c.save()
+>>> # set up an oauth provider so we can log in
+>>> p = OauthProvider()
+>>> p.name = "CTFTime"
+>>> p.enabled = True
+>>> p.client_id = "XXX"
+>>> p.client_secret = "XXX"
+>>> p.save()
+>>> # register and make yourself staff and superuser
+>>> u = User.objects.first()
+>>> u
+<User: ZetaTwo>
+>>> u.is_staff = True
+>>> u.is_superuser = True
+>>> u.save()
+>>> u = User.objects.last()
+>>> u
+<User: mateuszdrwal>
+>>> u.is_staff = True
+>>> u.is_superuser = True
+>>> u.save()
+>>>
+now exiting InteractiveConsole...
