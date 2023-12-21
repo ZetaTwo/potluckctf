@@ -1,0 +1,1 @@
+*/5 * * * * root docker exec 41115b4b071b pg_dump -U postgres -F t ctf | gzip > /var/backups/scoreboard/potluckctf_db.$(date +\%Y\%m\%d\%H\%M\%S).sql.gz
