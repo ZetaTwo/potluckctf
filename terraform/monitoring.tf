@@ -35,7 +35,7 @@ resource "google_compute_firewall" "potlucktf_firewall_monitor_http" {
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
 
-  source_ranges = ["0.0.0.0/0"] # IAP IP range
+  source_ranges = ["0.0.0.0/0"]
   target_tags   = ["monitor"]
 
   allow {
