@@ -19,6 +19,7 @@
   roles:
     - role: graylog
     - role: prometheus
+    - role: grafana
 
 - name: Setup Docker servers
   hosts: docker
