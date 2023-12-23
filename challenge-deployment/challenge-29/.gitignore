@@ -1,0 +1,6 @@
+challenge29-dist.tar.gz
+service.tar.gz
+docker-compose.yml
+Dockerfile
+requirements.txt
+server.py

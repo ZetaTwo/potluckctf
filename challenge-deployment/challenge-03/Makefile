@@ -5,7 +5,7 @@ REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-
 build: docker-build docker-push challenge03-dist.tgz
 
 docker-build: Dockerfile Cargo.lock Cargo.toml flag.txt src start.sh ctf.xinetd
-	docker build -t potluckctf:challenge-03 .
+	docker build -t $(LOCAL_IMAGE) .
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)

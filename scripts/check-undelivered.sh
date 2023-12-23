@@ -3,7 +3,6 @@ gsutil ls gs://potluckctf-challenge-2
 gsutil ls gs://potluckctf-challenge-4
 gsutil ls gs://potluckctf-challenge-9
 gsutil ls gs://potluckctf-challenge-12
-gsutil ls gs://potluckctf-challenge-13
 gsutil ls gs://potluckctf-challenge-14
 gsutil ls gs://potluckctf-challenge-15
 gsutil ls gs://potluckctf-challenge-17
