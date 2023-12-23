@@ -4,9 +4,15 @@ authors: Leeky
 categories: reversing
 
 flag_format_prefix: potluck{
-flags: Th3_1nt3rn3t_1s_mY_f1L3SYst3m
+flags: th3_1nt3rn3t_1s_my_f1l3syst3m
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge06-dist.tgz
-# secret_service: http://challenge07.play.potluckctf.com
+custom_service_types:
+  - type: command
+    user_display: "qemu-system-i386 -boot n -device e1000,netdev=mynet0 -netdev user,id=mynet0,bootfile={url}"
+    hyperlink: false
+
+predefined_services:
+  - type: command
+    url: http://challenge06.play.potluckctf.com
 
 spec: 0.0.1

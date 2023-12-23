@@ -4,7 +4,7 @@ authors: Tethys & kriztw
 categories: reversing
 
 flag_format_prefix: potluck{
-flags: TODO
+flags: "26674715172"
 
 downloadable_files: https://storage.cloud.google.com/potluckctf/challenge04-dist.tgz
 
