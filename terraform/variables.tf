@@ -2,7 +2,7 @@
 locals {
   open_scoreboard = true
   ctf_started = false
-  deploy_challenges = false
+  deploy_challenges = true
 
   server_settings = {
     scoreboard = {
