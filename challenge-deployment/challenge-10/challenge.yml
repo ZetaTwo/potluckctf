@@ -8,10 +8,9 @@ categories:
 flag_format_prefix: potluck{
 flags: kubernetes_can_be_a_bit_weird
 
-# TODO: check what service type
 predefined_services:
   - type: tcp
     host: challenge10.play.potluckctf.com
-    port: 31337
+    port: 8888
 
 spec: 0.0.1
