@@ -1,3 +1,9 @@
+resource "google_service_account" "challenge_service_account" {
+  provider     = google-beta
+  for_each     = local.deploy_challenges ? local.server_settings.challenges : {}
+  account_id   = "${each.key}-service-account"
+  display_name = "${each.key} Challenge Service Account"
+}
 
 resource "google_compute_instance_group" "challenge_group" {
   provider    = google-beta
@@ -15,7 +21,7 @@ resource "google_compute_instance_group" "challenge_group" {
 
 resource "google_compute_instance" "challenge_server" {
   provider     = google-beta
-  for_each     = local.deploy_challenges ? local.server_settings.challenges : {}
+  for_each     = local.deploy_challenges ? local.challenge_servers : {}
   name         = each.key
   machine_type = each.value.type
 
@@ -40,6 +46,12 @@ resource "google_compute_instance" "challenge_server" {
     access_config {
       // Ephemeral public IP
     }
+  }
+
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    email  = google_service_account.challenge_service_account[each.value.challenge_id].email
+    scopes = ["cloud-platform"]
   }
 }
 
@@ -166,4 +178,23 @@ resource "google_compute_health_check" "challenge_healthcheck" {
   tcp_health_check {
     port = "80"
   }
+}
+
+resource "google_artifact_registry_repository" "challenge_repository" {
+  provider      = google-beta
+  for_each      = local.deploy_challenges ? local.server_settings.challenges : {}
+  location      = "europe-west3"
+  repository_id = "${each.key}-repository"
+  description   = "${each.key} challenge repository"
+  format        = "DOCKER"
+}
+
+resource "google_artifact_registry_repository_iam_member" "member" {
+  provider   = google-beta
+  for_each   = local.deploy_challenges ? local.server_settings.challenges : {}
+  project    = google_artifact_registry_repository.challenge_repository[each.key].project
+  location   = google_artifact_registry_repository.challenge_repository[each.key].location
+  repository = google_artifact_registry_repository.challenge_repository[each.key].name
+  role       = "roles/artifactregistry.reader"
+  member     = google_service_account.challenge_service_account[each.key].member
 }
