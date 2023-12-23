@@ -1,16 +1,17 @@
-title: TODO
-description: TODO
-authors: TODO
-categories: TODO
+title: REhoST
+description: Our development team created a secure way of booting firmware by authenticating against a different chip. We have the firmware, but no chip :c Can you help us by emulating the secure processor so that we can boot our chip?
+authors: Liikt
+categories: 
+  - rev
+  - misc
 
 flag_format_prefix: potluck{
-flags: TODO
+flags: R3h05TinG_4s_4_S3rv1c3_1s_7h3_Fu7ur3!!!
 
-# TODO: downloads? docker? both? other?
-#downloadable_files: https://storage.cloud.google.com/potluckctf/challenge29-dist.tgz
-#predefined_services:
-#  - type: tcp
-#    host: challenge29.play.potluckctf.com
-#    port: 31337
+downloadable_files: https://storage.cloud.google.com/potluckctf/challenge29-dist.tar.gz
+predefined_services:
+  - type: http
+    host: challenge29.play.potluckctf.com
+    port: 5000
 
 spec: 0.0.1
