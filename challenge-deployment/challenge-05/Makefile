@@ -1,12 +1,15 @@
+CHALLENGE_ID = 05
+LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
+REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
 
 build: docker-build docker-push challenge05-dist.tgz
 
 docker-build: docker/
 	docker build -t potluckctf:challenge-05 docker/
 
-docker-push:
-	docker tag potluckctf:challenge-05 localhost:5001/potluckctf:challenge-05
-	docker push localhost:5001/potluckctf:challenge-05
+docker-push: docker-build
+	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
+	docker push $(REMOTE_IMAGE)
 
 challenge05-dist.tgz: DIST-DEPENDENCIES # TODO: docker/ but edit "admin.properties" and "build.sh" for dist
 	tar czvf challenge05-dist.tgz DIST-DEPENDENCIES

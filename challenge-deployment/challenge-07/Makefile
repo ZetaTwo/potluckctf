@@ -1,12 +1,15 @@
+CHALLENGE_ID = 07
+LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
+REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
 
 build: docker-build docker-push challenge07-dist.tgz
 
 docker-build: deploy/
 	docker build -t potluckctf:challenge-07 deploy/
 
-docker-push:
-	docker tag potluckctf:challenge-07 localhost:5001/potluckctf:challenge-07
-	docker push localhost:5001/potluckctf:challenge-07
+docker-push: docker-build
+	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
+	docker push $(REMOTE_IMAGE)
 
 challenge07-dist.tgz: public/
 	tar -C public/ -czvf challenge07-dist.tgz bear_err.zip
