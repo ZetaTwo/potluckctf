@@ -45,7 +45,8 @@ resource "local_file" "hosts_ansible_inventory" {
   content = templatefile("${path.module}/hosts.tpl",
     {
       potluckctf-scoreboard = google_compute_instance.scoreboard_server
-      potluckctf-challenges = local.deploy_challenges ? google_compute_instance.challenge_server : {}
+      potluckctf-challenges-servers = local.deploy_challenges ? google_compute_instance.challenge_server : {}
+      potluckctf-challenges = local.deploy_challenges ? local.server_settings.challenges : {}
       potluckctf-monitor    = google_compute_instance.monitor_server
       potluckctf-all        = merge(google_compute_instance.scoreboard_server, local.deploy_challenges ? google_compute_instance.challenge_server : {}, google_compute_instance.monitor_server)
 

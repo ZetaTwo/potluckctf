@@ -26,6 +26,11 @@
   roles:
     - role: docker
 
+- name: Setup single container challenges
+  hosts: docker
+  roles:
+    - role: challenge-docker
+
 - name: Setup scoreboard servers
   hosts: scoreboard
   roles:

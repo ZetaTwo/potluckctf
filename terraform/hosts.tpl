@@ -7,18 +7,25 @@ all:
         ${server.name}:
 %{ endfor ~}
     challenges:
-      hosts:
-%{ for server in potluckctf-challenges ~}
-        ${server.name}:
+      children:
+%{ for challenge_name, challenge in potluckctf-challenges ~}
+        ${challenge_name}:
+          hosts:
+%{ for server_name, server in challenge.servers ~}
+            ${server_name}:
+%{ endfor ~}
 %{ endfor ~}
 
     docker:
       hosts:
 %{ for name, server in {for name, server in server_settings: name => server if contains(keys(server.labels), "docker")} ~}
         ${name}:
-          challenge: ${server.challenge_id}
-          docker_privileged: ${server.docker_privileged}
-          docker_port: ${server.docker_port}
+%{ endfor ~}
+
+    docker_single:
+      hosts:
+%{ for name, server in {for name, server in server_settings: name => server if contains(keys(server.labels), "docker_single")} ~}
+        ${name}:
 %{ endfor ~}
 
     monitor:
