@@ -13,7 +13,7 @@ locals {
       "challenge00" = {
         subnet = "10.0.137.0/24",
         docker_privileged = true,
-        docker_port = 31337,
+        docker_port = 5000,
         servers = {
           "challenge00-a" = { ip = "10.0.137.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
           "challenge00-b" = { ip = "10.0.137.11", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
