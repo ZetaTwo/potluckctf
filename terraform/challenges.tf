@@ -1,6 +1,6 @@
 resource "google_service_account" "challenge_service_account" {
   provider     = google-beta
-  for_each     = local.deploy_challenges ? local.server_settings.challenges : {}
+  for_each     = local.artifacts_challenges ? local.server_settings.challenges : {}
   account_id   = "${each.key}-service-account"
   display_name = "${each.key} Challenge Service Account"
 }
@@ -182,7 +182,7 @@ resource "google_compute_health_check" "challenge_healthcheck" {
 
 resource "google_artifact_registry_repository" "challenge_repository" {
   provider      = google-beta
-  for_each      = local.deploy_challenges ? local.server_settings.challenges : {}
+  for_each      = local.artifacts_challenges ? local.server_settings.challenges : {}
   location      = "europe-west3"
   repository_id = "${each.key}-repository"
   description   = "${each.key} challenge repository"
@@ -191,7 +191,7 @@ resource "google_artifact_registry_repository" "challenge_repository" {
 
 resource "google_artifact_registry_repository_iam_member" "member" {
   provider   = google-beta
-  for_each   = local.deploy_challenges ? local.server_settings.challenges : {}
+  for_each   = local.artifacts_challenges ? local.server_settings.challenges : {}
   project    = google_artifact_registry_repository.challenge_repository[each.key].project
   location   = google_artifact_registry_repository.challenge_repository[each.key].location
   repository = google_artifact_registry_repository.challenge_repository[each.key].name

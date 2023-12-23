@@ -2,6 +2,7 @@
 locals {
   open_scoreboard = true
   ctf_started = false
+  artifacts_challenges = true
   deploy_challenges = true
 
   server_settings = {
@@ -9,21 +10,30 @@ locals {
       "scoreboard-a" = { ip = "10.0.0.10", type = "e2-standard-8", labels = { bastion = 1 } },
     }
     challenges = {
-      "challenge01" = {
-        subnet = "10.0.1.0/24",
+      "challenge00" = {
+        subnet = "10.0.137.0/24",
+        docker_privileged = true,
+        docker_port = 31337,
         servers = {
-          "challenge01-a" = { ip = "10.0.1.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
-          "challenge01-b" = { ip = "10.0.1.11", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
+          "challenge00-a" = { ip = "10.0.137.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
+          "challenge00-b" = { ip = "10.0.137.11", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
         }
       },
-      "challenge02" = {
-        subnet = "10.0.2.0/24",
-        servers = {
-          "challenge02-a" = { ip = "10.0.2.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
-          "challenge02-b" = { ip = "10.0.2.11", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
-        }
-      },
-      
+#      "challenge01" = {
+#        subnet = "10.0.1.0/24",
+#        servers = {
+#          "challenge01-a" = { ip = "10.0.1.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
+#          "challenge01-b" = { ip = "10.0.1.11", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
+#        }
+#      },
+#      "challenge02" = {
+#        subnet = "10.0.2.0/24",
+#        servers = {
+#          "challenge02-a" = { ip = "10.0.2.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
+#          "challenge02-b" = { ip = "10.0.2.11", type = "e2-standard-2", labels = { challenge = 1, docker = 1 } },
+#        }
+#      },
+#     
 #      "challenge03" = {
 #        subnet = "10.0.3.0/24",
 #        servers = {
@@ -144,5 +154,5 @@ locals {
       "monitor-a" = { ip = "10.0.0.100", type = "e2-standard-8", labels = { monitor = 1 } },
     }
   }
-  challenge_servers = merge([for challenge_name, challenge in local.server_settings.challenges : { for server_name, server in challenge.servers : server_name => merge(server, { challenge_id : challenge_name }) }]...)
+  challenge_servers = merge([for challenge_name, challenge in local.server_settings.challenges : { for server_name, server in challenge.servers : server_name => merge(server, { challenge_id : challenge_name, docker_port: challenge.docker_port, docker_privileged: challenge.docker_privileged }) }]...)
 }

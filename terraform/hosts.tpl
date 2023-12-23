@@ -16,6 +16,9 @@ all:
       hosts:
 %{ for name, server in {for name, server in server_settings: name => server if contains(keys(server.labels), "docker")} ~}
         ${name}:
+          challenge: ${server.challenge_id}
+          docker_privileged: ${server.docker_privileged}
+          docker_port: ${server.docker_port}
 %{ endfor ~}
 
     monitor:

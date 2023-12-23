@@ -1,0 +1,32 @@
+- name: Setup root docker client config
+  become: true
+  ansible.builtin.file:
+    path: /root/.docker
+    state: directory
+    mode: '755'
+    owner: root
+    group: root
+
+- name: Setup GCP Artifact Registry auth
+  become: true
+  ansible.builtin.copy:
+    src: config.json
+    dest: /root/.docker/config.json
+    mode: '600'
+    owner: root
+    group: root
+
+- name: Pull the challenge image
+  become: true
+  community.docker.docker_image:
+    name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}:latest"
+    source: pull
+    force_source: "{{ upgrade_challenges | default(false) | bool }}"
+
+- name: Start challenge image
+  become: true
+  community.docker.docker_container:
+    name: "{{ challenge }}"
+    image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}:latest"
+    privileged: "{{ docker_privileged }}"
+    published_ports: "31337:{{ docker_port }}"
