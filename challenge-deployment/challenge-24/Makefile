@@ -12,14 +12,14 @@ dist-push: dist
 	gsutil cp $(DIST_FILE) gs://potluckctf
 
 docker-build: public
-	docker build -t $(LOCAL_IMAGE) public
+	docker build --build-arg FLAG=potluck{concocted_cyber_casserole} -t $(LOCAL_IMAGE) public
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-$(DIST_FILE): DIST-DEPENDENCIES
-	tar czvf $(DIST_FILE) DIST-DEPENDENCIES TODO
+$(DIST_FILE): public
+	tar -C public -czvf $(DIST_FILE) . 
 
 clean:
 	rm -fr README.md public.tgz solve.py public/

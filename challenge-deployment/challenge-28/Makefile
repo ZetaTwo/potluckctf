@@ -18,8 +18,8 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-$(DIST_FILE): DIST-DEPENDENCIES
-	tar czvf $(DIST_FILE) DIST-DEPENDENCIES TODO
+$(DIST_FILE): Dockerfile main.py
+	tar czvf $(DIST_FILE) Dockerfile main.py
 
 clean:
 	rm -f Dockerfile flag.txt main.py

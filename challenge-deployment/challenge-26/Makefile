@@ -11,25 +11,35 @@ dist: $(DIST_FILE)
 dist-push: dist
 	gsutil cp $(DIST_FILE) gs://potluckctf
 
-docker-build: DOCKER-DEPENDENCIES
-	docker build -t "$(LOCAL_IMAGE)" .
+docker-build: downloads/build
+	docker build -t "$(LOCAL_IMAGE)" downloads/build
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-challenge26-dist.tgz: DIST-DEPENDENCIES
-	tar czvf challenge26-dist.tgz DIST-DEPENDENCIES
+challenge26-dist.tgz: downloads/build/out
+	tar -C downloads/build/out -czvf challenge26-dist.tgz chal libc.so.6 ld-linux-x86-64.so.2
 
 clean:
 	rm -fr downloads/
 
-download: downloads/build
+download: downloads/build downloads/Dockerfile downloads/chal downloads/flag.txt
 
 downloads:
 	mkdir -p downloads
 
 downloads/build: downloads
 	gsutil cp -r $(DELIVERY_BUCKET)/build downloads/
+
+downloads/Dockerfile: downloads
+	gsutil cp -r $(DELIVERY_BUCKET)/Dockerfile downloads/
+
+downloads/chal: downloads
+	gsutil cp -r $(DELIVERY_BUCKET)/chal downloads/
+
+downloads/flag.txt: downloads
+	gsutil cp -r $(DELIVERY_BUCKET)/flag.txt downloads/
+
 
 .PHONY: build docker-build docker-push dist dist-push download

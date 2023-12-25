@@ -18,8 +18,8 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-$(DIST_FILE): DIST-DEPENDENCIES
-	tar czvf $(DIST_FILE) DIST-DEPENDENCIES TODO
+$(DIST_FILE): distributables
+	tar -C distributables -czvf $(DIST_FILE) final.py
 
 clean:
 	rm -rf distributables/ secret/

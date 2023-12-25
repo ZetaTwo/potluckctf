@@ -11,7 +11,7 @@ dist: $(DIST_FILE)
 dist-push: dist
 	gsutil cp $(DIST_FILE) gs://potluckctf
 
-docker-build: shells-kitchen/
+docker-build: shells-kitchen
 	docker build -t $(LOCAL_IMAGE) shells-kitchen/deploy
 
 docker-push: docker-build
@@ -19,7 +19,7 @@ docker-push: docker-build
 	docker push $(REMOTE_IMAGE)
 
 $(DIST_FILE): shells-kitchen/
-	tar czvf $(DIST_FILE) DIST-DEPENDENCIES TODO
+	cp shells-kitchen/dist.tar.gz $(DIST_FILE)
 
 clean:
 	rm -fr shells-kitchen/
