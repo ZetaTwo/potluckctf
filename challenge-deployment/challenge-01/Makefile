@@ -2,7 +2,9 @@ CHALLENGE_ID = 01
 LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
 REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
 
-build: docker-build docker-push challenge01-dist.tgz
+build: docker-build docker-push dist
+
+dist: challenge01-dist.tgz
 
 # TODO: Add PoW
 docker-build: Dockerfile cake-of-paranoia-with-flag entrypoint.sh

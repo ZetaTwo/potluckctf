@@ -18,7 +18,7 @@ challenge12-dist.tgz:
 	gsutil cp gs://potluckctf-challenge-12/challenge12-dist.tgz .
 
 clean:
-	rm -fr challenge12-dist.tgz oci-image.tar.zst src-806f208.zip swgcc710-cross-6b-9916.tar.gz
+	rm -fr challenge12-dist.tgz oci-image.tar.zst oci-image.tar src-806f208.zip swgcc710-cross-6b-9916.tar.gz
 
 download: challenge12-dist.tgz oci-image.tar.zst src-806f208.zip swgcc710-cross-6b-9916.tar.gz
 

@@ -15,7 +15,7 @@ challenge18-dist.tgz: DIST-DEPENDENCIES
 	tar czvf challenge18-dist.tgz DIST-DEPENDENCIES TODO
 
 clean:
-	rm -f distributables/ secret/
+	rm -rf distributables/ secret/
 
 download: distributables/ secret/
 
