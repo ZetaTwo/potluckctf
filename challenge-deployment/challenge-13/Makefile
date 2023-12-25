@@ -9,7 +9,10 @@ build: docker-build docker-push dist
 dist: $(DIST_FILE)
 
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
+
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
 docker-build: flag.txt chall.py config.el
 	docker build -t $(LOCAL_IMAGE) .
@@ -27,27 +30,27 @@ clean:
 download: Dockerfile build_instructions.md chall.py compose.yaml config.el flag.txt solution.org solve.py
 
 Dockerfile:
-	gsutil cp $(DELIVERY_BUCKET)/Dockerfile .
+	gcloud storage cp $(DELIVERY_BUCKET)/Dockerfile .
 
 build_instructions.md:
-	gsutil cp $(DELIVERY_BUCKET)/build_instructions.md .
+	gcloud storage cp $(DELIVERY_BUCKET)/build_instructions.md .
 
 chall.py:
-	gsutil cp $(DELIVERY_BUCKET)/chall.py .
+	gcloud storage cp $(DELIVERY_BUCKET)/chall.py .
 
 compose.yaml:
-	gsutil cp $(DELIVERY_BUCKET)/compose.yaml .
+	gcloud storage cp $(DELIVERY_BUCKET)/compose.yaml .
 
 config.el:
-	gsutil cp $(DELIVERY_BUCKET)/config.el .
+	gcloud storage cp $(DELIVERY_BUCKET)/config.el .
 
 flag.txt:
-	gsutil cp $(DELIVERY_BUCKET)/flag.txt .
+	gcloud storage cp $(DELIVERY_BUCKET)/flag.txt .
 
 solution.org:
-	gsutil cp $(DELIVERY_BUCKET)/solution.org .
+	gcloud storage cp $(DELIVERY_BUCKET)/solution.org .
 
 solve.py:
-	gsutil cp $(DELIVERY_BUCKET)/solve.py .
+	gcloud storage cp $(DELIVERY_BUCKET)/solve.py .
 
 .PHONY: build docker-build docker-push dist dist-push download

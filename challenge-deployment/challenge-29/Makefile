@@ -9,7 +9,10 @@ build: docker-build docker-push dist
 dist: $(DIST_FILE)
 
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
+
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
 docker-build: Dockerfile server.py requirements.txt
 	docker build -t $(LOCAL_IMAGE) .
@@ -27,10 +30,10 @@ clean:
 download: challenge29-dist.tar.gz service.tar.gz
 
 challenge29-dist.tar.gz:
-	gsutil cp $(DELIVERY_BUCKET)/challenge29-dist.tar.gz .
+	gcloud storage cp $(DELIVERY_BUCKET)/challenge29-dist.tar.gz .
 
 service.tar.gz:
-	gsutil cp $(DELIVERY_BUCKET)/service.tar.gz .
+	gcloud storage cp $(DELIVERY_BUCKET)/service.tar.gz .
 
 docker-compose.yml: service.tar.gz
 	tar xf service.tar.gz

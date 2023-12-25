@@ -9,8 +9,11 @@ build: docker-build docker-push dist
 
 dist: $(DIST_FILE)
 
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
+
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
 
 # TODO: Add PoW
 docker-build: Dockerfile cake-of-paranoia-with-flag entrypoint.sh
@@ -29,21 +32,21 @@ clean:
 download: Dockerfile cake-of-paranoia-with-flag entrypoint.sh rootfs.tar.zst README.md solve-scripts
 
 Dockerfile:
-	gsutil cp $(DELIVERY_BUCKET)/Dockerfile .
+	gcloud storage cp $(DELIVERY_BUCKET)/Dockerfile .
 
 README.md:
-	gsutil cp $(DELIVERY_BUCKET)/README.md .
+	gcloud storage cp $(DELIVERY_BUCKET)/README.md .
 
 cake-of-paranoia-with-flag:
-	gsutil cp $(DELIVERY_BUCKET)/cake-of-paranoia-with-flag .
+	gcloud storage cp $(DELIVERY_BUCKET)/cake-of-paranoia-with-flag .
 
 entrypoint.sh:
-	gsutil cp $(DELIVERY_BUCKET)/entrypoint.sh .
+	gcloud storage cp $(DELIVERY_BUCKET)/entrypoint.sh .
 
 rootfs.tar.zst:
-	gsutil cp $(DELIVERY_BUCKET)/rootfs.tar.zst .
+	gcloud storage cp $(DELIVERY_BUCKET)/rootfs.tar.zst .
 
 solve-scripts:
-	gsutil cp -r $(DELIVERY_BUCKET)/solve-scripts/ .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/solve-scripts/ .
 
 .PHONY: build docker-build docker-push dist dist-push download

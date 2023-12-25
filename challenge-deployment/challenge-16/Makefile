@@ -9,7 +9,10 @@ build: docker-build docker-push dist
 dist: $(DIST_FILE)
 
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
+
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
 docker-build: DOCKER-DEPENDENCIES
 	docker build -t "$(LOCAL_IMAGE)" .
@@ -27,9 +30,9 @@ clean:
 download: dist solve
 
 dist:	
-	gsutil cp -r $(DELIVERY_BUCKET)/dist/ .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/dist/ .
 
 solve:	
-	gsutil cp -r $(DELIVERY_BUCKET)/solve/ .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/solve/ .
 
 .PHONY: build docker-build docker-push download

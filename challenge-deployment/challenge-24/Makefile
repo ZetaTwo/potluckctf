@@ -9,7 +9,10 @@ build: docker-build docker-push dist
 dist: $(DIST_FILE)
 
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
+
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
 docker-build: public
 	docker build --build-arg FLAG=potluck{concocted_cyber_casserole} -t $(LOCAL_IMAGE) public
@@ -27,15 +30,15 @@ clean:
 download: README.md public.tgz solve.py public/
 
 README.md:
-	gsutil cp $(DELIVERY_BUCKET)/README.md .
+	gcloud storage cp $(DELIVERY_BUCKET)/README.md .
 
 public.tgz:
-	gsutil cp $(DELIVERY_BUCKET)/public.tgz .
+	gcloud storage cp $(DELIVERY_BUCKET)/public.tgz .
 
 solve.py:
-	gsutil cp $(DELIVERY_BUCKET)/solve.py .
+	gcloud storage cp $(DELIVERY_BUCKET)/solve.py .
 
 public:
-	gsutil cp -r $(DELIVERY_BUCKET)/public .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/public .
 
 .PHONY: build docker-build docker-push dist dist-push download

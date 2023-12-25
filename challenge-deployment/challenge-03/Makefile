@@ -9,8 +9,11 @@ build: docker-build docker-push dist
 
 dist: $(DIST_FILE)
 
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
+
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
 
 docker-build: Dockerfile Cargo.lock Cargo.toml flag.txt src start.sh ctf.xinetd
 	docker build -t $(LOCAL_IMAGE) .
@@ -28,30 +31,30 @@ clean:
 download: Dockerfile Cargo.lock Cargo.toml ctf.xinetd dist.tar.gz Dockerfile flag.txt solve src start.sh 
 
 Cargo.lock:
-	gsutil cp $(DELIVERY_BUCKET)/Cargo.lock .
+	gcloud storage cp $(DELIVERY_BUCKET)/Cargo.lock .
 
 Cargo.toml:
-	gsutil cp $(DELIVERY_BUCKET)/Cargo.toml .
+	gcloud storage cp $(DELIVERY_BUCKET)/Cargo.toml .
 
 ctf.xinetd:
-	gsutil cp $(DELIVERY_BUCKET)/ctf.xinetd .
+	gcloud storage cp $(DELIVERY_BUCKET)/ctf.xinetd .
 
 dist.tar.gz:
-	gsutil cp $(DELIVERY_BUCKET)/dist.tar.gz .
+	gcloud storage cp $(DELIVERY_BUCKET)/dist.tar.gz .
 
 Dockerfile:
-	gsutil cp $(DELIVERY_BUCKET)/Dockerfile .
+	gcloud storage cp $(DELIVERY_BUCKET)/Dockerfile .
 
 flag.txt:
-	gsutil cp $(DELIVERY_BUCKET)/flag.txt .
+	gcloud storage cp $(DELIVERY_BUCKET)/flag.txt .
 
 solve:
-	gsutil cp -r $(DELIVERY_BUCKET)/solve/ .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/solve/ .
 
 src:
-	gsutil cp -r $(DELIVERY_BUCKET)/src/ .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/src/ .
 
 start.sh:
-	gsutil cp $(DELIVERY_BUCKET)/start.sh .
+	gcloud storage cp $(DELIVERY_BUCKET)/start.sh .
 
 .PHONY: build docker-build docker-push dist dist-push download

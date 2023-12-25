@@ -9,7 +9,10 @@ build: docker-build docker-push dist
 dist: $(DIST_FILE)
 
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
+
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
 docker-build: DOCKER-DEPENDENCIES
 	docker build -t "$(LOCAL_IMAGE)" .
@@ -30,54 +33,54 @@ downloads:
 	mkdir -p downloads
 
 downloads/Makefile: downloads
-	gsutil cp $(DELIVERY_BUCKET)/Makefile downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/Makefile downloads/
 
 downloads/deploy.cpio.gz: downloads
-	gsutil cp $(DELIVERY_BUCKET)/deploy.cpio.gz downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/deploy.cpio.gz downloads/
 
 downloads/deploy.flag.txt: downloads
-	gsutil cp $(DELIVERY_BUCKET)/deploy.flag.txt downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/deploy.flag.txt downloads/
 
 downloads/deploy_bundle.tar.gz: downloads
-	gsutil cp $(DELIVERY_BUCKET)/deploy_bundle.tar.gz downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/deploy_bundle.tar.gz downloads/
 
 downloads/hashcash.py: downloads
-	gsutil cp $(DELIVERY_BUCKET)/hashcash.py downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/hashcash.py downloads/
 
 downloads/init: downloads
-	gsutil cp $(DELIVERY_BUCKET)/init downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/init downloads/
 
 downloads/initramfs.cpio.gz: downloads
-	gsutil cp $(DELIVERY_BUCKET)/initramfs.cpio.gz downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/initramfs.cpio.gz downloads/
 
 downloads/kernel: downloads
-	gsutil cp $(DELIVERY_BUCKET)/kernel downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/kernel downloads/
 
 downloads/pow.py: downloads
-	gsutil cp $(DELIVERY_BUCKET)/pow.py downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/pow.py downloads/
 
 downloads/run.sh: downloads
-	gsutil cp $(DELIVERY_BUCKET)/run.sh downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/run.sh downloads/
 
 downloads/server.py: downloads
-	gsutil cp $(DELIVERY_BUCKET)/server.py downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/server.py downloads/
 
 downloads/task.service: downloads
-	gsutil cp $(DELIVERY_BUCKET)/task.service downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/task.service downloads/
 
 downloads/user.cpio.gz: downloads
-	gsutil cp $(DELIVERY_BUCKET)/user.cpio.gz downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/user.cpio.gz downloads/
 
 downloads/user.flag.txt: downloads
-	gsutil cp $(DELIVERY_BUCKET)/user.flag.txt downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/user.flag.txt downloads/
 
 downloads/user_bundle.tar.gz: downloads
-	gsutil cp $(DELIVERY_BUCKET)/user_bundle.tar.gz downloads/
+	gcloud storage cp $(DELIVERY_BUCKET)/user_bundle.tar.gz downloads/
 
 downloads/exploits/: downloads
-	gsutil cp -r $(DELIVERY_BUCKET)/exploits downloads/
+	gcloud storage cp -r $(DELIVERY_BUCKET)/exploits downloads/
 
 downloads/src/: downloads
-	gsutil cp -r $(DELIVERY_BUCKET)/src downloads/
+	gcloud storage cp -r $(DELIVERY_BUCKET)/src downloads/
 
 .PHONY: build docker-build docker-push dist dist-push download

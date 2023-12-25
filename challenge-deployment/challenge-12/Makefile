@@ -9,7 +9,10 @@ build: docker-build docker-push dist
 dist: $(DIST_FILE)
 
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
+
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
 oci-image.tar: oci-image.tar.zst
 	zstd -d oci-image.tar.zst
@@ -22,7 +25,7 @@ docker-push: docker-build
 	docker push $(REMOTE_IMAGE)
 
 $(DIST_FILE):
-	gsutil cp $(DELIVERY_BUCKET)/challenge12-dist.tgz .
+	gcloud storage cp $(DELIVERY_BUCKET)/challenge12-dist.tgz .
 
 clean:
 	rm -fr challenge12-dist.tgz oci-image.tar.zst oci-image.tar src-806f208.zip swgcc710-cross-6b-9916.tar.gz
@@ -30,12 +33,12 @@ clean:
 download: challenge12-dist.tgz oci-image.tar.zst src-806f208.zip swgcc710-cross-6b-9916.tar.gz
 
 oci-image.tar.zst:
-	gsutil cp $(DELIVERY_BUCKET)/oci-image.tar.zst .
+	gcloud storage cp $(DELIVERY_BUCKET)/oci-image.tar.zst .
 
 src-806f208.zip:
-	gsutil cp $(DELIVERY_BUCKET)/src-806f208.zip .
+	gcloud storage cp $(DELIVERY_BUCKET)/src-806f208.zip .
 
 swgcc710-cross-6b-9916.tar.gz:
-	gsutil cp $(DELIVERY_BUCKET)/swgcc710-cross-6b-9916.tar.gz .
+	gcloud storage cp $(DELIVERY_BUCKET)/swgcc710-cross-6b-9916.tar.gz .
 
 .PHONY: build docker-build docker-push dist dist-push download

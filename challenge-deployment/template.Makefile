@@ -9,7 +9,7 @@ build: docker-build docker-push dist
 dist: $(DIST_FILE)
 
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
 
 docker-build: DOCKER-DEPENDENCIES
 	docker build -t "$(LOCAL_IMAGE)" .
@@ -27,7 +27,7 @@ clean:
 download: FILES
 
 A-FILE:
-	gsutil cp gs://potluckctf-challenge-X/A-FILE .
+	gcloud storage cp gs://potluckctf-challenge-X/A-FILE .
 
 
 .PHONY: build docker-build docker-push dist dist-push download

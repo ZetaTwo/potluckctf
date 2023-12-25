@@ -11,7 +11,7 @@ build: docker-build docker-push dist
 dist: $(DIST_FILE_WIN) $(DIST_FILE_MAC) $(DIST_FILE_LINUX)
 
 dist-push: dist
-	gsutil cp $(DIST_FILE_WIN) $(DIST_FILE_MAC) $(DIST_FILE_LINUX) gs://potluckctf
+	gcloud storage cp $(DIST_FILE_WIN) $(DIST_FILE_MAC) $(DIST_FILE_LINUX) gs://potluckctf
 
 docker-build: DOCKER-DEPENDENCIES
 	docker build -t "$(LOCAL_IMAGE)" .
@@ -35,18 +35,23 @@ $(DIST_FILE_LINUX): charming-circuit-challenge-linux.zip
 	tar czvf $(DIST_FILE_LINUX) charming-circuit-challenge
 	rm charming-circuit-challenge
 
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE_WIN)
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE_MAC)
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE_LINUX)
+
 clean:
 	rm -f charming-circuit-challenge-linux.zip charming-circuit-challenge-mac.zip charming-circuit-challenge-windows.zip
 
 download: charming-circuit-challenge-linux.zip charming-circuit-challenge-mac.zip charming-circuit-challenge-windows.zip
 
 charming-circuit-challenge-linux.zip:
-	gsutil cp gs://potluckctf-challenge-4/charming-circuit-challenge-linux.zip .
+	gcloud storage cp gs://potluckctf-challenge-4/charming-circuit-challenge-linux.zip .
 
 charming-circuit-challenge-mac.zip:
-	gsutil cp gs://potluckctf-challenge-4/charming-circuit-challenge-mac.zip .
+	gcloud storage cp gs://potluckctf-challenge-4/charming-circuit-challenge-mac.zip .
 
 charming-circuit-challenge-windows.zip:
-	gsutil cp gs://potluckctf-challenge-4/charming-circuit-challenge-windows.zip .
+	gcloud storage cp gs://potluckctf-challenge-4/charming-circuit-challenge-windows.zip .
 
 .PHONY: build docker-build docker-push dist dist-push download

@@ -21,6 +21,6 @@ clean:
 download: sekurbut.tar
 
 sekurbut.tar:
-	gsutil cp $(DELIVERY_BUCKET)/sekurbut.tar .
+	gcloud storage cp $(DELIVERY_BUCKET)/sekurbut.tar .
 
 .PHONY: build docker-build docker-push dist dist-push download

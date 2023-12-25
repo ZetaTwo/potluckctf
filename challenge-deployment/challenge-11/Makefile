@@ -19,14 +19,14 @@ clean:
 download: .env docker-compose.yml solve.py bot/ php/
 
 .env:
-	gsutil cp $(DELIVERY_BUCKET)/.env .
+	gcloud storage cp $(DELIVERY_BUCKET)/.env .
 docker-compose.yml:
-	gsutil cp $(DELIVERY_BUCKET)/docker-compose.yml .
+	gcloud storage cp $(DELIVERY_BUCKET)/docker-compose.yml .
 solve.py:
-	gsutil cp $(DELIVERY_BUCKET)/solve.py .
+	gcloud storage cp $(DELIVERY_BUCKET)/solve.py .
 bot/:
-	gsutil cp -r $(DELIVERY_BUCKET)/bot/ .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/bot/ .
 php/:
-	gsutil cp -r $(DELIVERY_BUCKET)/php/ .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/php/ .
 
 .PHONY: build docker-build docker-push dist dist-push download

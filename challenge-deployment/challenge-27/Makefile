@@ -9,7 +9,10 @@ build: docker-build docker-push dist
 dist: $(DIST_FILE)
 
 dist-push: dist
-	gsutil cp $(DIST_FILE) gs://potluckctf
+	gcloud storage cp $(DIST_FILE) gs://potluckctf
+
+dist-url:
+	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
 docker-build: shells-kitchen
 	docker build -t $(LOCAL_IMAGE) shells-kitchen/deploy
@@ -27,7 +30,7 @@ clean:
 download: shells-kitchen/
 
 shells-kitchen/:
-	gsutil cp -r $(DELIVERY_BUCKET)/shells-kitchen .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/shells-kitchen .
 
 
 .PHONY: build docker-build docker-push dist dist-push download

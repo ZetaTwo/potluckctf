@@ -19,15 +19,15 @@ clean:
 download: OTHER_LICENSES README.md release_build/ release_source/
 
 OTHER_LICENSES:
-	gsutil cp $(DELIVERY_BUCKET)/OTHER_LICENSES .
+	gcloud storage cp $(DELIVERY_BUCKET)/OTHER_LICENSES .
 
 README.md:
-	gsutil cp $(DELIVERY_BUCKET)/README.md .
+	gcloud storage cp $(DELIVERY_BUCKET)/README.md .
 
 release_build/:
-	gsutil cp -r $(DELIVERY_BUCKET)/release_build/ .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/release_build/ .
 
 release_source/:
-	gsutil cp -r $(DELIVERY_BUCKET)/release_source/ .
+	gcloud storage cp -r $(DELIVERY_BUCKET)/release_source/ .
 
 .PHONY: build docker-build docker-push dist dist-push download
