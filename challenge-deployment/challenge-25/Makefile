@@ -18,8 +18,8 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-challenge25-dist.tgz: downloads/user_bundle.tar.gz
-	cp downloads/user_bundle.tar.gz challenge25-dist.tgz
+$(DIST_FILE): downloads/user_bundle.tar.gz
+	cp downloads/user_bundle.tar.gz $(DIST_FILE)
 
 clean:
 	rm -rf downloads

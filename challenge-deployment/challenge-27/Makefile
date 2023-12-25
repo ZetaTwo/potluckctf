@@ -18,8 +18,8 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-challenge27-dist.tgz: shells-kitchen/
-	tar czvf challenge27-dist.tgz DIST-DEPENDENCIES TODO
+$(DIST_FILE): shells-kitchen/
+	tar czvf $(DIST_FILE) DIST-DEPENDENCIES TODO
 
 clean:
 	rm -fr shells-kitchen/

@@ -1,4 +1,4 @@
-CHALLENGE_ID = XX
+CHALLENGE_ID = 16
 LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
 REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
 DIST_FILE = challenge$(CHALLENGE_ID)-dist.tgz
@@ -18,16 +18,18 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-$(DIST_FILE): DIST-DEPENDENCIES
-	tar czvf $(DIST_FILE) DIST-DEPENDENCIES
+$(DIST_FILE): dist/upside_down_cake.py
+	tar -C dist/ -czvf $(DIST_FILE) upside_down_cake.py
 
 clean:
-	rm -f FILES
+	rm -fr dist solve
 
-download: FILES
+download: dist solve
 
-A-FILE:
-	gsutil cp gs://potluckctf-challenge-X/A-FILE .
+dist:	
+	gsutil cp -r $(DELIVERY_BUCKET)/dist/ .
 
+solve:	
+	gsutil cp -r $(DELIVERY_BUCKET)/solve/ .
 
-.PHONY: build docker-build docker-push dist dist-push download
+.PHONY: build docker-build docker-push download

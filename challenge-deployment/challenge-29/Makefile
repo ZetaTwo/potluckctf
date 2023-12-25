@@ -18,8 +18,8 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-challenge29-dist.tgz: DIST-DEPENDENCIES
-	tar czvf challenge29-dist.tgz DIST-DEPENDENCIES
+$(DIST_FILE): DIST-DEPENDENCIES
+	tar czvf $(DIST_FILE) DIST-DEPENDENCIES TODO
 
 clean:
 	rm -f challenge29-dist.tar.gz service.tar.gz docker-compose.yml Dockerfile server.py requirements.txt

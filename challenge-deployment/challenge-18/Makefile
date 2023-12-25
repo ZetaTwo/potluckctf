@@ -18,8 +18,8 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-challenge18-dist.tgz: DIST-DEPENDENCIES
-	tar czvf challenge18-dist.tgz DIST-DEPENDENCIES TODO
+$(DIST_FILE): DIST-DEPENDENCIES
+	tar czvf $(DIST_FILE) DIST-DEPENDENCIES TODO
 
 clean:
 	rm -rf distributables/ secret/
