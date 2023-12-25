@@ -1,4 +1,4 @@
-CHALLENGE_ID = XX
+CHALLENGE_ID = 23
 LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
 REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
 DIST_FILE = challenge$(CHALLENGE_ID)-dist.tgz
@@ -14,23 +14,15 @@ dist-push: dist
 dist-url:
 	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
-docker-build: DOCKER-DEPENDENCIES
-	docker build -t "$(LOCAL_IMAGE)" .
-
-docker-push: docker-build
-	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
-	docker push $(REMOTE_IMAGE)
-
-$(DIST_FILE): DIST-DEPENDENCIES
-	tar czvf $(DIST_FILE) DIST-DEPENDENCIES
+$(DIST_FILE): update.sal
+	tar czvf $(DIST_FILE) update.sal
 
 clean:
-	rm -f FILES
+	rm -f update.sal
 
-download: FILES
+download: update.sal
 
-A-FILE:
-	gcloud storage cp gs://potluckctf-challenge-X/A-FILE .
-
+update.sal:
+	gcloud storage cp gs://potluckctf-challenge-22/update.sal .
 
 .PHONY: build docker-build docker-push dist dist-push download
