@@ -1,4 +1,4 @@
-title: Sekurbut
+title: "sekurbut"
 description: "The previous owner of the arcade machine still has a trace of the firmware update. Maybe there's a way to run your own firmware?"
 authors: plonk
 categories: 
@@ -8,7 +8,7 @@ categories:
 flag_format_prefix: potluck{
 flags: y_i5_s3curb007_s0_h4rD
 
-# TODO: same remote, right?
+downloadable_files: https://storage.cloud.google.com/potluckctf/challenge23-dist.tgz
 predefined_services:
   - type: tcp
     host: challenge22.play.potluckctf.com
