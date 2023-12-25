@@ -15,6 +15,7 @@ dist-push: dist
 docker-build: docker/
 	docker build -t $(LOCAL_IMAGE) docker/
 
+# TODO: set up periodic reset of challenge
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
