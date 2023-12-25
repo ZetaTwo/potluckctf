@@ -1,8 +1,15 @@
 CHALLENGE_ID = 28
 LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
 REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
+DELIVERY_BUCKET = gs://potluckctf-challenge-$(CHALLENGE_ID)
+DIST_FILE = challenge$(CHALLENGE_ID)-dist.tgz
 
-build: docker-build docker-push challenge28-dist.tgz
+build: docker-build docker-push dist
+
+dist: $(DIST_FILE)
+
+dist-push: dist
+	gsutil cp $(DIST_FILE) gs://potluckctf
 
 docker-build: Dockerfile flag.txt main.py
 	docker build -t "$(LOCAL_IMAGE)" .
@@ -20,13 +27,13 @@ clean:
 download: Dockerfile flag.txt main.py
 
 Dockerfile:
-	gsutil cp gs://potluckctf-challenge-28/Dockerfile .
+	gsutil cp $(DELIVERY_BUCKET)/Dockerfile .
 
 flag.txt:
-	gsutil cp gs://potluckctf-challenge-28/flag.txt .
+	gsutil cp $(DELIVERY_BUCKET)/flag.txt .
 
 main.py:
-	gsutil cp gs://potluckctf-challenge-28/main.py .
+	gsutil cp $(DELIVERY_BUCKET)/main.py .
 
 
-.PHONY: build docker-build docker-push download
+.PHONY: build docker-build docker-push dist dist-push download

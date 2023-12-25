@@ -1,8 +1,9 @@
 CHALLENGE_ID = 11
 LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
 REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
+DELIVERY_BUCKET = gs://potluckctf-challenge-$(CHALLENGE_ID)
 
-build: docker-build docker-push challenge11-dist.tgz
+build: docker-build docker-push
 
 # TODO: multiple images
 docker-build: DOCKER-DEPENDENCIES
@@ -12,23 +13,20 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-challenge11-dist.tgz: DIST-DEPENDENCIES
-	tar czvf challenge11-dist.tgz DIST-DEPENDENCIES TODO
-
 clean:
 	rm -fr .env docker-compose.yml solve.py bot/ php/
 
 download: .env docker-compose.yml solve.py bot/ php/
 
 .env:
-	gsutil cp gs://potluckctf-challenge-11/.env .
+	gsutil cp $(DELIVERY_BUCKET)/.env .
 docker-compose.yml:
-	gsutil cp gs://potluckctf-challenge-11/docker-compose.yml .
+	gsutil cp $(DELIVERY_BUCKET)/docker-compose.yml .
 solve.py:
-	gsutil cp gs://potluckctf-challenge-11/solve.py .
+	gsutil cp $(DELIVERY_BUCKET)/solve.py .
 bot/:
-	gsutil cp -r gs://potluckctf-challenge-11/bot/ .
+	gsutil cp -r $(DELIVERY_BUCKET)/bot/ .
 php/:
-	gsutil cp -r gs://potluckctf-challenge-11/php/ .
+	gsutil cp -r $(DELIVERY_BUCKET)/php/ .
 
-.PHONY: build docker-build docker-push download
+.PHONY: build docker-build docker-push dist dist-push download

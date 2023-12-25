@@ -1,8 +1,9 @@
 CHALLENGE_ID = 09
 LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
 REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
+DELIVERY_BUCKET = gs://potluckctf-challenge-9 # No leading zero
 
-build: docker-build docker-push challenge09-dist.tgz
+build: docker-build docker-push
 
 prebuilt_system: 0001-Store-the-open-file-descriptors-of-the-process-in-it.patch docker-compose.yml Dockerfile Dockerfile.build_system flag init potluck.config prebuilt_system/ prebuilt_system/bzImage prebuilt_system/initramfs.cpio.gz README.md
 	echo echo "potluckctf{wh0ops_I_gu3ss_n0w_L1nus_1s_g01ng_t0_y31l_4t_m3}" > flag
@@ -15,19 +16,16 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-challenge09-dist.tgz: challenge-9-for-players.tar.gz
-	mv challenge-9-for-players.tar.gz challenge09-dist.tgz
-
 clean:
 	rm -rf challenge-9-for-players.tar.gz challenge-9-for-zeta-two.tar.gz exploit/ 0001-Store-the-open-file-descriptors-of-the-process-in-it.patch docker-compose.yml Dockerfile Dockerfile.build_system flag init potluck.config prebuilt_system/ prebuilt_system/bzImage prebuilt_system/initramfs.cpio.gz README.md run.sh
 
 download: challenge-9-for-players.tar.gz challenge-9-for-zeta-two.tar.gz
 
 challenge-9-for-players.tar.gz:	
-	gsutil cp gs://potluckctf-challenge-9/challenge-9-for-players.tar.gz .
+	gsutil cp $(DELIVERY_BUCKET)/challenge-9-for-players.tar.gz .
 
 challenge-9-for-zeta-two.tar.gz:	
-	gsutil cp gs://potluckctf-challenge-9/challenge-9-for-zeta-two.tar.gz .
+	gsutil cp $(DELIVERY_BUCKET)/challenge-9-for-zeta-two.tar.gz .
 
 exploit: challenge-9-for-zeta-two.tar.gz
 	tar xf challenge-9-for-zeta-two.tar.gz
