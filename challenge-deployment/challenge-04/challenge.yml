@@ -6,6 +6,9 @@ categories: reversing
 flag_format_prefix: potluck{
 flags: "26674715172"
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge04-dist.tgz
+downloadable_files:
+  - https://storage.cloud.google.com/potluckctf/challenge04-dist-windows.tgz
+  - https://storage.cloud.google.com/potluckctf/challenge04-dist-mac.tgz
+  - https://storage.cloud.google.com/potluckctf/challenge04-dist-linux.tgz
 
 spec: 0.0.1
