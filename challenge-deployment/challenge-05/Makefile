@@ -19,8 +19,19 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-$(DIST_FILE): DIST-DEPENDENCIES # TODO: docker/ but edit "admin.properties" and "build.sh" for dist
-	tar czvf $(DIST_FILE) DIST-DEPENDENCIES
+build.sh: docker
+	sed 's/potluck{.*}/potluck{placeholder_flag}/' docker/build.sh > build.sh
+
+config/admin.properties: docker
+	mkdir -p config
+	sed 's/admin.password=.*/admin.password=REDACTED/' docker/config/admin.properties > config/admin.properties
+
+$(DIST_FILE): build.sh config/admin.properties docker/
+	tar -C docker/ -cvf $(DIST_FILE) --exclude='config/admin.properties' --exclude='build.sh' .
+	tar -rvf $(DIST_FILE) ./build.sh ./config/admin.properties
+	mv $(DIST_FILE) temp.tar
+	gzip temp.tar
+	mv temp.tar.gz $(DIST_FILE)
 
 clean:
 	rm -fr docker/ exp/ README.md
