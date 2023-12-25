@@ -18,8 +18,8 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-$(DIST_FILE): DIST-DEPENDENCIES
-	tar czvf $(DIST_FILE) DIST-DEPENDENCIES TODO
+$(DIST_FILE): chall.py config.el Dockerfile compose.yaml
+	tar czvf $(DIST_FILE) chall.py config.el Dockerfile compose.yaml
 
 clean:
 	rm -f Dockerfile build_instructions.md chall.py compose.yaml config.el flag.txt solution.org solve.py
