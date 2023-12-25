@@ -1,12 +1,12 @@
 title: Pot Of Gold
-description: TODO
+description: "You are tasked to help out in the kitchen of the elusive g0rd0n r4ms4y. This rude chef needs to be put in his place real bad! Show us you're an elite chef and attempt a coup of his little kitchen."
 authors: blasty
 categories: 
   - pwn
   - reversing
 
 flag_format_prefix: potluck{
-flags: TODO
+flags: 3y3_4m_n0t_th3_0n3_t0_s0Rt_0f_s1T_4nD_cRY_0v3R_sP1Lt_m1LK!1!!
 
 downloadable_files: https://storage.cloud.google.com/potluckctf/challenge27-dist.tgz
 predefined_services:

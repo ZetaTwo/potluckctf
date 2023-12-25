@@ -4,7 +4,7 @@ authors: borysp, valis
 categories: pwn
 
 flag_format_prefix: potluck{
-flags: TODO
+flags: D1D_y0u_R34P_iT
 
 downloadable_files: https://storage.cloud.google.com/potluckctf/challenge25-dist.tgz
 predefined_services:

@@ -1,6 +1,6 @@
 title: Schrödinger's P1G
 description: "A Virtual Machine containing a poor pig. And 0 and 1"
-authors: TODO
+authors: uz56764
 categories: pwn
 
 flag_format_prefix: potluck{

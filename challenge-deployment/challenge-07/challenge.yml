@@ -1,7 +1,9 @@
 title: bear-err
 description: "People always say crypto is so hard, but I'm sure I didn't fuck up there. Parsing JSON is super easy too, just use strtok."
 authors: Firzen
-categories: web
+categories:
+  - pwn
+  - web
 
 flag_format_prefix: potluck{
 flags: what_do_you_mean_global_state_bad?

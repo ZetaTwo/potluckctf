@@ -1,10 +1,10 @@
 title: auxv
-description: "Closing all currently open file descriptors on Linux is not easy (see, e.g., `close_fd`: https://github.com/cptpcrd/close_fds). I wrote a simple kernel patch to make it much simpler: https://gist.github.com/dfyz/9afb315567bf622c87d28adbe0b4fdc8. I did my best to ensure all memory accesses in this patch are safe, so this patch should definitely NOT introduce any new security vulnerabilities, such as, say, local privilege escalation to root. Right?"
+description: "Connect to the remote server with `nc -nv challenge09.play.potluckctf.com 31337`. For detailed instructions, see README.md in the provided challenge09-dist.tgz file."
 authors: dfyz (Ivan Komarov)
 categories: pwn
 
 flag_format_prefix: potluck{
-flags: TODO
+flags: wh0ops_I_gu3ss_n0w_L1nus_1s_g01ng_t0_y31l_4t_m3
 
 predefined_services:
   - type: tcp
