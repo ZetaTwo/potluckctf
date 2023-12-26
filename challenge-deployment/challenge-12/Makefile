@@ -1,5 +1,5 @@
 CHALLENGE_ID = 12
-LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
+LOCAL_IMAGE = potluck-ctf-challenge-$(CHALLENGE_ID):latest
 REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
 DIST_FILE = challenge$(CHALLENGE_ID)-dist.tgz
 DELIVERY_BUCKET = gs://potluckctf-challenge-$(CHALLENGE_ID)
@@ -15,7 +15,7 @@ dist-url:
 	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
 docker-build: docker-image.tar
-	docker load -i docker-image.tar "potluckctf:challenge-12"
+	docker load -i docker-image.tar
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)

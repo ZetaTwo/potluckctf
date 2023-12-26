@@ -1,12 +1,12 @@
 CHALLENGE_ID = 22
-LOCAL_IMAGE = potluckctf:challenge-$(CHALLENGE_ID)
+LOCAL_IMAGE = sekurbut:latest
 REMOTE_IMAGE = europe-west3-docker.pkg.dev/potluck-ctf/challenge$(CHALLENGE_ID)-repository/challenge$(CHALLENGE_ID):latest
 DELIVERY_BUCKET = gs://potluckctf-challenge-$(CHALLENGE_ID)
 
 build: docker-build docker-push challenge22-dist.tgz
 
 docker-build: sekurbut.tar
-	docker import sekurbut.tar "$(LOCAL_IMAGE)"
+	docker load -i sekurbut.tar
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
