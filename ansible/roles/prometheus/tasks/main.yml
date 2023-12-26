@@ -40,6 +40,8 @@
     owner: root
     group: root
     mode: '0644'
+  notify:
+    - restart prometheus
 
 - name: Create prometheus directory
   become: true

@@ -1,4 +1,3 @@
-# TODO: customize port
 # TODO: enable nested virt for chall 1+25 (advanced_machine_features / enable_nested_virtualization)
 
 locals {
