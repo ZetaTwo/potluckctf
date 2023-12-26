@@ -15,14 +15,14 @@ dist-push: dist
 dist-url:
 	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
-docker-build: deploy/
+docker-build: deploy
 	docker build -t $(LOCAL_IMAGE) deploy/
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-$(DIST_FILE): public/
+$(DIST_FILE): public
 	tar -C public/ -czvf $(DIST_FILE) bear_err.zip
 
 clean:
