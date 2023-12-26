@@ -42,6 +42,7 @@ cake-of-paranoia-with-flag:
 
 entrypoint.sh:
 	gcloud storage cp $(DELIVERY_BUCKET)/entrypoint.sh .
+	chmod +x entrypoint.sh
 
 rootfs.tar.zst:
 	gcloud storage cp $(DELIVERY_BUCKET)/rootfs.tar.zst .

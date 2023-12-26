@@ -4,16 +4,16 @@ services:
     image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-nginx:latest"
     ports:
       - 31337:80
+    depends_on:
+      - php
+      - bot
 
   php:
     image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-php:latest"
-    depends_on:
-      - nginx
 
   bot:
     image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-bot:latest"
     environment:
-      - FLAG="uu_make_me_go_crazy"
+      - FLAG="potluck{uu_make_me_go_crazy}"
     depends_on:
-      - nginx
       - php

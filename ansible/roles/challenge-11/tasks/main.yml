@@ -27,7 +27,7 @@
 
 - name: Install Challenge 11 Service
   become: true
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: challenge11.service
     dest: /etc/systemd/system/challenge11.service
     mode: '644'
