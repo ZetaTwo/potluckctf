@@ -25,27 +25,27 @@ $(DIST_FILE): downloads/app downloads/Dockerfile
 	tar -C downloads -czvf $(DIST_FILE) app Dockerfile
 
 clean:
-	rm -fr chal-DO-NOT-SEND-TO-PLAYERS.tar downloads
+	rm -fr chal-DO-NOT-SEND-TO-PLAYERS.tar downloads chal-v1.3.tar
 
-download: chal-DO-NOT-SEND-TO-PLAYERS.tar
+download: chal-v1.3.tar
 
 downloads:
 	mkdir -p downloads
 
-downloads/app: downloads chal-DO-NOT-SEND-TO-PLAYERS.tar
-	tar -C downloads -xf chal-DO-NOT-SEND-TO-PLAYERS.tar
+downloads/app: downloads chal-v1.3.tar
+	tar -C downloads -xf chal-v1.3.tar
 
-downloads/.gitignore: downloads chal-DO-NOT-SEND-TO-PLAYERS.tar
-	tar -C downloads -xf chal-DO-NOT-SEND-TO-PLAYERS.tar
+downloads/.gitignore: downloads chal-v1.3.tar
+	tar -C downloads -xf chal-v1.3.tar
 
-downloads/actual-flag: downloads chal-DO-NOT-SEND-TO-PLAYERS.tar
-	tar -C downloads -xf chal-DO-NOT-SEND-TO-PLAYERS.tar
+downloads/actual-flag: downloads chal-v1.3.tar
+	tar -C downloads -xf chal-v1.3.tar
 
-downloads/Dockerfile: downloads chal-DO-NOT-SEND-TO-PLAYERS.tar
-	tar -C downloads -xf chal-DO-NOT-SEND-TO-PLAYERS.tar
+downloads/Dockerfile: downloads chal-v1.3.tar
+	tar -C downloads -xf chal-v1.3.tar
 
-chal-DO-NOT-SEND-TO-PLAYERS.tar:
-	gcloud storage cp $(DELIVERY_BUCKET)/chal-DO-NOT-SEND-TO-PLAYERS.tar .
+chal-v1.3.tar:
+	gcloud storage cp $(DELIVERY_BUCKET)/chal-v1.3.tar .
 
 
 .PHONY: build docker-build docker-push dist dist-push download

@@ -14,8 +14,9 @@ dist-push: dist
 dist-url:
 	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
-docker-build: downloads/build
-	docker build -t "$(LOCAL_IMAGE)" downloads/build
+docker-build: downloads/build downloads/Dockerfile
+	cp downloads/build/out/chal downloads/build/out/flag.txt downloads/
+	docker build -t "$(LOCAL_IMAGE)" downloads/
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
