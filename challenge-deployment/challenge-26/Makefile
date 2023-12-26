@@ -16,6 +16,7 @@ dist-url:
 
 docker-build: downloads/build downloads/Dockerfile
 	cp downloads/build/out/chal downloads/build/out/flag.txt downloads/
+	chmod +x downloads/chal
 	docker build -t "$(LOCAL_IMAGE)" downloads/
 
 docker-push: docker-build
