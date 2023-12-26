@@ -6,13 +6,13 @@ DELIVERY_BUCKET = gs://potluckctf-challenge-$(CHALLENGE_ID)
 
 build: docker-build docker-push dist
 
-dist: $(DIST_FILE)
+#dist: $(DIST_FILE)
 
-dist-push: dist
-	gcloud storage cp $(DIST_FILE) gs://potluckctf
+#dist-push: dist
+#	gcloud storage cp $(DIST_FILE) gs://potluckctf
 
-dist-url:
-	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
+#dist-url:
+#	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
 docker-build: downloads/app downloads/Dockerfile downloads/actual-flag
 	docker build -t "$(LOCAL_IMAGE)" "downloads"

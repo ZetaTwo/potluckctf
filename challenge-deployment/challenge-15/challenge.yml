@@ -1,19 +1,16 @@
-title: Santa's Secret Host
-description: 'I found this shop that claims to provide ""delivery via reindeer sleigh"". I ordered a few things, but the cards did not arrive on time! Please find out, what went wrong. 
+title: Santify
+description: 'I found this shop that claims to provide ""delivery via reindeer sleigh"". I ordered a few things, but the cards did not arrive on time! Please find out what went wrong. 
 
-Theres probably something in it for you. If they have delivery problems, there might also be a flag that never reached its destination.
-
-Anyway, this is their web page: <ip or address TBD>'
-authors: 13x1, basti564, Alkalem
-categories: TODO
+Anyway, this is their web page: challenge15.play.potluckctf.com:8080'
+authors: 13x1
+categories: web
 
 flag_format_prefix: potluck{
 flags: christmas_brings_the_categories_together
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge15-dist.tgz
 predefined_services:
-  - type: tcp
+  - type: http
     host: challenge15.play.potluckctf.com
-    port: 31337
+    port: 8080
 
 spec: 0.0.1
