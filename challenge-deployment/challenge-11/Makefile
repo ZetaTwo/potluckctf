@@ -44,6 +44,8 @@ solve.py:
 
 bot:
 	gcloud storage cp -r $(DELIVERY_BUCKET)/bot/ .
+	cp Dockerfile-bot.override bot/Dockerfile-bot
+	sed -i 's/puppeteer.launch();/puppeteer.launch({args: ['--no-sandbox']});/' bot/bot.js
 
 nginx:
 	gcloud storage cp -r $(DELIVERY_BUCKET)/nginx/ .

@@ -9,8 +9,8 @@
   
 - name: Upload Challenge 11 compose config
   become: true
-  ansible.builtin.copy:
-    src: docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
     dest: /etc/potluckctf/docker-compose.yml
     mode: '644'
     owner: root
@@ -27,7 +27,7 @@
 
 - name: Install Challenge 11 Service
   become: true
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: challenge11.service
     dest: /etc/systemd/system/challenge11.service
     mode: '644'

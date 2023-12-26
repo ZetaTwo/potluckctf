@@ -1,0 +1,12 @@
+FROM ghcr.io/puppeteer/puppeteer:latest
+
+WORKDIR /app
+
+COPY bot.js .
+COPY public/ ./public/
+
+USER root
+RUN npm install express puppeteer
+
+USER pptruser
+CMD ["node", "bot.js"]

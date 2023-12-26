@@ -8,7 +8,7 @@ deploy-upgrade:
 	ansible-playbook -i ../terraform/hosts.yml -e upgrade_challenges=true potluckctf-playbook.yml
 
 dev:
-	ansible-playbook -i ../terraform/hosts.yml dev-playbook.yml
+	ansible-playbook -i ../terraform/hosts.yml -e upgrade_challenges=true dev-playbook.yml
 
 inventory:
 	ansible-inventory -i ../terraform/hosts.yml --list
