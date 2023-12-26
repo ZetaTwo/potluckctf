@@ -45,10 +45,10 @@ download: docker/ exp/ README.md
 README.md:
 	gcloud storage cp $(DELIVERY_BUCKET)/challenge/README.md .
 
-docker/:
+docker:
 	gcloud storage cp -r $(DELIVERY_BUCKET)/challenge/docker/ .
 
-exp/:
+exp:
 	gcloud storage cp -r $(DELIVERY_BUCKET)/challenge/exp/ .
 
 .PHONY: build docker-build docker-push dist dist-push download

@@ -29,7 +29,7 @@ clean:
 
 download: shells-kitchen/
 
-shells-kitchen/:
+shells-kitchen:
 	gcloud storage cp -r $(DELIVERY_BUCKET)/shells-kitchen .
 
 

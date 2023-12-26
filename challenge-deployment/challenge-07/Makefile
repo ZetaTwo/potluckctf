@@ -30,10 +30,10 @@ clean:
 
 download: deploy/ public/ solution/
 
-deploy/:
+deploy:
 	gcloud storage cp -r $(DELIVERY_BUCKET)/deploy/ .
 
-public/:
+public:
 	gcloud storage cp -r $(DELIVERY_BUCKET)/public/ .
 
 solution/:

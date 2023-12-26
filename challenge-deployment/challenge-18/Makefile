@@ -14,7 +14,7 @@ dist-push: dist
 dist-url:
 	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
-docker-build: secret/
+docker-build: secret
 	docker build -t $(LOCAL_IMAGE) secret/
 
 docker-push: docker-build
@@ -29,10 +29,10 @@ clean:
 
 download: distributables/ secret/
 
-distributables/:
+distributables:
 	gcloud storage cp -r $(DELIVERY_BUCKET)/distributables .
 
-secret/:
+secret:
 	gcloud storage cp -r $(DELIVERY_BUCKET)/secret .
 
 .PHONY: build docker-build docker-push dist dist-push download

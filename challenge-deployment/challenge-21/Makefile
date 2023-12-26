@@ -33,7 +33,7 @@ potluck_Schrodinger's\ P1G: potluck_Schrodingers_P1G.zip
 	unzip potluck_Schrodingers_P1G.zip
 
 potluck_Schrodingers_P1G.zip:
-	gcloud storage cp gs://$(DELIVERY_BUCKET)/potluck_Schrodingers_P1G.zip .
+	gcloud storage cp $(DELIVERY_BUCKET)/potluck_Schrodingers_P1G.zip .
 
 
 .PHONY: build docker-build docker-push dist dist-push download

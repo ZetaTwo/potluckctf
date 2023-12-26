@@ -77,10 +77,10 @@ downloads/user.flag.txt: downloads
 downloads/user_bundle.tar.gz: downloads
 	gcloud storage cp $(DELIVERY_BUCKET)/user_bundle.tar.gz downloads/
 
-downloads/exploits/: downloads
+downloads/exploits: downloads
 	gcloud storage cp -r $(DELIVERY_BUCKET)/exploits downloads/
 
-downloads/src/: downloads
+downloads/src: downloads
 	gcloud storage cp -r $(DELIVERY_BUCKET)/src downloads/
 
 .PHONY: build docker-build docker-push dist dist-push download

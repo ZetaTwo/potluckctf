@@ -27,14 +27,6 @@ locals {
           "challenge01-a" = { ip = "10.0.1.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1, docker_single : 1 } },
         }
       },
-      "challenge02" = {
-        author_sa = "serviceAccount:challenge-author-2@potluck-ctf.iam.gserviceaccount.com",
-        subnet = "10.0.2.0/24",
-        servers = {
-          "challenge02-a" = { ip = "10.0.2.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1, docker_single : 1 } },
-        }
-      },
-
       "challenge03" = {
         author_sa = "serviceAccount:challenge-author-3@potluck-ctf.iam.gserviceaccount.com",
         subnet = "10.0.3.0/24",
