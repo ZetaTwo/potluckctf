@@ -198,3 +198,13 @@ resource "google_artifact_registry_repository_iam_member" "member" {
   role       = "roles/artifactregistry.reader"
   member     = google_service_account.challenge_service_account[each.key].member
 }
+
+resource "google_iap_tunnel_instance_iam_member" "member" {
+  provider = google-beta
+  for_each = local.deploy_challenges ? local.challenge_servers : {}
+  project  = google_compute_instance.challenge_server[each.key].project
+  zone     = google_compute_instance.challenge_server[each.key].zone
+  instance = google_compute_instance.challenge_server[each.key].name
+  role     = "roles/iap.tunnelResourceAccessor"
+  member   = "${local.server_settings.challenges[each.value.challenge_id].author_sa}"
+}

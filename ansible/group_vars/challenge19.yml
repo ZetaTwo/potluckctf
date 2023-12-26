@@ -1,0 +1,3 @@
+challenge: "challenge19"
+docker_privileged: false
+docker_port: 5000
