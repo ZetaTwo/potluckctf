@@ -1,3 +1,4 @@
 challenge: "challenge13"
 docker_privileged: false
 docker_port: 31337
+docker_tty: true

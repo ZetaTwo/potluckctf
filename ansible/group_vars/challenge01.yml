@@ -2,4 +2,6 @@ challenge: "challenge01"
 docker_privileged: true
 docker_port: 1337
 docker_mounts:
-  - /dev/kvm
+  - type: "bind"
+    source: "/dev/kvm"
+    target: "/dev/kvm"

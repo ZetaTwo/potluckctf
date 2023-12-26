@@ -25,6 +25,14 @@ resource "google_compute_instance" "challenge_server" {
   name         = each.key
   machine_type = each.value.type
 
+  #min_cpu_platform = contains(keys(each.value.labels), "nested_virtualization") ? "Intel Haswell" : null
+  dynamic "advanced_machine_features" {
+    for_each = contains(keys(each.value.labels), "nested_virtualization") ? [1] : []
+    content {
+      enable_nested_virtualization = true
+    }
+  }
+
   tags = ["potluckctf", "challenge", each.value.challenge_id]
   labels = {
     challenge = 1

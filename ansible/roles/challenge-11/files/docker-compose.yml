@@ -13,8 +13,7 @@ services:
   bot:
     image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-bot:latest"
     environment:
-      - FLAG=${FLAG}
+      - FLAG="uu_make_me_go_crazy"
     depends_on:
       - nginx
       - php
-
