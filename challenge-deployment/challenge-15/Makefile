@@ -14,15 +14,15 @@ dist-push: dist
 dist-url:
 	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
-docker-build: downloads/app downloads/Dockerfile
+docker-build: downloads/app downloads/Dockerfile downloads/actual-flag
 	docker build -t "$(LOCAL_IMAGE)" "downloads"
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-$(DIST_FILE): DIST-DEPENDENCIES
-	tar czvf $(DIST_FILE) DIST-DEPENDENCIES
+$(DIST_FILE): downloads/app downloads/Dockerfile
+	tar -C downloads -czvf $(DIST_FILE) app Dockerfile
 
 clean:
 	rm -fr chal-DO-NOT-SEND-TO-PLAYERS.tar downloads
