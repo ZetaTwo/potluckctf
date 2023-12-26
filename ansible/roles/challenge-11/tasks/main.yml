@@ -1,0 +1,71 @@
+- name: Create potluckctf directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/potluckctf
+    state: directory
+    mode: '755'
+    owner: root
+    group: root
+  
+- name: Upload Challenge 11 compose config
+  become: true
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: /etc/potluckctf/docker-compose.yml
+    mode: '644'
+    owner: root
+    group: root
+
+- name: Setup root docker client config
+  become: true
+  ansible.builtin.file:
+    path: /root/.docker
+    state: directory
+    mode: '755'
+    owner: root
+    group: root
+
+- name: Install Challenge 11 Service
+  become: true
+  ansible.builtin.copy:
+    src: challenge11.service
+    dest: /etc/systemd/system/challenge11.service
+    mode: '644'
+    owner: root
+    group: root
+  notify:
+    - daemon-reload
+    - restart challenge11
+
+- name: Setup GCP Artifact Registry auth
+  become: true
+  ansible.builtin.copy:
+    src: config.json
+    dest: /root/.docker/config.json
+    mode: '600'
+    owner: root
+    group: root
+
+- name: Pull the challenge bot image
+  become: true
+  community.docker.docker_image:
+    name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-bot:latest"
+    source: pull
+    force_source: "{{ upgrade_challenges | default(false) | bool }}"
+  notify: restart challenge11
+
+- name: Pull the challenge php image
+  become: true
+  community.docker.docker_image:
+    name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-php:latest"
+    source: pull
+    force_source: "{{ upgrade_challenges | default(false) | bool }}"
+  notify: restart challenge11
+
+- name: Pull the challenge nginx image
+  become: true
+  community.docker.docker_image:
+    name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-nginx:latest"
+    source: pull
+    force_source: "{{ upgrade_challenges | default(false) | bool }}"
+  notify: restart challenge11

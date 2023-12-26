@@ -25,6 +25,7 @@
   hosts: docker
   roles:
     - role: docker
+    - role: nginx
 
 - name: Setup single container challenges
   hosts: docker

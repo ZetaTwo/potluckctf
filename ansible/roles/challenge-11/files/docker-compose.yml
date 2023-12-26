@@ -1,0 +1,20 @@
+version: '3'
+services:
+  nginx:
+    image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-nginx:latest"
+    ports:
+      - 31337:80
+
+  php:
+    image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-php:latest"
+    depends_on:
+      - nginx
+
+  bot:
+    image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-bot:latest"
+    environment:
+      - FLAG=${FLAG}
+    depends_on:
+      - nginx
+      - php
+

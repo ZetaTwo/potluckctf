@@ -1,0 +1,8 @@
+
+- name: Install nginx
+  become: true
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+    state: present
+    name:
+      - nginx

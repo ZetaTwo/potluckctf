@@ -6,7 +6,7 @@
         potluckctf_monitor_host: "{{ groups['monitor'][0] }}"
 
 - name: Setup Docker servers
-  hosts: docker
+  hosts: challenge11
   roles:
     #- role: docker
-    - role: challenge-docker
+    - role: challenge-11

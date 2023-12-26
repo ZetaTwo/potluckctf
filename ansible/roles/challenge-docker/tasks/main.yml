@@ -30,3 +30,4 @@
     image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}:latest"
     privileged: "{{ docker_privileged }}"
     published_ports: "31337:{{ docker_port }}"
+    mounts: "{{ docker_mounts | default([]) }}"

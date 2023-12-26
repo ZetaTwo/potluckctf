@@ -1,1 +1,6 @@
 docker-compose.yml
+.env
+bot/
+php/
+nginx/
+solve.py
