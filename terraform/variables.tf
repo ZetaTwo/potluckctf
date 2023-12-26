@@ -114,7 +114,7 @@ locals {
         author_sa = "serviceAccount:challenge-author-21@potluck-ctf.iam.gserviceaccount.com",
         subnet = "10.0.21.0/24",
         servers = {
-          "challenge20-a" = { ip = "10.0.21.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1, docker_single : 1 } },
+          "challenge21-a" = { ip = "10.0.21.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1, docker_single : 1 } },
         }
       },
       "challenge22" = {

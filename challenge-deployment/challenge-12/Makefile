@@ -14,11 +14,8 @@ dist-push: dist
 dist-url:
 	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
-oci-image.tar: oci-image.tar.zst
-	zstd -d oci-image.tar.zst
-
-docker-build: oci-image.tar
-	docker import oci-image.tar "potluckctf:challenge-12"
+docker-build: docker-image.tar
+	docker load -i docker-image.tar "potluckctf:challenge-12"
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
@@ -31,6 +28,9 @@ clean:
 	rm -fr challenge12-dist.tgz oci-image.tar.zst oci-image.tar src-806f208.zip swgcc710-cross-6b-9916.tar.gz
 
 download: challenge12-dist.tgz oci-image.tar.zst src-806f208.zip swgcc710-cross-6b-9916.tar.gz
+
+docker-image.tar:
+	gcloud storage cp $(DELIVERY_BUCKET)/docker-image.tar .
 
 oci-image.tar.zst:
 	gcloud storage cp $(DELIVERY_BUCKET)/oci-image.tar.zst .

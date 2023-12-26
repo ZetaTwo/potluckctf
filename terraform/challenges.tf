@@ -206,5 +206,15 @@ resource "google_iap_tunnel_instance_iam_member" "member" {
   zone     = google_compute_instance.challenge_server[each.key].zone
   instance = google_compute_instance.challenge_server[each.key].name
   role     = "roles/iap.tunnelResourceAccessor"
-  member   = "${local.server_settings.challenges[each.value.challenge_id].author_sa}"
+  member   = local.server_settings.challenges[each.value.challenge_id].author_sa
+}
+
+resource "google_compute_instance_iam_member" "member" {
+  provider      = google-beta
+  for_each      = local.deploy_challenges ? local.challenge_servers : {}
+  project       = google_compute_instance.challenge_server[each.key].project
+  zone          = google_compute_instance.challenge_server[each.key].zone
+  instance_name = google_compute_instance.challenge_server[each.key].name
+  role          = google_project_iam_custom_role.compute_instance_get.name
+  member        = local.server_settings.challenges[each.value.challenge_id].author_sa
 }

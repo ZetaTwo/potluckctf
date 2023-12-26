@@ -40,15 +40,23 @@ resource "google_compute_subnetwork" "potluckctf_subnet" {
   network       = google_compute_network.potluckctf_network.id
 }
 
+resource "google_project_iam_custom_role" "compute_instance_get" {
+  provider    = google-beta
+  role_id     = "computer_instance_viewer"
+  title       = "Compute Instance Viewer"
+  description = "View iinfo about compute instance"
+  permissions = ["compute.instances.get"]
+}
+
 # generate inventory file for Ansible
 resource "local_file" "hosts_ansible_inventory" {
   content = templatefile("${path.module}/hosts.tpl",
     {
-      potluckctf-scoreboard = google_compute_instance.scoreboard_server
+      potluckctf-scoreboard         = google_compute_instance.scoreboard_server
       potluckctf-challenges-servers = local.deploy_challenges ? google_compute_instance.challenge_server : {}
-      potluckctf-challenges = local.deploy_challenges ? local.server_settings.challenges : {}
-      potluckctf-monitor    = google_compute_instance.monitor_server
-      potluckctf-all        = merge(google_compute_instance.scoreboard_server, local.deploy_challenges ? google_compute_instance.challenge_server : {}, google_compute_instance.monitor_server)
+      potluckctf-challenges         = local.deploy_challenges ? local.server_settings.challenges : {}
+      potluckctf-monitor            = google_compute_instance.monitor_server
+      potluckctf-all                = merge(google_compute_instance.scoreboard_server, local.deploy_challenges ? google_compute_instance.challenge_server : {}, google_compute_instance.monitor_server)
 
       server_settings = merge(local.server_settings.scoreboard, local.deploy_challenges ? local.challenge_servers : {}, local.server_settings.monitor)
     }
