@@ -27,7 +27,7 @@ $(DIST_FILE): rootfs.tar.zst
 	tar czvf $(DIST_FILE) rootfs.tar.zst
 
 clean:
-	rm -f Dockerfile cake-of-paranoia-with-flag entrypoint.sh rootfs.tar.zst README.md solve-scripts
+	rm -rf Dockerfile cake-of-paranoia-with-flag entrypoint.sh rootfs.tar.zst README.md solve-scripts
 
 download: Dockerfile cake-of-paranoia-with-flag entrypoint.sh rootfs.tar.zst README.md solve-scripts
 
