@@ -1,0 +1,14 @@
+[Unit]
+Description=challeng25 server
+After=network.target
+ 
+[Service]
+Type=simple
+User=challenge25
+Group=challenge25
+WorkingDirectory=/opt/challenge25
+ExecStart=/usr/bin/python3 server.py 28 600 ./run.sh
+Restart=always
+ 
+[Install]
+WantedBy=multi-user.target

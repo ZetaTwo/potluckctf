@@ -86,3 +86,9 @@
     owner: node_exporter
     group: node_exporter
     mode: '0755'
+
+- name: enable node_exporter service
+  become: true
+  ansible.builtin.service:
+    name: node_exporter
+    enabled: true

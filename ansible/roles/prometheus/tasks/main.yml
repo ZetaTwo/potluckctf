@@ -85,3 +85,9 @@
   notify:
     - daemon-reload
     - restart prometheus
+
+- name: enable Prometheus service
+  become: true
+  ansible.builtin.service:
+    name: prometheus
+    enabled: true

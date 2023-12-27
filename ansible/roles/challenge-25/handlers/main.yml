@@ -1,0 +1,11 @@
+- name: daemon-reload
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: restart challenge25
+  become: true
+  ansible.builtin.service:
+    name: challenge25
+    state: restarted
+    enabled: true

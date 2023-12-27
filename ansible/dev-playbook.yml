@@ -5,11 +5,10 @@
       ansible.builtin.set_fact:
         potluckctf_monitor_host: "{{ groups['monitor'][0] }}"
 
-- name: Setup Docker servers
-  hosts: challenge11
+- name: Setup Challenge 25
+  hosts: challenge25
   roles:
-    #- role: docker
-    - role: challenge-11
+    - role: challenge-25
 
 #- name: Setup Docker servers
 #  hosts: docker_single

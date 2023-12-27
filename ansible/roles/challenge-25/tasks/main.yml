@@ -1,0 +1,46 @@
+- name: Install challenge25 dependencies
+  become: true
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+    state: present
+    name:
+      - unzip
+      - python3
+
+- name: Create challenge25 user
+  become: true
+  ansible.builtin.user:
+    name: challenge25
+    group: kvm
+    comment: Challenge 25
+    create_home: no
+    shell: /usr/sbin/nologin
+    state: present
+    system: true
+
+- name: Create Challenge 25 directory
+  become: true
+  ansible.builtin.file:
+    path: /opt/challenge25
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Upload and unpack challenge 25
+  become: true
+  ansible.builtin.unarchive:
+    src: deploy_bundle.tar.gz
+    dest: /opt/challenge25
+
+- name: Challenge 25 systemd service
+  become: true
+  ansible.builtin.copy:
+    src: challenge25.service
+    dest: /etc/systemd/system/challenge25
+    owner: root
+    group: root
+    mode: '644'
+  notify:
+    - daemon-reload
+    - restart challenge25

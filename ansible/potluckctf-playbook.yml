@@ -27,6 +27,21 @@
     - role: docker
     - role: nginx
 
+- name: Setup Challenge 25
+  hosts: challenge25
+  roles:
+    - role: challenge-25
+
+- name: Setup Challenge 11
+  hosts: challenge11
+  roles:
+    - role: challenge-11
+
+- name: Setup Challenge 01
+  hosts: challenge01
+  roles:
+    - role: challenge-01
+
 - name: Setup single container challenges
   hosts: docker
   roles:

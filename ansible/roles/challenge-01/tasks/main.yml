@@ -1,0 +1,7 @@
+- name: Change KVM permissions
+  become: true
+  ansible.builtin.file:
+    path: /dev/kvm
+    owner: root
+    group: root
+    mode: '666'
