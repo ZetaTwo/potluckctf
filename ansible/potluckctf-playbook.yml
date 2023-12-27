@@ -43,7 +43,7 @@
     - role: challenge-01
 
 - name: Setup single container challenges
-  hosts: docker
+  hosts: docker_single
   roles:
     - role: challenge-docker
 

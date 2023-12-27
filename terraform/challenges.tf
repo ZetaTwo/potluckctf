@@ -104,10 +104,9 @@ resource "google_compute_firewall" "potlucktf_firewall_challenge_iap" {
 
   allow {
     protocol = "tcp"
-    ports    = ["31337"]
+    ports    = ["31337", "80"] # 31337 = challenge, 80 = healthcheck
   }
 }
-
 
 # backend subnet
 resource "google_compute_subnetwork" "potluckctf_challenge_subnet" {
