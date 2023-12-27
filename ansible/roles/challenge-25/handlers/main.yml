@@ -8,4 +8,3 @@
   ansible.builtin.service:
     name: challenge25
     state: restarted
-    enabled: true

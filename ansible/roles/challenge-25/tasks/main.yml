@@ -6,12 +6,21 @@
     name:
       - unzip
       - python3
+      - qemu-system
+
+- name: Create challenge25 group
+  become: true
+  ansible.builtin.group:
+    name: challenge25
+    state: present
 
 - name: Create challenge25 user
   become: true
   ansible.builtin.user:
     name: challenge25
-    group: kvm
+    group: challenge25
+    groups:
+      - kvm
     comment: Challenge 25
     create_home: no
     shell: /usr/sbin/nologin
@@ -32,15 +41,47 @@
   ansible.builtin.unarchive:
     src: deploy_bundle.tar.gz
     dest: /opt/challenge25
+    owner: root
+    group: root
+
+- name: Update run.sh permissions
+  become: true
+  ansible.builtin.file:
+    path: /opt/challenge25/run.sh
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Update kernel permissions
+  become: true
+  ansible.builtin.file:
+    path: /opt/challenge25/kernel
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Update deploy.cpio.gz permissions
+  become: true
+  ansible.builtin.file:
+    path: /opt/challenge25/deploy.cpio.gz
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Challenge 25 systemd service
   become: true
   ansible.builtin.copy:
     src: challenge25.service
-    dest: /etc/systemd/system/challenge25
+    dest: /etc/systemd/system/challenge25.service
     owner: root
     group: root
     mode: '644'
   notify:
     - daemon-reload
     - restart challenge25
+
+- name: restart challenge25
+  become: true
+  ansible.builtin.service:
+    name: challenge25
+    enabled: true
