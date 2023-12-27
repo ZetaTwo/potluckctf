@@ -1,5 +1,3 @@
-# TODO: enable nested virt for chall 1+25 (advanced_machine_features / enable_nested_virtualization)
-
 locals {
   open_scoreboard      = true
   ctf_started          = false
@@ -56,7 +54,7 @@ locals {
           "challenge07-a" = { ip = "10.0.7.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1, docker_single = 1 } },
         }
       },
-      #"challenge08" = {}, # TODO: Special setup
+      #"challenge08" = {}, # Special setup
       "challenge09" = {
         author_sa = "serviceAccount:challenge-author-9@potluck-ctf.iam.gserviceaccount.com",
         subnet = "10.0.9.0/24",
@@ -64,7 +62,7 @@ locals {
           "challenge09-a" = { ip = "10.0.9.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1, docker_single = 1 } },
         }
       },
-      #"challenge10" = {}, # TODO: Special setup
+      #"challenge10" = {}, # Special setup
       "challenge11" = {
         author_sa = "serviceAccount:challenge-author-11@potluck-ctf.iam.gserviceaccount.com",
         subnet = "10.0.11.0/24",
@@ -95,7 +93,13 @@ locals {
         }
       },
       #"challenge16" = {}, # No server
-      #"challenge17" = {}, # TODO: Special setup
+      "challenge17" = {
+        author_sa = "serviceAccount:challenge-author-17@potluck-ctf.iam.gserviceaccount.com",
+        subnet = "10.0.17.0/24",
+        servers = {
+          "challenge17-a" = { ip = "10.0.17.10", type = "e2-standard-2", labels = { challenge = 1, docker = 1, docker_single = 1 } },
+        }
+      },
       "challenge18" = {
         author_sa = "serviceAccount:challenge-author-18@potluck-ctf.iam.gserviceaccount.com",
         subnet = "10.0.18.0/24",

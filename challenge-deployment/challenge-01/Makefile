@@ -15,7 +15,6 @@ dist-url:
 dist-push: dist
 	gcloud storage cp $(DIST_FILE) gs://potluckctf
 
-# TODO: Add PoW
 docker-build: Dockerfile cake-of-paranoia-with-flag entrypoint.sh
 	docker build -t $(LOCAL_IMAGE) .
 
