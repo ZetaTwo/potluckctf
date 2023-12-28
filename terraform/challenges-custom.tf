@@ -16,7 +16,8 @@ resource "google_dns_record_set" "challenge_subdomain_challenge10" {
 }
 
 resource "google_dns_record_set" "challenge_subdomain_challenge8" {
-  count    = local.ctf_started ? 1 : 0
+  #count    = local.ctf_started ? 1 : 0
+  count    = 0 # Didnt work out, DNS quotas :(
   provider = google-beta
   name     = "challenge8.${google_dns_managed_zone.play.dns_name}"
   type     = "MX"
