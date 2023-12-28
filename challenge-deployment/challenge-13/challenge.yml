@@ -4,7 +4,7 @@ authors: tabun-dareka
 categories: misc
 
 flag_format_prefix: potluck{
-flags: theres-only-one-answer '(https://youtu.be/V3QF1uAvbkU))
+flags: (theres-only-one-answer '(https://youtu.be/V3QF1uAvbkU))
 
 downloadable_files: https://storage.googleapis.com/potluckctf/challenge13-dist.tgz
 predefined_services:
