@@ -7,17 +7,16 @@ Flag 1: Can you access the system and extract the secret sauce?
 Flag 2: Great, you got system access! Now all that’s left to do, hack the system and corrupt the heater to grill his sauce!"
 authors: gmerz & cluosh from We_0wn_Y0u
 categories: 
-  - cryptograhy
+  - cryptography
   - reversing
 
 flag_format_prefix: potluck{
 flags: uns3cur3_n0nc35_4r3_n0t_th3_s3cr3t_s4uc3
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge17-dist.tgz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge17-dist.tgz
 predefined_services:
-  - type: tcp
-    host: challenge17.play.potluckctf.com
-    port: 31337
+  - type: website
+    url: http://challenge17.play.potluckctf.com:31337
 
 spec: 0.0.1
 challenge_id: 45659934-2b80-4945-8604-d021c147f0d7

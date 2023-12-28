@@ -7,9 +7,9 @@ flag_format_prefix: potluck{
 flags: "26674715172"
 
 downloadable_files:
-  - https://storage.cloud.google.com/potluckctf/challenge04-dist-windows.tgz
-  - https://storage.cloud.google.com/potluckctf/challenge04-dist-mac.tgz
-  - https://storage.cloud.google.com/potluckctf/challenge04-dist-linux.tgz
+  - https://storage.googleapis.com/potluckctf/challenge04-windows-dist.tgz
+  - https://storage.googleapis.com/potluckctf/challenge04-mac-dist.tgz
+  - https://storage.googleapis.com/potluckctf/challenge04-linux-dist.tgz
 
 spec: 0.0.1
 challenge_id: e6b01e6a-e6b1-4f18-9a0f-4ed1fe0124aa

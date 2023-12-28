@@ -1,19 +1,20 @@
 title: Enchiladas
-description: "Ever been to Mexico?"
+description: "Ever been to Mexico? Here is your ticket: https://github.com/maride/mexico"
 authors: noobtracker, hanemile, maride
 categories: reversing
 
 flag_format_prefix: potluck{
 flags: estas_muy_bien
 
-custom_service_types:
-  - type: dns
-    display: "{host}"
-    hyperlink: false
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge08-dist.tgz
+#custom_service_types:
+#  - type: dns
+#    display: "{host}"
+#    hyperlink: false
 
-predefined_services:
-  - type: dns
-    host: challenge08.play.potluckctf.com
+#predefined_services:
+#  - type: dns
+#    host: challenge08.play.potluckctf.com
 
 spec: 0.0.1
 challenge_id: 3e102849-a63d-4b32-8955-4391e70536f5

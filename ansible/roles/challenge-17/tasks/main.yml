@@ -80,6 +80,7 @@
     source: pull
     force_source: "{{ upgrade_challenges | default(false) | bool }}"
   notify: restart challenge17
+  register: pull_interface
 
 - name: Tag interface image
   become: true
@@ -97,6 +98,7 @@
     source: pull
     force_source: "{{ upgrade_challenges | default(false) | bool }}"
   notify: restart challenge17
+  register: pull_controller
 
 - name: Tag controller image
   become: true

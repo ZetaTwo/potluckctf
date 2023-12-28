@@ -1,6 +1,8 @@
 title: GACHAAAAAtkr
 description: "Wow it's another gacha game... but everything is so expensive! Everyone's showing off their characters, but I don't have any. Would be a shame if there was a cheat code that could give me some!
 
+Note: The challenge was created with Python version 3.12.0a7.
+
 Thanks to enscribe (https://enscribe.dev) for the assets used in the game!"
 
 authors: Project Sekai!
@@ -9,7 +11,7 @@ categories: reversing
 flag_format_prefix: potluck{
 flags: NO_CHEAT_CODE_SMH
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge14-dist.tgz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge14-dist.tgz
 
 spec: 0.0.1
 challenge_id: a3825a06-39b2-4fb3-a09a-c665834ee93a

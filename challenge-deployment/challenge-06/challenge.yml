@@ -13,7 +13,7 @@ custom_service_types:
 
 predefined_services:
   - type: command
-    url: http://challenge06.play.potluckctf.com
+    url: "http://challenge06.play.potluckctf.com:31337"
 
 spec: 0.0.1
 challenge_id: bd60ce32-ddee-49c8-9c6b-614fac4b39fd

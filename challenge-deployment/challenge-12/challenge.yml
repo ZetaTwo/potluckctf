@@ -5,7 +5,7 @@ description: '> Due to the special background of the R&D unit of Sunway CPU, the
 
 Surely writing shellcode for an ""unknown"" architecture is impossible, right, right???
 
-Note: Flag located at /flag_<a random uuid>, there is no /bin/sh.
+Note: Flag located at /flag_(a random uuid), there is no /bin/sh.
 
 [1] Machine translated, source: https://k-sina-cn.translate.goog/article_5952916295_162d24b47019001k3l.html?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=zh-CN&_x_tr_pto=wapp'
 authors: potduck
@@ -14,7 +14,7 @@ categories: misc
 flag_format_prefix: potluck{
 flags: your-google-fu-is-good
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge12-dist.tgz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge12-dist.tgz
 predefined_services:
   - type: tcp
     host: challenge12.play.potluckctf.com

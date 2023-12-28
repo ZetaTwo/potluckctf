@@ -8,7 +8,7 @@ categories: sandbox
 flag_format_prefix: potluck{
 flags: sometimes-we-all-get-in-a-little-over-our-heads-dont-we
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge01-dist.tgz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge01-dist.tgz
 predefined_services:
   - type: tcp
     host: challenge01.play.potluckctf.com

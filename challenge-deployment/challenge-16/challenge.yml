@@ -6,7 +6,7 @@ categories: cryptography
 flag_format_prefix: potluck{
 flags: y0u_c4n_hav3_y0ur_cak3_&_ea7_1t_t0o
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge16-dist.tgz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge16-dist.tgz
 
 spec: 0.0.1
 challenge_id: 9bcbb397-d90d-4604-97e2-51f1531d933c

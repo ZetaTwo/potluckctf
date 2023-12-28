@@ -14,7 +14,7 @@ categories: cryptography
 flag_format_prefix: potluck{
 flags: ay_yo_a_fellow_lima_beans_with_lemon_and_lime_enjoyer?84fe4a775bd3186b
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge18-dist.tgz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge18-dist.tgz
 predefined_services:
   - type: tcp
     host: challenge18.play.potluckctf.com

@@ -6,7 +6,7 @@ categories: cryptography
 flag_format_prefix: potluck{
 flags: 192_DisCr3te_L0g_I$_5upr1sing1y_triVi4l@!@!!
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge03-dist.tgz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge03-dist.tgz
 predefined_services:
   - type: tcp
     host: challenge03.play.potluckctf.com

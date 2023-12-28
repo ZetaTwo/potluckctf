@@ -1,0 +1,3298 @@
+push 1401
+jmp
+
+ push 23
+ 
+ push 8
+ push 58
+  jmp
+  
+  push 13
+  push 25
+  	
+  	jmp
+  
+ push 1
+ push 0
+ 	sub
+ 	add
+ 	dup
+ 	push 4
+ 	jmpc
+ 	
+ del
+ 
+ jmp
+ 
+ 	
+ 	push 30
+ 	push 141
+ 	jmp
+ 	
+ 	right
+ 	right
+ 	right
+ 	right
+ 	right
+ 	push 3
+ 	push 6
+ del
+ 
+ push 43
+ push 126
+ jmp
+
+push 1
+push 0
+sub
+add
+dup
+push 39
+jmpc
+del
+left
+left
+left
+left
+left
+jmp
+
+
+push 14
+del
+push 7
+push 11
+del
+
+pusht
+
+right
+
+pusht
+push 69
+add
+add
+left
+pop
+ push 256
+ pusht
+ mod
+ pop
+ right
+ push 1
+ push 0
+ sub
+ add
+ dup
+ push 65
+ jmpc
+ del
+ pusht
+ left 
+ 	left
+ 	left
+ 	push 3
+ 	del
+ left
+ 	left
+ 	left
+ 	left
+ 	pusht
+ 	right
+ 	right
+ 	right
+ 	right
+ 	right
+ 	push 4
+ 	del
+ right
+ right
+ push 69
+ add
+ 
+ add
+ pop
+ push 256
+ pusht
+ mod
+ pop
+ 	left
+ 	left
+ 	left
+ left
+ left
+ left
+ left
+ jmp
+ 
+ push 2
+ 
+ pusht
+ push 2
+ pusht
+ mod
+ push 255
+ mult
+ add
+ div
+ pop
+ jmp
+ push 13
+ del
+ 
+ pusht
+ push 2
+ mult
+ dup
+ dup
+pop
+push 256
+push 14
+del
+pusht
+mod
+eq
+not
+add
+
+push 19
+
+del
+pop
+push 256
+pusht
+mod
+	pop
+	 jmp
+	  
+	  read
+	  dup
+	  pop
+	  push 48
+	   push 0
+	   sub
+	   add
+	   dup
+	   
+	   push 0
+	   
+	   gt
+	   
+	   push 240
+	   
+	   jmpc
+	   push 3
+	   del
+	    dup
+	    push 10
+	    gt
+	   not
+	   dup
+	   pusht
+	   push 97
+	   
+	   gt
+	  mult
+	 push 240
+	 
+	 jmpc
+	push 39
+	push 0
+	sub
+	mult
+	add
+	
+	dup
+	push 0
+	gt
+	push 240
+	 jmpc
+	 dup
+	 push 16
+	 push 18
+	 del
+	 
+	 gt
+	 not
+	 push 240
+	 jmpc 
+	 pop
+	 jmp
+	 
+	 push 227
+	  push 166
+	  jmp
+	  
+	  push 11
+	  del
+	  
+	  pusht
+	  push 16
+	  
+	  mult
+	  push 235
+	  push 166
+	  jmp
+	 
+	 pusht
+	 add
+	 pop
+	 jmp
+	 
+	 push 10
+	eprint
+	push 84
+	eprint
+	push 104
+	push 6
+	del
+
+eprint
+push 97
+eprint
+push 116
+eprint
+push 32
+eprint
+push 100
+eprint
+push 111
+eprint
+push 101
+push 2
+del
+eprint
+push 115
+eprint
+push 32
+eprint
+push 110
+	
+	eprint
+	push 111
+	eprint
+	push 116
+	eprint
+	
+	push 32
+	push 4
+	del
+	eprint
+push 108
+eprint 
+push 111
+eprint
+	push 111
+	eprint
+	push 107
+	eprint
+	push 32
+	eprint
+	
+	push 108
+eprint
+push 105
+push 4
+del
+eprint
+push 8
+del
+push 107
+eprint
+push 101
+push 7
+del
+eprint
+push 13
+del
+push 32
+	eprint
+ 
+push 104
+eprint
+
+ push 101
+ eprint
+ push 120
+eprint
+push 32
+
+eprint
+push 46
+eprint
+
+push 46 
+push 8
+del 
+eprint
+push 46
+
+eprint
+
+push 10
+eprint
+push 404
+jmp
+
+push 10
+eprint
+push 67
+eprint
+push 104
+
+eprint
+push 101
+eprint
+push 99
+eprint
+push 15
+push 6 
+del
+del
+push 107
+eprint
+push 115
+eprint
+push 117
+eprint
+push 109
+	eprint
+	
+	push 32
+	
+	eprint
+	push 100
+	eprint
+	push 111
+	eprint
+
+push 101
+eprint
+push 115
+eprint
+push 110
+eprint
+push 39
+eprint
+push 116
+eprint
+push 32
+eprint
+
+push 6
+del
+push 109
+push 4
+del
+eprint
+push 97 
+eprint
+ 	push 116
+ 	eprint
+ 	push 99
+ eprint
+ push 104
+eprint
+push 46
+eprint
+push 32
+eprint
+ push 10
+ eprint
+ push 404
+ jmp
+ 
+ 
+ del 
+ push 404
+ jmp
+ 
+ push 32
+ 
+
+push 15
+del
+
+left
+push 1
+push 0
+sub
+add
+dup
+push 414
+jmpc
+del
+pusht
+push 32
+
+push 14
+ del
+ right
+ push 1
+ push 0
+sub
+add
+dup
+push 426
+
+jmpc
+del
+pusht
+push 2
+del
+sub
+pop 
+jmp
+
+left
+pop
+right
+push 64
+
+right
+push 1
+push 0
+sub
+add
+
+dup
+push 450
+jmpc
+del
+left
+pop
+left
+pop
+left
+pop
+left
+pop
+
+left
+ pop
+ left
+ pop
+ left
+ pop
+ left
+ pop
+ left
+  pop
+  left
+  pop
+  left
+  pop
+ left
+ pop
+ left
+ pop
+ left
+pop
+left
+	pop
+	
+	
+	left
+	pop
+	left
+
+pop
+left 
+pop
+left
+pop
+left
+
+pop
+left
+pop
+left
+pop
+left
+pop
+
+left
+ 
+	pop
+	left
+pop
+
+left
+pop
+
+push 17
+del
+left
+pop
+left
+pop
+left
+pop
+left
+pop
+left
+pop
+left
+
+pop
+
+push 4
+
+push 7 
+
+push 546
+push 408
+jmp
+
+
+push 256
+dup
+pusht
+add
+mod
+
+dup
+push 256
+pusht
+mod
+eq
+not
+right
+
+pusht
+sub
+pop
+left
+ pop
+ right
+ push 1
+ push 0
+ sub 
+ add
+ dup
+ push 541
+ jmpc
+ 
+ del
+ push 581
+ 	push 4
+ 	del
+ 	 push 408
+ 	 jmp
+ 	 
+ 	 
+ 	 push 256
+ 	pusht
+ 	push 256
+ push 17
+ del
+ add
+ mod
+ pop
+ right
+ push 1
+ push 0
+ sub
+  add
+   
+   dup
+   push 539
+   jmpc
+   del
+   push 64
+   
+   left
+   push 1
+   	push 0
+   	sub
+   	
+   	add
+   	push 1
+   	del
+   	dup
+   	push 602
+   	 jmpc
+   	 	
+   	 del 
+   	 
+   	  push 620
+   	  push 726
+   	 jmp
+   	 
+   push 624
+   push 726
+   jmp
+   
+  push 628
+ push 726
+ jmp
+
+push 632
+push 726
+jmp
+
+pusht
+right
+pusht
+right
+pusht
+right
+push 6
+del
+pusht
+right
+pusht
+right
+pusht
+right
+pusht
+
+right
+ pusht
+ right
+ pusht
+  push 18
+  del
+  right
+  pusht
+ right
+ pusht
+ right
+ pusht
+ right
+ pusht
+ right
+ 
+ pusht
+ right
+ pusht
+ right
+ pusht
+ right
+ pusht
+ right
+ pusht
+ right
+  pusht
+  right
+  pusht
+  	right
+  	pusht
+  	right
+  	pusht
+  	right
+  	pusht
+  	right
+  		pusht
+  		right
+  		pusht
+  		right
+  		 
+  		 pusht
+  		 right
+  		 pusht
+  		 right
+  		 pusht
+  		 right
+  		  pusht
+  		  
+  		  	right
+  		  	push 17
+  		  	del
+  		  	pusht
+  		  	right
+  		  	pusht
+  		  	
+  		  	right
+  		  	
+  		  	pusht
+  		  right
+  		  push 64
+  		  
+  		   left
+  		   push 1
+  		   push 0
+  		  sub
+  		  add
+  		  dup
+  		  push 710
+  		  push 2
+  		  del
+  		  jmpc
+  		  del
+  		  left
+  		  pusht
+  		  right
+  		  jmp
+  		  
+  		  pusht
+  		   push 4
+  		   del
+  		   right
+  		   pusht
+  		   right
+  		   pusht
+  		    right
+  		   pusht
+  		   right
+  		   
+  		   pusht
+  		   right
+  		   pusht
+  		   right
+  		   pusht
+  		   right
+  		   	pusht
+  		   	left
+  		   left
+  		   pop
+  		   
+  		   left
+  		   pop
+  		  left
+  		  pop
+  		  left
+  		  push 10
+  		  del
+  		  pop
+  		 left
+  		 pop
+  		 left
+  		 pop
+  		 right
+  		right
+  		right
+  	right
+  	right
+  	right
+  	right
+  	pop
+  	left
+  	pop
+  	right
+  	right
+  	left
+  	push 10
+  	del
+  
+  left
+  left
+  left
+  left
+ left
+ left 
+ left
+ push 7
+ 
+ 	pusht
+ 	right
+ 	right
+ 	right
+ right
+ right
+ right
+ 	right
+ 	right
+ 	right
+ 	right
+ 	right
+ 		right
+ 		right
+ 		right
+ 		push 16
+ 		 del
+ 		right
+ 		right
+ 		right
+ 		 right
+ 		 right
+ 		 push 17
+ 		 del
+ 		 right
+ 		  right
+ 		  right
+ 		  right
+ 		  right
+ 		  	right
+ 		  	right
+ 		  	right
+ 		  	right
+ 		  	right
+ 		  	right
+ 		  	push 15
+ 		  	del
+ 		  	right
+ 		  	 right
+ 		  	 pusht
+ 		  	 
+ 		  	add
+ 		  	left
+ 		  	 left
+ 		  	 push 9
+ 		  	 del
+ 		  	 left
+ 		  	 left
+ 		  	 left
+ 		  	 left
+ 		  	 left
+ 		  	 left
+ 		  	 left
+ 		  	 left
+ 		  	left
+ 		  	left
+ 		  	left
+ 		  	left
+ 		  	left
+ 		  left
+ 		  left
+ 		  left
+ 		  left
+ 		  push 6
+ 		  	del
+ 		  		left
+ 		  		left
+ 		  	left
+ 		  left
+ 		  left
+ 		  push 3
+ 		  del
+ 		  left
+ 		  left
+ 		  left
+ 		  
+ 		  left
+ 		  push 8
+ 		  del
+ 		  left
+ 		  left
+ 		  left
+ 		  left
+ 		  pop
+ 		  pusht
+ 		   push 256
+ 		   	gt
+ 		   	
+ 		   	not
+ 		   	right
+ 		   	pusht
+ 		   	add
+ 		   	pop
+ 		   	left
+ 		   	push 256
+ 		   	pusht 
+ 		   	mod
+ 		   	pop
+ 		   	right
+ 		   	push 1
+ 		   	push 0
+ 		   sub
+ 		   
+ 		   add
+ 		   dup
+ 		    push 785
+ 		    jmpc
+ 		   del
+ 		  pusht
+ 		  right
+ 		 
+ 		 right
+ 		  right
+ 		  right
+ 		  right
+ 		  
+ 		 right
+ 		 right
+ 		 right
+ 		 
+ 		 right
+ 		 right
+ 		  right
+ 		  right
+ 		  
+ 		 right
+ 		 right
+ 		 
+ 		 right
+ 		  right
+ 		  right
+ 		  right
+ 		   right
+ 		   right
+ 		   right
+ 		  right
+ 		 right
+ 		 right
+ 		 right
+ 		 right
+ 		 push 11
+ 		 del
+ 		 right
+ 		 push 5
+ 		 	del
+ 		 	right
+ 		 	right
+ 		 right
+ 		right
+ 	right
+ 	pusht
+ 	add
+ 	left
+ left
+ left
+ left
+ left
+ left
+left
+left
+left
+left
+left
+
+push 14
+del
+left
+
+push 17
+del
+left
+left
+left
+ 
+ left
+ left
+ 
+ left
+ left
+ left
+ push 13
+ del
+ left
+ push 19
+ del
+
+
+left
+push 19
+del
+left
+left
+left
+
+	left
+		left
+		left 
+		left
+		push 11
+		
+			del
+			left
+			
+			left
+				left
+				
+				pop
+				push 256
+				pusht
+			mod
+				pop
+				right
+					left
+					 left
+					 left
+					 left
+					 
+					 push 7
+					 del
+					 
+					 left
+					left
+					left
+					left
+					pusht
+					right
+					push 12
+					del
+					pusht
+				right
+				 pusht
+				 right
+				pusht
+			right
+			pusht
+			right
+			pusht
+			push 13
+			del
+			
+			right
+			pusht
+			right
+			
+			push 12
+		del
+		pusht
+		left
+		left
+	pop
+left
+pop
+left
+	pop
+	left
+pop
+left
+pop
+
+push 19
+del
+left
+pop
+right
+
+right
+right
+right
+right
+push 9
+del
+right
+right
+pop
+left
+pop
+right
+right
+left
+left
+push 9
+del
+
+left
+	left
+
+left
+left
+left
+left
+push 7
+
+pusht
+ right
+right
+right
+
+
+right
+right
+right
+right
+push 15
+del
+right
+right
+right
+right
+
+right
+right
+right
+right
+
+right
+right
+right
+right
+right
+right
+right
+right
+right
+push 7
+del
+right
+right
+right
+right
+ right
+ right
+ right
+ right
+ pusht
+ sub
+ 
+ push 11
+ push 17
+ del
+ del
+ push 0
+ 
+ 
+ sub
+ 	left
+ 	left
+ 	left
+ 	left
+ 	left
+ 	left
+ left
+left
+push 5
+del
+left
+left
+push 8
+del
+left
+left
+
+left
+left
+	left
+	left
+		left
+		left
+		left
+		left
+			left
+			
+			left
+			left
+			left
+			push 15
+			del
+			left
+			left
+			
+			left
+			
+			left
+			left
+			left
+			left
+		
+		left
+		pop
+		 pusht
+		 push 0
+		 
+		 gt
+		 push 1
+		 push 0
+		 sub
+		 mult
+		 right
+		 pusht
+		  add
+		  pop
+		  
+		  left
+		  push 256
+		  pusht
+		  push 256
+		 add
+		 mod
+		 pop
+		 right
+		 push 17
+		 del
+		 push 1
+		 push 0
+		 	sub
+		 	add
+		 	 dup
+		 	 
+		 	push 1077
+		 	jmpc
+		 	del
+		 pusht
+		 right
+		 	right
+		 	right
+		 right
+		right
+		right
+		right
+		right
+		right
+		right
+		right
+		push 5
+		del
+	right
+	right
+	right
+	
+	right
+	right
+	right
+	right
+	right
+	right
+	right
+		right
+		right
+		right
+		right
+		right
+		right
+		right
+		right
+		right
+		right
+		right
+		
+		pusht
+		sub
+		push 0
+		sub
+		left
+		left
+		left
+		left
+		left
+	left
+		left
+		left
+		left
+		left
+	left
+	
+	left
+	left
+		left
+		left
+	left
+left
+push 9
+del
+left
+left
+push 1
+del
+left
+left
+
+left
+	left
+left
+left
+left
+
+left
+left
+left
+push 17
+del
+left
+
+
+left
+left
+pop
+push 256
+pusht
+push 256 
+add
+ 
+ mod
+ pop
+right
+jmp
+push 3
+	del
+		
+		
+		push 17
+		del
+	left
+left
+left
+	
+	left 
+	left
+	left
+	left
+	push 7
+	
+	pusht
+left
+left
+left 
+push 4
+del
+left
+ left
+ left
+ left
+ left
+ push 13
+ push 8
+ del
+ del
+pusht
+add
+right
+right
+right
+right
+right
+right
+right
+right
+
+pop
+pusht
+push 256
+gt
+not
+right
+pusht
+add
+pop
+left
+push 256
+pusht
+mod
+pop
+
+right
+push 1
+push 0
+sub
+add
+
+push 3
+del
+dup
+push 1315
+	
+	push 1
+del
+jmpc
+del
+pusht
+left
+left
+
+left
+ left
+  left
+   left
+   left
+   left
+   pusht
+  add
+  right
+  right
+   right
+   right
+   right
+   right
+   push 7
+  del
+  right
+  
+  right
+  pop
+  push 256
+  pusht
+  mod
+  pop
+  jmp
+ 
+ 
+ push 69
+eprint
+push 110
+eprint
+push 116
+eprint
+push 101
+eprint
+push 114
+eprint
+push 32
+eprint
+push 100
+eprint
+push 101
+eprint
+push 99
+eprint
+push 114
+ eprint
+ push 121
+ eprint
+ push 112
+ eprint
+ push 116
+ eprint
+  push 105
+   eprint
+    
+    push 111
+    eprint
+     push 9
+     del
+     push 110
+    eprint
+    push 32
+    eprint
+    push 107
+    eprint
+    push 101
+    eprint
+    push 121
+    eprint
+    push 32
+   eprint
+   push 40
+   eprint
+   push 108
+   eprint
+   push 111
+  eprint
+  push 119
+  eprint
+  push 101
+  eprint
+  push 114
+ eprint
+ 	push 99
+ 	eprint
+ push 97
+ eprint
+ push 7
+ del
+ push 115
+ eprint
+ push 101 
+ 
+ eprint
+ push 32
+ eprint
+ push 104
+ eprint
+ push 101
+ eprint
+ push 120
+ eprint
+ push 97
+  eprint
+  push 100
+  eprint
+ push 101
+ eprint
+ 
+ push 99
+ eprint
+ push 105
+ eprint
+ push 109
+ eprint
+ push 97 
+ push 10
+ push 19
+ del
+ del
+ eprint 
+ 	push 108
+ 	eprint
+ 	push 44
+ 	 
+ 	 	eprint
+ 	 	push 32
+ 	 	eprint
+ 	 	 
+ 	 	  push 50
+ 	 	 eprint
+ 	 	 push 52
+ 	 	 push 14
+ 	 	 del
+ 	 	 	eprint
+ 	 	 	push 32
+ 	 	 	eprint
+ 	 	 	push 100
+ 	 	 	eprint
+ 	 	 	push 105
+ 	 	 	eprint
+ 	 	 	
+ 	 	 	
+ 	 	 	push 103
+ 	 	 	eprint
+ 	 	 	push 105
+ 	 	 	eprint
+ 	 	 	
+ 	 	 	 
+ 	 	 	push 116
+ 	 	 	eprint
+ 	 	 	push 115
+ 	 	 	
+ 	 	 	eprint
+ 	 	 	push 7
+ 	 	 	del
+ 	 	 	push 41
+ 	 	 	eprint
+ 	 	 	push 58
+ 	 	 		eprint
+ 	 	 		push 32
+ 	 	 		eprint
+ 	 	 		right
+ 	 	 		push 11
+ 	 	 		del
+ 	 	 		 	push 1337
+ 	 	 		 	push 0
+ 	 	 		 	sub
+ 	 	 		 	push 4
+ 	 	 		 	
+ 	 	 		 push 1550
+ 	 	 		 	push 220
+ 	 	 		 	jmp
+ 	 	 		 	 
+ 	 	 		 	 right
+ 	 	 		 	 push 42
+ 	 	 		 	 pop
+ 	 	 		 	 right
+ 	 	 		 	 push 1560
+ 	 	 		 	 push 220
+ 	 	 		 	 push 3
+ 	 	 		 	 del
+ 	 	 		 	 jmp
+ 	 	 		 	  
+ 	 	 		 	  right
+ 	 	 		 	  push 1565
+ 	 	 		 	  push 220
+ 	 	 		 	  jmp
+ 	 	 		 	  
+ 	 	 		 	 right
+ 	 	 		 	 push 222
+ 	 	 		 	 pop
+ 	 	 		 	 push 7
+ 	 	 		 	 del
+ 	 	 		 	 right
+ 	 	 		 	 push 173
+ 	 	 		 	 pop
+ 	 	 		 	 right
+ 	 	 		 	 
+ 	 	 		 	 push 190
+ 	 	 		 	 pop
+ 	 	 		 	 push 4
+ 	 	 		 	 del
+ 	 	 		 	 right
+ 	 	 		 	 push 239
+ 	 	 		 	 pop
+ 	 	 		 	  right
+ 	 	 		 	  
+ 	 	 		 	  left
+ 	 	 		 	  
+ 	 	 		 	  left
+ 	 	 		 	  left
+ 	 	 		 	  left
+ 	 	 		 	  left
+ 	 	 		 	   left
+ 	 	 		 	   left
+ 	 	 		 	   left
+ 	 	 		 	   	push 1597
+ 	 	 		 	   		push 2
+ 	 	 		 	   		jmp
+ 	 	 		 	   		
+ 	 	 		 	   	right
+ 	 	 		 	   	right
+ 	 	 		 	   	right
+ 	 	 		 	   	right
+ 	 	 		 	   	right
+ 	 	 		 	   	right
+ 	 	 		 	   	
+ 	 	 		 	   	push 17
+ 	 	 		 	   		push 10
+ 	 	 		 	   		del
+ 	 	 		 	   		del
+ 	 	 		 	   		right
+ 	 	 		 	   		right
+ 	 	 		 	   		push 1
+ 	 	 		 	   		push 0
+ 	 	 		 	   		sub
+ 	 	 		 	   	add
+ 	 	 		 	   	
+ 	 	 		 	   		dup
+ 	 	 		 	   		push 1546
+ 	 	 		 	   		jmpc
+ 	 	 		 	   		del 
+ 	 	 		 	   		push 12
+ 	 	 		 	   		del
+ 	 	 		 	   		push 32
+ 	 	 		 	   		
+ 	 	 		 	   		left
+ 	 	 		 	   	pusht
+ 	 	 		 	   	push 64
+ 	 	 		 	   	
+ 	 	 		 	   	right
+ 	 	 		 	   	
+ 	 	 		 	   	push 1
+ 	 	 		 	   	push 0
+ 	 	 		 	   	sub
+ 	 	 		 	   add
+ 	 	 		 	   dup
+ 	 	 		 	   push 1627
+ 	 	 		 	   jmpc
+ 	 	 		 	  del
+ 	 	 		 	  push 18
+ 	 	 		 	 del
+ 	 	 		 	 pop
+ 	 	 		 	 push 64
+ 	 	 		 	 
+ 	 	 		 	 left
+ 	 	 		 	 push 1
+ 	 	 		 	 push 0
+ 	 	 		 	 sub
+ 	 	 		 	 
+ 	 	 		 	 add
+ 	 	 		 	 dup
+ 	 	 		 	  push 1642
+ 	 	 		 	  jmpc
+ 	 	 		 	  del
+ 	 	 		 	  push 1
+ 	 	 		 	  push 0
+ 	 	 		 	  sub
+ 	 	 		 	  add
+ 	 	 		 	  dup
+ 	 	 		 	  push 1623
+ 	 	 		 	  jmpc
+ 	 	 		 	  push 16
+ 	 	 		 	  del
+ 	 	 		 	  	del
+ 	 	 		 	  	
+ 	 	 		 	  	push 190
+ 	 	 		 	  	push 247
+ 	 	 		 	  	push 15
+ 	 	 		 	  	push 190
+ 	 	 		 	  push 27
+ 	 	 		 	  push 112
+ 	 	 		 	  push 44
+ 	 	 		 	  
+ 	 	 		 	  push 48
+ 	 	 		 	   
+ 	 	 		 	   push 106
+ 	 	 		 	   push 236
+ 	 	 		 	  push 165
+ 	 	 		 	  push 0
+ 	 	 		 	  push 233
+ 	 	 		 	  
+ 	 	 		 	 
+ 	 	 		 	 push 47
+ 	 	 		 	 push 17
+ 	 	 		 	push 11
+ 	 	 		 del
+ 	 	 		 del
+ 	 	 		 push 247
+ 	 	 		 push 243
+ 	 	 		 push 14
+ 	 	 		 push 40
+ 	 	 		 push 15
+ 	 	 		 del
+ 	 	 		 push 112
+ 	 	 		 push 244
+ 	 	 		push 46
+ 	 	 		push 63
+ 	 	 		push 250
+ 	 	 	push 14
+ 	 	 push 53
+ 	 	 push 30
+ 	 	 push 245
+ 	 	 push 1
+ 	 	 push 81
+ 	 	push 208
+ 	 	push 255
+ 	 	push 55
+ 	 	push 1710
+ 	 
+ 	 push 445
+ 	jmp
+ 	
+ 		
+ 		push 30
+ 		push 168
+ 		 push 181
+ 		 push 66
+ 		 push 221
+ 		 
+ 		push 50
+ 		push 7
+ 		del
+ 		push 188
+ 		push 117
+ 		push 229
+ 	push 231
+ 	push 115
+ 	push 233
+ 	push 69
+ 	push 153
+ 	push 254
+ 	push 96
+ 	push 48
+ 	push 185
+ 	push 240
+ push 6
+ push 21
+ 	push 170
+ push 104
+ push 242
+ push 81
+ push 230
+ push 255
+ push 55
+ 
+push 54
+push 52
+push 18
+del
+push 244
+push 235
+push 1755
+push 19
+del
+push 445
+	jmp
+	
+	push 221
+	push 50
+	
+	push 188
+		
+		 
+		 push 117
+		 push 30
+		 push 168
+		 push 181
+		 
+		 push 66
+		 push 69
+		 push 153
+		 push 2
+		 del
+		 push 254
+		 push 96
+		 
+		 
+		 push 229
+		 push 231
+		 push 115
+		 push 12
+		 del
+		 push 233
+		 push 21
+		 push 170
+		 push 104
+		 push 242
+		 push 48
+		 push 185
+		 push 240
+		 push 6
+		 push 54
+		 push 52
+		 push 244
+		 push 235
+		push 81
+	push 230
+push 255
+push 55
+push 1801
+ push 445
+ jmp
+ 
+push 30
+push 168
+push 6
+del
+push 151
+
+	push 206
+	push 220
+	
+	push 72
+	push 211
+	push 63
+	push 22 
+	push 72
+	push 251
+	push 111 
+	push 84
+	push 179
+	push 73
+	push 207
+	push 3
+	del
+		push 95
+		push 17
+		push 232
+		push 112
+		push 177
+		push 169
+		push 228
+			push 216
+			push 41
+			push 26
+				push 114
+				push 242
+					push 51
+					push 47
+					push 17
+					del
+					push 116
+				push 122
+				push 1845
+				push 445
+				jmp
+				
+				push 39
+				 	push 254
+				 	push 139
+				 	push 100
+				 	push 168
+				 	push 37
+				 push 54
+				 push 42
+				 
+				 push 87
+				 push 222
+				 push 39
+				 push 156
+				 push 216
+				 push 16
+				 del
+				 push 65
+				 push 73
+				push 16
+				push 172
+				push 209
+			push 76
+			push 74
+			push 117
+			push 36
+			push 237
+			push 15
+			del
+			push 226
+			push 17
+			push 141
+			
+			push 80
+			push 167
+			push 209
+		push 251
+		push 91
+		push 95
+		push 1887 
+		push 445
+		jmp
+		
+		
+		push 192
+		push 165
+		push 80
+		push 87
+		push 218 
+		
+		push 77
+		push 48
+	push 4
+del
+push 227
+push 60
+push 151
+push 155
+push 150
+ 
+ push 154
+ 	push 40
+ 	push 34
+ 	push 155
+ 	push 95
+ 	push 159
+ 		push 19
+ 		push 187
+ 		
+ 		push 177
+ 			push 124
+ 			push 131
+ 			push 219
+ 			push 189
+ 			push 72
+ 			push 56
+ 			push 74
+ 			push 137
+ 			
+ 			push 93
+ 		
+ 		
+ 		 push 199
+ 		 push 8
+ 		 push 1932
+ 		  push 445
+ 		  jmp
+ 		  
+ 		  	push 251
+ 		  	push 13
+ 		  	del
+ 		  	push 226
+ 		  push 138
+ 		 push 143
+ 		  
+ 		  push 139
+ 		  push 167
+ 		  push 50
+ 		   push 50
+ 		   push 177
+ 		   push 33
+ 		   push 202
+ 		   push 63
+ 		   push 221
+ 		  push 182
+ 		  	
+ 		  	push 205
+ 		  	push 233
+ 		  	push 4
+ 		  	push 205
+ 		  	 push 129
+ 		  	 push 13
+ 		  	 push 191
+ 		  	 push 28
+ 		  	 push 47
+ 		  	 push 141
+ 		  	 push 136
+ 		  	push 85
+ 		  	push 85
+ 		  	push 245
+ 		  	push 107
+ 		  	push 11
+ 		  	del
+ 		  		push 7
+ 		  		del
+ 		  	
+ 		  	push 112
+ 		  	push 67
+ 		  	push 57 
+ 		  	push 1979
+ 		  	
+ 		  	push 445
+ 		  	jmp
+ 		  	
+ 		  	
+ 		  	push 14
+ 		  	 push 122
+ 		  	 push 148
+ 		  	 push 135
+ 		  	 push 86
+ 		  	 push 24
+ 		  	 
+ 		  	 push 198
+ 		  	 push 39
+ 		  	push 2
+ 		  	push 190
+ 		  	push 36
+ 		  	push 74
+ 		  	push 198
+ 		  	push 215
+ 		  	push 5
+ 		  	del
+ 		  	push 149
+ 		  	push 156
+ 		  	push 222
+ 		  	push 215
+ 		  	push 177
+ 		  push 13
+ 		  del
+ 		  push 214
+ 		 push 31
+ 		 push 17
+ 		 push 70
+ 		 push 246
+ 		 push 27
+ 		 push 233
+ 		 push 176
+ 		 push 248
+ 		 push 231
+ 		 	push 140
+ 		 	push 133
+ 		 	
+ 		 	 push 245
+ 		 	 push 2021
+ 		 	 push 445
+ 		 	 jmp
+ 		 	 
+ 		 	push 7
+ 		 	del
+ 		 	push 26
+ 		 	push 2
+ 		 	push 170
+ 		 	push 115
+ 		 		push 9
+ 		 		push 82
+ 		 		push 148
+ 		 		 push 219 
+ 		 		 push 39
+ 		 		 push 11
+ 		 		 del
+ 		 		  push 192
+ 		 		  push 159
+ 		 		  push 162
+ 		 		  push 19
+ 		 		  del
+ 		 		  push 71
+ 		 		  push 182
+ 		 		  push 187
+ 		 		  push 172
+ 		 		  push 98
+ 		 		  push 46
+ 		 		  push 27
+ 		 		  push 39
+ 		 		  push 234
+ 		 		  push 154
+ 		 		  push 191
+ 		 		  push 230 
+ 		 		  push 16
+ 		 		   del
+ 		 		   push 11
+ 		 		   push 119
+ 		 		   push 107
+ 		 		   push 216
+ 		 		   push 20
+ 		 		   push 123 
+ 		 		   push 225
+ 		 		    push 230
+ 		 		     push 2066
+ 		 		     push 445
+ 		 		     
+ 		 		    jmp
+ 		 		     
+ 		 		     push 101
+ 		 		    push 189
+ 		 		    push 113
+ 		 		    push 186
+ 		 		    push 198
+ 		 		   push 111
+ 		 		   push 104
+ 		 		  push 105
+ 		 		 push 52
+ 		 		 push 165
+ 		 		 push 32
+ 		 		 
+ 		 		 push 8
+ 		 		 del
+ 		 		 push 248
+ 		 		 push 183
+ 		 		 push 67
+ 		 		push 211
+ 		 	push 194 
+ 		 	push 81
+ 		 	push 62
+ 		 	push 90
+ 		 	push 62
+ 		 		push 177
+ 		 		push 228 
+ 		 		push 9
+ 		 		push 96
+ 		 		push 87
+ 		 		push 171
+ 		 		push 83
+ 		 		push 137
+ 		 		push 246
+ 		 		push 165
+ 		 		
+ 		 		 push 18
+ 		 		del
+ 		 		push 120
+ 		 	push 99
+ 		 	push 2111
+ 		 	
+ 		 	push 445
+ 		 	jmp
+ 		 	push 9
+ 		 	del
+ 		 	
+ 		 	push 13
+ 		 	del
+ 		 	push 185
+ 		 	push 89
+ 		 	push 57
+ 		 		push 5
+ 		 		del
+ 		 		push 80
+ 		 	push 19
+ 		 	del
+ 		 	push 50
+ 		 push 212
+ 		push 82
+ 		push 144
+ 		push 24
+ 		push 36
+ 		push 44
+ 		push 17
+ 		del
+ 	push 174
+ 	push 165
+ 	push 39
+ 
+ push 227
+ push 46
+ push 181
+ push 137
+ push 240
+ push 248
+ push 34
+ push 242
+ push 239
+ push 61
+ push 138
+ 	push 136
+ 	push 188
+ 	push 1
+ 	del
+ 	push 25
+ 	push 4
+ 	del
+ 	push 237
+ 	push 183
+ 	push 155
+ 	push 9
+ 	del
+ 	push 233
+ 	push 2162
+ 	push 445
+ 	jmp
+ 	
+ 	push 6
+ del
+ push 95
+ push 53
+  push 6
+  push 146
+  push 159
+  push 56
+  push 171
+  push 167
+  push 91
+  push 11
+  push 76
+  
+   push 193
+  push 26
+  push 137
+ push 26
+ push 249
+ push 64
+ push 175
+  push 48
+  push 122
+  push 88
+  
+   push 206
+   push 105
+   push 91
+   
+   	
+   	push 85
+   	push 63
+   	
+   	push 84
+   push 200
+  push 45
+  
+  push 120
+  push 207
+  push 34
+  push 2207
+  
+  push 445
+ jmp
+ 
+ 
+ push 100
+ 	push 30
+ 	push 195
+ 	push 212
+ 	push 240
+ 	push 79
+ 	push 158
+ 	push 44
+ 	push 41
+ 	push 246
+ 	 
+ 	push 198
+ 	push 223
+ 	
+ 	
+ push 154
+ push 208
+ push 26
+  push 88
+  push 232
+  push 210
+   push 2
+   push 220
+   push 9
+   	push 252
+   push 202
+   push 113
+   push 246
+   push 20
+   	push 99
+   push 172
+   push 168
+   
+   push 242
+   push 247
+   push 1
+  push 2249
+  
+  push 445
+  jmp
+  	
+  	push 49
+  	push 58 
+  	push 33
+  	push 23
+  	push 207
+  	 push 7
+  	del
+  push 128
+  push 50
+   push 41
+   push 237
+   
+  push 67
+  push 189
+  push 31
+  push 3
+  push 127
+  push 227
+  	push 200
+  	push 179
+  	push 49
+  	
+  	 push 15
+  	 del
+  	 push 18
+  	 del
+  	 push 50
+  	push 255
+  	push 7
+  	del
+  	push 5
+  	push 111
+  		push 85
+  		push 50
+  		push 106
+  		push 172
+  		
+  		push 69
+  		push 39
+  		push 35
+  		push 186
+  		 push 62
+  		 push 148
+  		 	push 2296
+  		 	push 445
+  		 	jmp
+  		 	
+  		 	 push 42
+  		 	 
+  		 	 push 164
+  		 	 push 140
+  		 	 push 222
+  		 	 push 75
+  		 	 push 139
+  		 	push 66
+  		 		push 105
+  		 		push 42
+  		 		push 221
+  		 		push 252
+  		 		push 170
+  		 	push 2
+  		 	 push 206
+  		 	push 120
+  		 	push 157
+  		 	push 221
+  		 	push 65
+  		 	push 153
+  		 	push 4
+  		 	del
+  		 	push 224
+  		 	push 68
+  		 	 push 19
+  		 	 push 63
+  		 	 	push 194
+  		 	 	push 69
+  		 	 	push 9
+  		 	 	push 72
+  		 	 	push 81
+  		 	 	push 49
+  		 	 	push 106
+  		 	 	push 24
+  		 	 	push 2
+  		 	 	del
+  		 	 	push 27
+  		 	 	push 2338
+  		 	 push 445
+  		 	 
+  		 	 jmp
+  		 	 
+  		 	push 238 
+  		 	push 151
+  		 	push 58
+  		 	push 177
+  		 		push 146
+  		 		 push 243
+  		 		 push 120
+  		 		 push 31
+  		 		 push 60
+  		 		 push 50
+  		 		 push 148
+  		 		 push 109
+  		 		push 77
+  		 		push 124
+  		 		push 69
+  		 		push 142
+  		 		push 84
+  		 		push 74
+  		 		
+  		 		
+  		 		push 28
+  		 		
+  		 		push 78
+  		 		push 201
+  		 		push 239
+  		 		push 126
+  		 		 
+  		 		 push 19
+  		 		 del
+  		 		 push 209
+  		 		 push 179
+  		 		push 29
+  		 		push 236
+  		 		push 171
+  		 		push 106
+  		 		push 224
+  		 	push 24
+  		 	push 171
+  		 push 2384
+  		 push 445
+  		push 7
+  		 push 11
+  		 del
+  		 del
+  		 	jmp
+  		 	
+  		 	push 168
+  		 	push 38
+  		 	push 19
+  		 	del
+  		 	push 6
+  		 	del
+  		 	push 98
+  		 	push 58
+  		 	push 73
+  		 	push 96
+  		 	push 74 
+  		 push 32
+  		 push 170
+  		  	push 37
+  		  push 129
+  		  push 91
+  		  
+  		  push 155
+  		  push 135
+  		  push 193
+  		  push 106
+  		  push 181
+  		  push 98
+  		  push 62
+  		  	push 158
+  		  	push 54
+  		  	push 142
+  		  	push 5
+  		  	del
+  		  	push 63
+  		  	push 15
+  		  	push 75
+  		  		push 16
+  		  		del
+  		  		push 62
+  		  		push 184
+  		  	push 246
+  		  	push 10
+  		  
+  		  push 200
+  		 push 78
+  		 push 54
+  		 push 2435
+  		push 445
+  		 push 13
+  		 del
+  		 push 17
+  		 del
+  		 
+  		 jmp
+  		 
+  		 push 123
+  		 push 247
+  		 push 111
+  		 push 223
+  		 push 60
+  		 push 72
+  		push 46
+  		push 29
+  		push 172
+  		push 15
+  		del
+  		push 66
+  		push 179
+  		push 63
+  		push 234
+  		push 203
+  		
+  		push 157
+  		push 117
+  	push 217
+  	push 66
+  	push 154
+  	push 170
+  	push 229
+  	push 78
+  push 209
+  push 44
+  push 18
+  del
+  
+  
+  
+  push 163
+  push 12
+ del
+ push 93
+ push 198
+ push 227
+ push 11
+ push 122
+ push 152
+ 
+ push 230
+ push 2482
+ push 445
+ jmp
+ 
+ push 159
+ push 175
+ push 162
+  push 207
+ push 204
+push 192
+push 218
+ push 33
+ push 235
+ push 5
+ del
+ push 226
+ push 236
+ push 26
+ push 188
+ push 89
+ push 225
+ push 19
+ 
+ 
+ push 9
+ push 37
+  push 126
+  push 108
+  push 2
+  del
+  
+  push 247
+  push 19
+  del
+  push 30
+  push 196
+  push 159
+  push 8
+  del
+  push 104
+  push 99
+  push 213
+ push 174
+ push 7
+ del
+ push 214
+ push 8
+ del
+ 	push 126
+ 	push 173
+ 	push 218
+ 	 
+ 	push 2536
+ 	push 445
+ 		
+ 		jmp
+ 		
+ 		
+ 		push 192
+ 		push 203
+ 	push 58
+ 	push 99
+ 	push 18
+ 	
+ 	push 237
+ 	push 247
+ 	push 11
+ 	del
+ 	push 33
+ 
+ push 56
+ push 37
+ push 233
+push 196
+ push 98
+ push 10
+ push 16
+push 194
+push 251
+ 
+ 
+ push 132
+ push 7
+ push 111
+ push 99
+push 117
+push 119
+push 63
+push 14
+	push 52
+	push 234
+push 137
+push 152
+ push 145
+ push 148
+ push 176
+ push 2578
+ push 445
+ 	jmp
+ 	
+ 	push 178
+ 	push 219
+ 		push 111
+ 		push 242
+ 		push 53
+ 		push 105
+ 	push 132
+ 	push 213
+ push 227
+ push 23
+  push 205
+  push 84
+  push 166
+  push 39
+  push 142
+  push 70
+  push 146
+  push 18
+  	push 184
+  	push 72
+  push 35
+  push 166
+  push 231
+  push 247
+ push 42
+ push 68
+ push 16
+ del
+ push 162
+ push 49
+ push 238
+ push 92
+ push 178
+ push 55
+ push 2617
+push 445
+jmp
+
+
+push 68
+push 49
+
+push 236
+push 33
+push 5
+del
+push 249
+ push 135
+ push 175
+push 94
+push 80
+	push 209
+	push 84
+	push 141
+	push 150
+	push 191
+	
+		push 47
+		 push 243
+		 push 195
+		 push 161
+		 push 150
+		 	push 26
+		 	push 198 
+		 	 push 10
+		 	 del
+		 	 push 194
+		 	 push 105
+		 	 push 228
+		 	 push 9
+		 	 del
+		 	 push 13
+		 	  del
+		 	  push 244
+		 	  push 10
+		 	  push 164
+		 	  push 68
+		 	  push 129
+		 	  push 209
+		 	  push 33
+		 	  push 146
+		 	  push 2665
+		 	  push 16
+		 	 del
+		 	 push 445
+		 	 jmp
+		 	   
+		 	  push 87
+		 	  push 212
+		 	  	push 7
+		 	  	del
+		 	  	
+		 	  	push 110
+		 	  	push 4
+		 	  	del
+		 	  	push 213
+		 	  	push 233
+		 	  	push 95
+		 	  	
+		 	  	push 35
+		 	  push 143
+		 	  push 84
+		 	  push 166
+		 	  	
+		 	  	 push 222
+		 	  	 push 177
+		 	  	 push 157
+		 	  	 push 228
+		 	  	 push 124
+		 	  	 
+		 	  	 push 158
+		 	  	 push 224
+		 	  	 push 50
+		 	  	 push 251
+		 	  	 push 226
+		 	  	 push 232
+		 	  	 
+		 	  	 push 137
+		 	  	 push 196
+		 	  	  	
+		 	  	  	push 74
+		 	  	  	push 219
+		 	  	  	push 82
+		 	  	  	push 228
+		 	  	  	push 12
+		 	  	  	push 118
+		 	  	  push 185
+		 	  	  push 95 
+		 	  	  push 91
+		 	  	  push 2711
+		 	  	  push 445
+		 	  	  jmp
+		 	  	  
+		 	  	  
+		 	  	  push 53
+		 	  	 push 8
+		 	  	 push 151
+		 	  	 push 104
+		 	  	 push 254
+		 	  	 push 195
+		 	  	 	push 82
+		 	  	 	push 160
+		 	  	 	push 12
+		 	  	 	
+		 	  	 	push 154
+		 	  	 	
+		 	  	 push 117
+		 	  	 	
+		 	  	 
+		 	  	 push 155
+		 	  	 push 33
+		 	  	push 111
+		 	  	push 214
+		 	  	 push 37
+		 	  	 push 14
+		 	  	 del
+		 	  	 push 88
+		 	  	 push 129
+		 	  	 	push 144
+		 	  	 	
+		 	  	 	push 213
+		 	  	 push 36
+		 	  	 push 30
+		 	  	 push 5
+		 	  	 push 80
+		 	  	push 82
+		 	  	push 64
+		 	  
+		 	  push 103
+		 	  push 199
+		 	  push 43
+		 	  push 137
+		 	  push 149
+		 	  push 173
+		 	  	push 2756 
+		 	  	push 445
+		 	  	jmp
+		 	  	
+		 	  	push 23
+		 	  	push 191
+		 	  	push 67
+		 	  	push 102
+		 	  	push 183
+		 	  	push 155
+		 	  	push 87
+		 	  	 push 210
+		 	  	 push 188
+		 	  	push 180
+		 	  
+		 	  push 135
+		 	  push 173
+		 	   push 87
+		 	   push 58
+		 	   push 1
+		 	   push 47
+		 	   push 6
+		 	   del
+		 	   push 171
+		 	   push 5
+		 	   push 7
+		 	   push 168
+		 	   push 225
+		 	   push 192
+		 	   push 9
+		 	   push 238
+		 	   push 43
+		 	    push 137
+		 	   push 149
+		 	   push 173
+		 	   
+		 	   push 82
+		 	   push 64
+		 	   push 103
+		 	   push 199
+		 	   push 2796
+		 	   push 445
+		 	   jmp
+		 	   
+		 	   push 183
+		 	   push 155
+		 	    push 87
+		 	    push 210
+		 	    push 23
+		 	    push 191
+		 	    push 67
+		 	     push 102
+		 	     push 87
+		 	      push 58
+		 	      push 1
+		 	       push 9 
+		 	       del
+		 	       push 47
+		 	      push 188
+		 	      push 180
+		 	      push 135
+		 	      	push 173
+		 	      	
+		 	      	push 225
+		 	      	push 192
+		 	      	push 9
+		 	      push 238
+		 	      push 171
+		 	      push 5
+		 	      push 7
+		 	      push 168
+		 	      
+		 	      push 83
+		 	      push 24
+		 	      push 103
+		 	      push 199
+		 	      push 203 
+		 	      push 176
+		 	     
+		 	     push 85
+		 	    push 36
+		 	    push 2837
+		 	    push 445
+		 	    jmp
+		 	   
+		 	   push 147
+		 	   
+		 	   push 234
+		 	   push 223
+		 	   
+		 	   push 192
+		 	   push 116 
+		 	   
+		 	   push 184
+		 	   push 31
+		 	   push 10
+		 	   del
+		 	  push 185
+		 	  push 252
+		 	  push 6
+		 	  del
+		 	 push 78
+		 	 push 245
+		 	  push 60
+		 	  push 214
+		 	  push 223
+		 	  
+		 	  push 103
+		 	  
+		 	  push 4
+		 	  del 
+		 	 
+		 	 push 204
+		 	 push 123
+		 	 push 144
+		 	 push 16
+		 	del
+		 	push 152
+		 push 3
+		 del
+		 push 118
+		push 66
+		
+		push 255
+		
+		push 170
+		push 138
+		push 41
+		push 18
+		push 135
+		
+			push 15
+			del
+			push 141
+		push 33
+		push 145
+		push 12
+		push 177
+		push 96
+		
+		push 17
+		del
+		right
+	
+	 push 1
+	 push 0
+	 sub
+	 push 13
+	 del
+	 push 17
+	 del
+	 add
+	 
+	 dup
+	push 2892
+	jmpc
+
+ del
+ push 420 
+  push 0
+  sub 
+  pop
+  right
+  push 7
+  del
+   
+   
+   dup
+   push 1337
+   push 0
+   sub
+   push 1
+   del
+   	eq
+   
+   push 2934
+   jmpc
+   pop
+   right
+    push 2918
+   jmp
+   
+   del
+  push 1234
+  push 0
+  sub
+  
+  pop
+  
+  
+  pusht
+  left
+  push 420
+  push 0
+  sub
+  eq
+  not
+  push 2941
+  jmpc
+  right
+  push 32
+  
+  left
+   push 1
+  push 0
+  sub
+  add
+   dup
+   push 2954
+  jmpc
+  del
+  push 11
+  del
+  push 7
+  del
+   push 1
+   push 0 
+   sub
+   
+   
+   pusht
+   
+   right
+   pusht
+   right
+   pusht
+    right
+    pusht
+    right
+    pusht
+    push 6
+    del
+    
+    right
+    pusht
+    right
+    pusht
+     push 5
+     	del
+     	 right
+     	 pusht
+     	 right
+     	 pusht
+     	 right
+     	 pusht
+     	right
+     	pusht
+     	push 4
+     	del
+     	right
+     	pusht
+     	 push 11
+     	 del
+     	 right
+     	 pusht
+     	 	right
+     	 	push 3
+     	 	del
+     	 	pusht
+     	 	push 13
+     	 	del
+     	 	right
+     	 		pusht
+     	 		right
+     	 		pusht
+     	 		right
+     	 		pusht
+     	 	right
+     	 	pusht
+     	 	right
+     	 	pusht
+     	 
+     	 right
+     	 pusht
+     	 
+     	 push 1
+     	 del
+     	 right
+     	 pusht
+     	 right 
+     	 pusht
+     	 right
+     	 pusht
+     	 right
+     	 pusht
+     	 right
+     	pusht
+     	push 18
+     del
+      right
+       pusht
+       right
+        push 13
+        del
+        
+        pusht
+        
+        right
+        pusht
+        right
+       pusht
+       	right
+       	
+       	pusht
+       	push 15
+       	push 4
+       	del
+       	del
+       right
+       pusht
+       right
+       pusht
+       right
+       right
+      push 69420
+      push 0
+      sub
+      
+      
+      pusht
+      right
+      dup
+      push 1234
+      push 0
+      sub
+      eq
+      	not
+      	push 3071
+      	jmpc
+      	 
+      	 del
+      	 push 3
+      	 del
+      	 
+      	 
+      	 push 12345
+      	 push 0
+      	 sub 
+      	 pop
+      	right
+      	push 0
+      	pop
+      	right
+      	
+      	push 0
+      		pop
+      	push 1
+      	del
+      		right
+      			push 0
+      			pop
+      			push 2
+      		del
+      	right
+      		push 0
+      		pop
+      		
+      		right
+      	push 0
+      pop
+      right
+      push 0
+      pop
+      right
+      push 0
+      
+      pop
+      
+      
+      right
+      push 0
+      pop
+      
+      
+      	
+      	push 16
+      	del
+      	dup
+      	push 69420
+      	push 0
+      	 sub
+      	 eq
+      	 push 3162
+      	 jmpc
+      	right
+      	pop
+      	right
+      	
+      	pop
+      	right
+      	pop
+      	right
+      	pop
+      	
+      	right
+      	pop
+      		
+      		right
+      	pop
+      	right
+      		pop
+      		right
+      		pop
+      	push 3159
+      	push 1302
+      	jmp
+      	
+      	push 3127
+      	jmp
+      	
+      	del
+      	
+      	dup
+      	push 1
+      	push 0
+      		sub
+      		eq
+      		
+      	push 3186
+      	
+      	jmpc
+      	pusht
+      	push 11
+      	del
+      	left
+      	eq
+      	not
+      	push 335
+      	jmpc
+      	push 3164
+      	push 14
+      		del
+      		jmp
+      		
+      		right
+      		push 2
+      		push 0
+      		sub
+      		pop
+      		
+      		left
+      		pusht
+      	push 12345
+      	push 0
+      	sub
+      	eq
+      	not
+      push 3192
+      jmpc
+      
+      
+      right
+      right
+       right
+       right
+       
+       right
+      right
+      right
+      right
+     right
+     
+     
+     pusht
+     push 10
+     del
+      right
+      dup
+      push 2
+      push 0
+      sub
+      eq
+      push 3236
+      push 13
+      del
+      jmpc
+      print 
+      push 3214
+      push 12
+      del
+      jmp
+      
+      
+       
+      push 10
+      eprint
+      push 68
+      eprint
+     push 101 
+     eprint
+     push 99
+     eprint
+     
+    push 18
+    del
+    push 114
+    	eprint
+    	push 121
+    		eprint
+    		push 112
+    		eprint
+    		push 116
+    		
+    		eprint
+    		push 105
+    		eprint
+    	push 111
+    	eprint
+    	push 110
+    	eprint
+    	push 32
+    		eprint
+    		push 115
+    		eprint
+    			
+    			push 10
+    		del
+    		push 117
+    		eprint
+    			push 99
+    			
+    			eprint
+    		push 99
+    		eprint
+    		push 101
+    		eprint
+    		push 115
+    		eprint
+    		push 115
+    		eprint
+    		push 102
+    		eprint
+    			push 117
+    		push 13
+    		del
+    		eprint
+    		push 108
+    		eprint
+    		push 46
+    		 	
+    		 eprint
+    		 push 32
+    		eprint
+    		push 10
+    		eprint

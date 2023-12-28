@@ -60,6 +60,13 @@
     group: root
     mode: '0644'
 
+- name: Update the port to 31337
+  become: true
+  ansible.builtin.lineinfile:
+    path: /opt/challenge25/server.py
+    regexp: "    server = socketserver.ThreadingTCPServer(('0.0.0.0', 1337), PowHandler)"
+    line: "    server = socketserver.ThreadingTCPServer(('0.0.0.0', 31337), PowHandler)"
+
 - name: Update deploy.cpio.gz permissions
   become: true
   ansible.builtin.file:

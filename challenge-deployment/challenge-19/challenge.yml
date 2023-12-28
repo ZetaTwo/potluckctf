@@ -6,7 +6,7 @@ categories: pwn
 flag_format_prefix: potluck{
 flags: fba7f22d5125950fe906d152df039a5a
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge19-dist.tgz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge19-dist.tgz
 predefined_services:
   - type: tcp
     host: challenge19.play.potluckctf.com

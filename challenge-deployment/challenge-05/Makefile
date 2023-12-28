@@ -15,8 +15,8 @@ dist-push: dist
 dist-url:
 	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
-docker-build: docker/
-	docker build -t $(LOCAL_IMAGE) docker/
+docker-build: docker
+	docker build --build-arg 'FLAG=potluck{Its_Raining_0days_13E7}' -t $(LOCAL_IMAGE) docker/
 
 # TODO: set up periodic reset of challenge
 docker-push: docker-build

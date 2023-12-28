@@ -2,13 +2,13 @@ title: REhoST
 description: Our development team created a secure way of booting firmware by authenticating against a different chip. We have the firmware, however we don't have the secure chip at hand :c Can you help us by emulating the secure processor so that we can boot our firmware?
 authors: Liikt
 categories:
-  - rev
+  - reversing
   - misc
 
 flag_format_prefix: potluck{
 flags: R3h05TinG_4s_4_S3rv1c3_1s_7h3_Fu7ur3!!!
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge29-dist.tar.gz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge29-dist.tgz
 predefined_services:
   - type: website
     url: http://challenge29.play.potluckctf.com:31337

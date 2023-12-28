@@ -6,7 +6,7 @@ categories: misc
 flag_format_prefix: potluck{
 flags: tac0_fun_can_you_g0lf_it_m0re
 
-downloadable_files: https://storage.cloud.google.com/potluckctf/challenge28-dist.tgz
+downloadable_files: https://storage.googleapis.com/potluckctf/challenge28-dist.tgz
 predefined_services:
   - type: tcp
     host: challenge28.play.potluckctf.com

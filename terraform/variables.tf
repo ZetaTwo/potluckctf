@@ -1,6 +1,6 @@
 locals {
   open_scoreboard      = true
-  ctf_started          = false
+  ctf_started          = true
   delivery_challenges  = true
   artifacts_challenges = true
   deploy_challenges    = true
