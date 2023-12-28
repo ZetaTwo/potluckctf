@@ -1,4 +1,20 @@
 
+# TODO: Is this really needed?
+#resource "google_compute_firewall" "potlucktf_firewall_challenge09" {
+#  name     = "potluckctf-fw-challenge09"
+#  provider = google-beta
+#  network  = google_compute_network.potluckctf_network.name
+#  count    = (local.ctf_started && local.deploy_challenges) ? 1 : 0
+#
+#  source_ranges = ["0.0.0.0/0"]
+#  target_tags   = ["challenge"] # TODO: this needs changing
+#
+#  allow {
+#    protocol = "tcp"
+#    ports    = ["31337"]
+#  }
+#}
+
 resource "google_dns_record_set" "challenge_subdomain_challenge10" {
   provider = google-beta
   name     = "challenge10.${google_dns_managed_zone.play.dns_name}"
