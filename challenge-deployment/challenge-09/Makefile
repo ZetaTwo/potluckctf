@@ -15,8 +15,8 @@ dist-push: dist
 dist-url:
 	gcloud storage sign-url --region europe --impersonate-service-account challenge-distribution@potluck-ctf.iam.gserviceaccount.com --duration 7d gs://potluckctf/$(DIST_FILE)
 
-prebuilt_system: 0001-Store-the-open-file-descriptors-of-the-process-in-it.patch docker-compose.yml Dockerfile Dockerfile.build_system flag init potluck.config prebuilt_system/ prebuilt_system/bzImage prebuilt_system/initramfs.cpio.gz README.md
-	echo echo "potluckctf{wh0ops_I_gu3ss_n0w_L1nus_1s_g01ng_t0_y31l_4t_m3}" > flag
+prebuilt_system: 0001-Store-the-open-file-descriptors-of-the-process-in-it.patch docker-compose.yml Dockerfile Dockerfile.build_system flag init potluck.config prebuilt_system/ prebuilt_system/bzImage prebuilt_system/initramfs.cpio.gz README.md debugging-goodies.patch
+	echo "potluckctf{wh0ops_I_gu3ss_n0w_L1nus_1s_g01ng_t0_y31l_4t_m3}" > flag
 	docker build --output=prebuilt_system --target=output -f Dockerfile.build_system .
 
 docker-build: prebuilt_system run.sh
@@ -30,7 +30,7 @@ $(DIST_FILE): challenge-9-for-players.tar.gz
 	cp challenge-9-for-players.tar.gz $(DIST_FILE)
 
 clean:
-	rm -rf challenge-9-for-players.tar.gz challenge-9-for-zeta-two.tar.gz exploit/ 0001-Store-the-open-file-descriptors-of-the-process-in-it.patch docker-compose.yml Dockerfile Dockerfile.build_system flag init potluck.config prebuilt_system/ prebuilt_system/bzImage prebuilt_system/initramfs.cpio.gz README.md run.sh
+	rm -rf challenge-9-for-players.tar.gz challenge-9-for-zeta-two.tar.gz exploit/ 0001-Store-the-open-file-descriptors-of-the-process-in-it.patch docker-compose.yml Dockerfile Dockerfile.build_system flag init potluck.config prebuilt_system/ prebuilt_system/bzImage prebuilt_system/initramfs.cpio.gz README.md run.sh debugging-goodies.patch
 
 download: challenge-9-for-players.tar.gz challenge-9-for-zeta-two.tar.gz
 
@@ -44,6 +44,9 @@ exploit: challenge-9-for-zeta-two.tar.gz
 	tar xf challenge-9-for-zeta-two.tar.gz
 
 0001-Store-the-open-file-descriptors-of-the-process-in-it.patch: challenge-9-for-players.tar.gz
+	tar xf challenge-9-for-players.tar.gz
+
+debugging-goodies.patch: challenge-9-for-players.tar.gz
 	tar xf challenge-9-for-players.tar.gz
 
 docker-compose.yml: challenge-9-for-players.tar.gz

@@ -1,0 +1,10 @@
+title: "Welcome!"
+description: "Welcome to the Potluck CTF. The flag is potluck{lets-get-the-party-started}"
+authors: ZetaTwo
+categories: misc
+
+flag_format_prefix: potluck{
+flags: lets-get-the-party-started
+
+spec: 0.0.1
+challenge_id: 5c64d69b-40f7-40cb-90e3-c3049d7ca6ff

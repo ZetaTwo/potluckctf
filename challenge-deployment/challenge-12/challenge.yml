@@ -21,3 +21,4 @@ predefined_services:
     port: 31337
 
 spec: 0.0.1
+challenge_id: 5a9192de-a1e8-4230-b690-55a1489cac18

@@ -1,16 +1,17 @@
-title: CanGoSpace 1
-description: "Welcome to SpaceForce! One of our critical communication satellites went silent, is unresponsive to remote control and its orbit is unstable. The only solution: you must venture into space and hack your way directly into its systems to avert an impending disaster.
-We even have a copy of the satellites internal systems ready for you, so you can test everything before your departure!
+title: Cookmaster 1
+description: "It's the potluck season again! But as every year, that damn dude Jerry brought his special Cookmaster and is stealing the show with his secret sauce! But not this year. It's time to teach him a lesson! Can you steal the recipe for his secret sauce and corrupt his Cookmaster to put a bad taste to his food?
 
-Flag 1: Can you access the system and extract the error information?
-Flag 2: Great, you got system access! Now all that’s left to do, hack the system and return the satellite to a safe orbit!"
+You even bought your own Cookmaster to try everything before you can pull of your heist during the potluck!
+
+Flag 1: Can you access the system and extract the secret sauce?
+Flag 2: Great, you got system access! Now all that’s left to do, hack the system and corrupt the heater to grill his sauce!"
 authors: gmerz & cluosh from We_0wn_Y0u
 categories: 
   - cryptograhy
   - reversing
 
 flag_format_prefix: potluck{
-flags: w17h_b4ck6r0und_r4d14710n_n0nc35_4r3_53cur3
+flags: uns3cur3_n0nc35_4r3_n0t_th3_s3cr3t_s4uc3
 
 predefined_services:
   - type: tcp
@@ -18,3 +19,4 @@ predefined_services:
     port: 31337
 
 spec: 0.0.1
+challenge_id: 45659934-2b80-4945-8604-d021c147f0d7

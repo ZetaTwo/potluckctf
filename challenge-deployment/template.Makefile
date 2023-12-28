@@ -30,7 +30,7 @@ clean:
 download: FILES
 
 A-FILE:
-	gcloud storage cp gs://potluckctf-challenge-X/A-FILE .
+	gcloud storage cp $(DELIVERY_BUCKET)/A-FILE .
 
 
 .PHONY: build docker-build docker-push dist dist-push download
