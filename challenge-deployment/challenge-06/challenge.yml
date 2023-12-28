@@ -8,7 +8,7 @@ flags: th3_1nt3rn3t_1s_my_f1l3syst3m
 
 custom_service_types:
   - type: command
-    user_display: "qemu-system-i386 -boot n -device e1000,netdev=mynet0 -netdev user,id=mynet0,bootfile={url}"
+    display: "qemu-system-i386 -boot n -device e1000,netdev=mynet0 -netdev user,id=mynet0,bootfile={url}"
     hyperlink: false
 
 predefined_services:

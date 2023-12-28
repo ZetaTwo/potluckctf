@@ -37,6 +37,11 @@
   roles:
     - role: challenge-11
 
+- name: Setup Challenge 17
+  hosts: challenge17
+  roles:
+    - role: challenge-17
+
 - name: Setup Challenge 01
   hosts: challenge01
   roles:

@@ -64,12 +64,13 @@
   register: pull_heater
 
 - name: Tag heater image
-    docker_image:
-      name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-heater:latest"
-      repository: "heater:latest"
-      pull: no
-      state: present
-    when: pull_heater.changed
+  become: true
+  community.docker.docker_image:
+    name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-heater:latest"
+    repository: "heater:latest"
+    pull: no
+    state: present
+  when: pull_heater.changed
 
 - name: Pull the challenge interface image
   become: true
@@ -80,12 +81,13 @@
   notify: restart challenge17
 
 - name: Tag interface image
-    docker_image:
-      name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-interface:latest"
-      repository: "interface:latest"
-      pull: no
-      state: present
-    when: pull_interface.changed
+  become: true
+  community.docker.docker_image:
+    name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-interface:latest"
+    repository: "interface:latest"
+    pull: no
+    state: present
+  when: pull_interface.changed
 
 - name: Pull the challenge controller image
   become: true
@@ -96,10 +98,11 @@
   notify: restart challenge17
 
 - name: Tag controller image
-    docker_image:
-      name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-controller:latest"
-      repository: "controller:latest"
-      pull: no
-      state: present
-    when: pull_controller.changed
+  become: true
+  community.docker.docker_image:
+    name: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-controller:latest"
+    repository: "controller:latest"
+    pull: no
+    state: present
+  when: pull_controller.changed
   
