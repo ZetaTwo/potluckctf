@@ -164,7 +164,7 @@ resource "google_compute_backend_service" "challenge_service" {
   protocol              = "TCP"
   port_name             = "challenge"
   load_balancing_scheme = "EXTERNAL"
-  timeout_sec           = 10
+  timeout_sec           = 60
   health_checks         = [google_compute_health_check.challenge_healthcheck[each.key].id]
   session_affinity      = "CLIENT_IP"
   backend {
