@@ -8,8 +8,11 @@ build: docker-build docker-push challenge22-dist.tgz
 sekurbut-image: sekurbut.tar
 	docker load -i sekurbut.tar
 
-docker-build: sekurbut-image
-	docker build -t "$(LOCAL_IMAGE)" .
+docker-build-pre: sekurbut-image
+	docker build -t sekurbut2 -f Dockerfile .
+
+docker-build: docker-build-pre flagloader2.hex
+	docker build -t $(LOCAL_IMAGE) -f v2.Dockerfile .
 
 docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
@@ -19,9 +22,12 @@ challenge22-dist.tgz: DIST-DEPENDENCIES
 	tar czvf challenge22-dist.tgz DIST-DEPENDENCIES
 
 clean:
-	rm -f sekurbut.tar
+	rm -f sekurbut.tar flagloader2.hex
 
-download: sekurbut.tar
+download: sekurbut.tar flagloader2.hex
+
+flagloader2.hex:
+	gcloud storage cp $(DELIVERY_BUCKET)/flagloader2.hex .
 
 sekurbut.tar:
 	gcloud storage cp $(DELIVERY_BUCKET)/sekurbut.tar .
