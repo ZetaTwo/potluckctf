@@ -6,9 +6,7 @@ You even bought your own Cookmaster to try everything before you can pull of you
 Flag 1: Can you access the system and extract the secret sauce?
 Flag 2: Great, you got system access! Now all that’s left to do, hack the system and corrupt the heater to grill his sauce!"
 authors: gmerz & cluosh from We_0wn_Y0u
-categories: 
-  - cryptography
-  - reversing
+categories: pwn
 
 flag_format_prefix: potluck{
 flags: c4n_y0u_can_or_c4n_y0u_not_can
