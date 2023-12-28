@@ -9,9 +9,8 @@ flag_format_prefix: potluck{
 flags: christmas_brings_the_categories_together
 
 predefined_services:
-  - type: http
-    host: challenge15.play.potluckctf.com
-    port: 8080
+  - type: website
+    url: http://challenge15.play.potluckctf.com:31337
 
 spec: 0.0.1
 challenge_id: e075708d-7e0b-4971-a31f-ee09213c9774

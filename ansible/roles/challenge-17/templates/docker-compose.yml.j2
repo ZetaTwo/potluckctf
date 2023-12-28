@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  interface:
+    image: TODO-interface
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    privileged: True
+    pid: "host"
+    network_mode: "host"
+    expose:
+      - 31337
+    environment:
+      POW_INIT_TIMEOUT: 300
+      POW_TIMEOUT: 900
+      POW_PREFIX_LEN: 32
+      POW_DIFFICULTY: 26
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker:/var/run/docker
+      - ./data:/data
+
+  cleanup:
+    image: TODO-cleanup
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    privileged: True
+    pid: "host"
+    network_mode: "host"
+    command: ['python3', '-u', './cleanup.py']
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker:/var/run/docker
+      - ./data:/data
+
+
+
+    image: "europe-west3-docker.pkg.dev/potluck-ctf/{{ challenge }}-repository/{{ challenge }}-php:latest"

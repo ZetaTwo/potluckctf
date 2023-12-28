@@ -10,9 +10,8 @@ flags: R3h05TinG_4s_4_S3rv1c3_1s_7h3_Fu7ur3!!!
 
 downloadable_files: https://storage.cloud.google.com/potluckctf/challenge29-dist.tar.gz
 predefined_services:
-  - type: http
-    host: challenge29.play.potluckctf.com
-    port: 5000
+  - type: website
+    url: http://challenge29.play.potluckctf.com:31337
 
 spec: 0.0.1
 challenge_id: ba85abb9-1889-47dd-9221-7e339eec3e08

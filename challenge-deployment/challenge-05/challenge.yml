@@ -9,7 +9,7 @@ flags: Its_Raining_0days_13E7
 downloadable_files: https://storage.cloud.google.com/potluckctf/challenge05-dist.tgz
 predefined_services:
   - type: website
-    url: http://challenge05.play.potluckctf.com
+    url: http://challenge05.play.potluckctf.com:31337
 
 spec: 0.0.1
 challenge_id: e5e51a2d-3f3d-4dc1-8462-052f51cc1bcb

@@ -25,7 +25,7 @@ $(DIST_FILE): downloads/user_bundle.tar.gz
 	cp downloads/user_bundle.tar.gz $(DIST_FILE)
 
 clean:
-	rm -rf downloads
+	rm -rf downloads	
 
 download: downloads/Makefile downloads/deploy.cpio.gz downloads/deploy.flag.txt downloads/deploy_bundle.tar.gz downloads/hashcash.py downloads/init downloads/initramfs.cpio.gz downloads/kernel downloads/pow.py downloads/run.sh downloads/server.py downloads/task.service downloads/user.cpio.gz downloads/user.flag.txt downloads/user_bundle.tar.gz downloads/exploits downloads/src
 

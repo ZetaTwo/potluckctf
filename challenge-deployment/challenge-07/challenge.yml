@@ -11,7 +11,7 @@ flags: what_do_you_mean_global_state_bad?
 downloadable_files: https://storage.cloud.google.com/potluckctf/challenge07-dist.tgz
 predefined_services:
   - type: website
-    url: http://challenge07.play.potluckctf.com
+    url: http://challenge07.play.potluckctf.com:31337
 
 spec: 0.0.1
 challenge_id: a5596915-06fa-440b-9e92-b49f57388226

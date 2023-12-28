@@ -1,0 +1,12 @@
+[Unit]
+Description=Potluck CTF Challenge 17
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "docker compose -f /etc/potluckctf/docker-compose.yml up"
+ExecStop=/bin/bash -c "docker compose -f /etc/potluckctf/docker-compose.yml stop"
+
+[Install]
+WantedBy=multi-user.target

@@ -27,3 +27,8 @@ clean:
 	make -C challenge-27 clean
 	make -C challenge-28 clean
 	make -C challenge-29 clean
+
+pushall:
+	challtools allchalls push --skip-files --skip-container-push
+
+.PHONY: clean pushall
