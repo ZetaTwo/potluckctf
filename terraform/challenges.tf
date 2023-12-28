@@ -42,7 +42,7 @@ resource "google_compute_instance" "challenge_server" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = contains(keys(each.value.labels), "ubuntu") ? "ubuntu-2204-jammy-v20231213a" : "debian-cloud/debian-11"
       size  = 16
     }
   }
