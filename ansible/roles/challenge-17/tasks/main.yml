@@ -1,10 +1,11 @@
-- name: Install challenge 17 dependencies
-  become: true
-  ansible.builtin.apt:
-    cache_valid_time: 3600
-    state: present
-    name:
-      - linux-modules-extra
+# TODO: sudo apt install linux-modules-extra-$(uname -r)
+#- name: Install challenge 17 dependencies
+#  become: true
+#  ansible.builtin.apt:
+#    cache_valid_time: 3600
+#    state: present
+#    name:
+#      - linux-modules-extra
 
 - name: Create potluckctf directory
   become: true

@@ -22,7 +22,7 @@ locals {
         author_sa = "serviceAccount:challenge-author-1@potluck-ctf.iam.gserviceaccount.com",
         subnet = "10.0.1.0/24",
         servers = {
-          "challenge01-a" = { ip = "10.0.1.10", type = "n2-standard-8", labels = { challenge = 1, docker = 1, docker_single = 1, nested_virtualization = 1 } },
+          "challenge01-a" = { ip = "10.0.1.10", type = "n2-standard-4", labels = { challenge = 1, docker = 1, docker_single = 1, nested_virtualization = 1 } },
         }
       },
       "challenge03" = {
@@ -140,7 +140,7 @@ locals {
         author_sa = "serviceAccount:challenge-author-25@potluck-ctf.iam.gserviceaccount.com",
         subnet = "10.0.25.0/24",
         servers = {
-          "challenge25-a" = { ip = "10.0.25.10", type = "n2-standard-8", labels = { challenge = 1, nested_virtualization = 1 } },
+          "challenge25-a" = { ip = "10.0.25.10", type = "n2-standard-4", labels = { challenge = 1, nested_virtualization = 1 } },
         }
       },
       "challenge26" = {
