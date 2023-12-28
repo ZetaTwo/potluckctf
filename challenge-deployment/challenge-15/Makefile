@@ -21,8 +21,8 @@ docker-push: docker-build
 	docker tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	docker push $(REMOTE_IMAGE)
 
-$(DIST_FILE): downloads/app downloads/Dockerfile
-	tar -C downloads -czvf $(DIST_FILE) app Dockerfile
+#$(DIST_FILE): downloads/app downloads/Dockerfile
+#	tar -C downloads -czvf $(DIST_FILE) app Dockerfile
 
 clean:
 	rm -fr chal-DO-NOT-SEND-TO-PLAYERS.tar downloads chal-v1.3.tar

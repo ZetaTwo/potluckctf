@@ -32,3 +32,4 @@
     published_ports: "31337:{{ docker_port }}"
     mounts: "{{ docker_mounts | default([]) }}"
     tty: "{{ docker_tty | default(false) }}"
+    state: started

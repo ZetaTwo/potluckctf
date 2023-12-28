@@ -13,6 +13,7 @@ categories:
 flag_format_prefix: potluck{
 flags: uns3cur3_n0nc35_4r3_n0t_th3_s3cr3t_s4uc3
 
+downloadable_files: https://storage.cloud.google.com/potluckctf/challenge17-dist.tgz
 predefined_services:
   - type: tcp
     host: challenge17.play.potluckctf.com
