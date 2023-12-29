@@ -1,5 +1,9 @@
 title: "baby sekurbut"
-description: "This weird arcade machine just got delivered to you. It seems broken, but there's a serial port on the back. You connect, and are greeted with a weird shell..."
+description: | 
+  This weird arcade machine just got delivered to you. It seems broken, but there's a serial port on the back. You connect, and are greeted with a weird shell...
+
+  Note (relevant for part 2: sekurbut): For fairness, we've re-hosted the previous version as well at challenge30.play.potluckctf.com If you have found a bug that works there but not on the newer versions, don't waste time on it, it's an unintended red herring. The intended solution works on both version. The change in offsets in the bootloader is not relevant to the exploit.
+
 authors: plonk
 categories: 
   - misc
