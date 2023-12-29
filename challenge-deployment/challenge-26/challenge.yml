@@ -5,7 +5,7 @@ Tamagoyaki shares similarities with glibc's malloc, as it also contains several 
 
 Note: Expect 4 bits of bruteforce; Anything above that is probably a bad idea"
 
-authors: UDP
+authors: UDP - Blue Water
 categories: pwn
 
 flag_format_prefix: potluck{
