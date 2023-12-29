@@ -126,6 +126,7 @@ locals {
         subnet = "10.0.22.0/24",
         servers = {
           "challenge22-a" = { ip = "10.0.22.10", type = "e2-standard-8", labels = { challenge = 1, docker = 1, docker_single = 1 } },
+          "challenge22-b" = { ip = "10.0.22.11", type = "e2-standard-8", labels = { challenge = 1, docker = 1, docker_single = 1 } },
         }
       },
       #"challenge23" = {}, # Same server as challenge-22
@@ -176,6 +177,7 @@ locals {
         subnet = "10.0.30.0/24",
         servers = {
           "challenge30-a" = { ip = "10.0.30.10", type = "e2-standard-8", labels = { challenge = 1, docker = 1, docker_single = 1 } },
+          "challenge30-b" = { ip = "10.0.30.11", type = "e2-standard-8", labels = { challenge = 1, docker = 1, docker_single = 1 } },
         }
       },
     }
