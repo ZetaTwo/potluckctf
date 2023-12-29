@@ -12,6 +12,9 @@ predefined_services:
   - type: tcp
     host: challenge22.play.potluckctf.com
     port: 31337
+  - type: tcp
+    host: challenge30.play.potluckctf.com
+    port: 31337
 
 spec: 0.0.1
 challenge_id: b178d797-6ab5-44d6-b7c6-e71c030224e9

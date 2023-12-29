@@ -6,6 +6,7 @@ description: |
 
   Note 2: The "reset" function will also reset the flash memory.
 
+  Note 3: For fairness, we've re-hosted the previous version as well at challenge30.play.potluckctf.com If you have found a bug that works there but not on the newer versions, don't waste time on it, it's an unintended red herring. The intended solution works on both version. The change in offsets in the bootloader is not relevant to the exploit.
 
 authors: plonk
 categories: 
@@ -13,12 +14,17 @@ categories:
   - hardware
 
 flag_format_prefix: potluck{
-flags: s3curb007_much_h4rD
+flags:
+  - flag: s3curb007_much_h4rD
+  - flag: y_i5_s3curb007_s0_h4rD
 
 downloadable_files: https://storage.googleapis.com/potluckctf/challenge23-dist.tgz
 predefined_services:
   - type: tcp
     host: challenge22.play.potluckctf.com
+    port: 31337
+  - type: tcp
+    host: challenge30.play.potluckctf.com
     port: 31337
 
 spec: 0.0.1

@@ -171,6 +171,13 @@ locals {
           "challenge29-a" = { ip = "10.0.29.10", type = "e2-standard-8", labels = { challenge = 1, docker = 1, docker_single = 1 } },
         }
       },
+      "challenge30" = {
+        author_sa = "serviceAccount:challenge-author-30@potluck-ctf.iam.gserviceaccount.com",
+        subnet = "10.0.30.0/24",
+        servers = {
+          "challenge30-a" = { ip = "10.0.30.10", type = "e2-standard-8", labels = { challenge = 1, docker = 1, docker_single = 1 } },
+        }
+      },
     }
     monitor = {
       "monitor-a" = { ip = "10.0.0.100", type = "e2-standard-8", labels = { monitor = 1 } },
