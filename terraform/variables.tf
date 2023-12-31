@@ -7,7 +7,7 @@ locals {
 
   server_settings = {
     scoreboard = {
-      "scoreboard-a" = { ip = "10.0.0.10", type = "e2-standard-8", labels = { bastion = 1 } },
+      "scoreboard-a" = { ip = "10.0.0.10", type = "e2-standard-2", labels = { bastion = 1 } },
     }
     challenges = {
       "challenge00" = {
@@ -182,7 +182,7 @@ locals {
       },
     }
     monitor = {
-      "monitor-a" = { ip = "10.0.0.100", type = "e2-standard-8", labels = { monitor = 1 } },
+      "monitor-a" = { ip = "10.0.0.100", type = "e2-standard-2", labels = { monitor = 1 } },
     }
   }
   challenge_servers = merge([for challenge_name, challenge in local.server_settings.challenges : { for server_name, server in challenge.servers : server_name => merge(server, { challenge_id : challenge_name }) }]...)
