@@ -1,6 +1,6 @@
 resource "google_compute_instance" "monitor_server" {
   provider     = google-beta
-  for_each     = local.server_settings.monitor
+  for_each     = local.deploy_monitoring ? local.server_settings.monitor : {}
   name         = each.key
   machine_type = each.value.type
   zone         = "europe-west3-b"
@@ -34,6 +34,7 @@ resource "google_compute_firewall" "potlucktf_firewall_monitor_http" {
   name     = "potluckctf-fw-monitor-http"
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
+  count    = local.deploy_monitoring ? 1 : 0
 
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["monitor"]
@@ -49,6 +50,7 @@ resource "google_dns_record_set" "monitor_subdomain" {
   name     = "monitor.${google_dns_managed_zone.play.dns_name}"
   type     = "A"
   ttl      = 300
+  count    = local.deploy_monitoring ? 1 : 0
 
   managed_zone = google_dns_managed_zone.play.name
 
@@ -60,6 +62,7 @@ resource "google_compute_firewall" "potlucktf_firewall_syslog" {
   name     = "potluckctf-fw-syslog"
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
+  count    = local.deploy_monitoring ? 1 : 0
 
   source_ranges = ["10.0.0.0/8"] # Internal IP range
   target_tags   = ["monitor"]
@@ -74,6 +77,7 @@ resource "google_compute_firewall" "potlucktf_firewall_node_exporter" {
   name     = "potluckctf-fw-node-exporter"
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
+  count    = local.deploy_monitoring ? 1 : 0
 
   source_ranges = ["10.0.0.0/8"] # Internal IP range
 

@@ -1,7 +1,7 @@
 
 resource "google_compute_instance" "scoreboard_server" {
   provider     = google-beta
-  for_each     = local.server_settings.scoreboard
+  for_each     = local.deploy_scoreboard ? local.server_settings.scoreboard : {}
   name         = each.key
   machine_type = each.value.type
   zone         = "europe-west3-b"
@@ -34,7 +34,7 @@ resource "google_compute_firewall" "potlucktf_firewall_scoreboard_http" {
   name     = "potluckctf-fw-scoreboard-http"
   provider = google-beta
   network  = google_compute_network.potluckctf_network.name
-  count = local.open_scoreboard ? 1 : 0
+  count    = local.open_scoreboard ? 1 : 0
 
   source_ranges = ["0.0.0.0/0"] # IAP IP range
   target_tags   = ["scoreboard"]
@@ -50,6 +50,7 @@ resource "google_dns_record_set" "scoreboard_subdomain" {
   name     = google_dns_managed_zone.play.dns_name
   type     = "A"
   ttl      = 300
+  count    = local.deploy_scoreboard ? 1 : 0
 
   managed_zone = google_dns_managed_zone.play.name
 

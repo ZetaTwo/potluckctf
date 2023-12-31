@@ -1,9 +1,11 @@
 locals {
-  open_scoreboard      = true
+  open_scoreboard      = false
   ctf_started          = false
   delivery_challenges  = true
   artifacts_challenges = true
   deploy_challenges    = false
+  deploy_scoreboard    = false
+  deploy_monitoring    = true
 
   server_settings = {
     scoreboard = {
