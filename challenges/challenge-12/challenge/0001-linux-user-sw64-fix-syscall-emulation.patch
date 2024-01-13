@@ -1,0 +1,100 @@
+From 2c4bcf30835e98b509e113c7ca015def8f5c914b Mon Sep 17 00:00:00 2001
+From: Challenge Author <dummy@dummy.hk>
+Date: Sun, 21 Jul 2019 20:30:00 +0800
+Subject: [PATCH] linux-user/sw64: fix syscall emulation
+
+All production 0x9916 sw64 kernels (and prebuilt toolchains) found in
+the wild uses fcntl/mmap/rlimit/signal/socket flags similar to ALPHA.
+
+Existing code in the public openEuler repo does not translate these
+flags, leading to ld-linux.so failing to even load libc as O_CLOEXEC is
+mistaken for O_PATH. Fix it by... copying what the emulation code does
+for ALPHA.
+---
+ linux-user/sw64/target_elf.h   |  2 +-
+ linux-user/sw64/target_fcntl.h | 26 ++++++++++++++++++++++++++
+ linux-user/syscall_defs.h      |  6 +++---
+ 3 files changed, 30 insertions(+), 4 deletions(-)
+
+diff --git a/linux-user/sw64/target_elf.h b/linux-user/sw64/target_elf.h
+index be48b6dee3..2bfbde0775 100644
+--- a/linux-user/sw64/target_elf.h
++++ b/linux-user/sw64/target_elf.h
+@@ -9,6 +9,6 @@
+ #define SW64_TARGET_ELF_H
+ static inline const char *cpu_get_model(uint32_t eflags)
+ {
+-    return "any";
++    return "core3";
+ }
+ #endif
+diff --git a/linux-user/sw64/target_fcntl.h b/linux-user/sw64/target_fcntl.h
+index 9721e3de39..5e7a5e6796 100644
+--- a/linux-user/sw64/target_fcntl.h
++++ b/linux-user/sw64/target_fcntl.h
+@@ -7,5 +7,31 @@
+ 
+ #ifndef SW64_TARGET_FCNTL_H
+ #define sw64_TARGET_FCNTL_H
++#define TARGET_O_NONBLOCK           04
++#define TARGET_O_APPEND            010
++#define TARGET_O_CREAT           01000 /* not fcntl */
++#define TARGET_O_TRUNC           02000 /* not fcntl */
++#define TARGET_O_EXCL            04000 /* not fcntl */
++#define TARGET_O_NOCTTY         010000 /* not fcntl */
++#define TARGET_O_DSYNC          040000
++#define TARGET_O_LARGEFILE           0 /* not necessary, always 64-bit */
++#define TARGET_O_DIRECTORY     0100000 /* must be a directory */
++#define TARGET_O_NOFOLLOW      0200000 /* don't follow links */
++#define TARGET_O_DIRECT       02000000 /* direct disk access hint */
++#define TARGET_O_NOATIME      04000000
++#define TARGET_O_CLOEXEC     010000000
++#define TARGET___O_SYNC      020000000
++#define TARGET_O_PATH        040000000
++#define TARGET___O_TMPFILE  0100000000
++
++#define TARGET_F_GETLK         7
++#define TARGET_F_SETLK         8
++#define TARGET_F_SETLKW        9
++#define TARGET_F_SETOWN        5       /*  for sockets. */
++#define TARGET_F_GETOWN        6       /*  for sockets. */
++
++#define TARGET_F_RDLCK         1
++#define TARGET_F_WRLCK         2
++#define TARGET_F_UNLCK         8
+ #include "../generic/fcntl.h"
+ #endif
+diff --git a/linux-user/syscall_defs.h b/linux-user/syscall_defs.h
+index a04f399278..c512fd59e5 100644
+--- a/linux-user/syscall_defs.h
++++ b/linux-user/syscall_defs.h
+@@ -721,7 +721,7 @@ struct target_rlimit {
+         abi_ulong   rlim_max;
+ };
+ 
+-#if defined(TARGET_ALPHA)
++#if defined(TARGET_ALPHA) || defined(TARGET_SW64)
+ #define TARGET_RLIM_INFINITY	0x7fffffffffffffffull
+ #elif defined(TARGET_MIPS) || (defined(TARGET_SPARC) && TARGET_ABI_BITS == 32)
+ #define TARGET_RLIM_INFINITY	0x7fffffffUL
+@@ -826,7 +826,7 @@ struct target_rtc_pll_info {
+ #define TARGET_RTC_VL_CLR           TARGET_IO('p', 0x14)
+ 
+ #if defined(TARGET_ALPHA) || defined(TARGET_MIPS) || defined(TARGET_SH4) ||    \
+-       defined(TARGET_XTENSA)
++       defined(TARGET_XTENSA) || defined(TARGET_SW64)
+ #define TARGET_FIOGETOWN       TARGET_IOR('f', 123, int)
+ #define TARGET_FIOSETOWN       TARGET_IOW('f', 124, int)
+ #define TARGET_SIOCATMARK      TARGET_IOR('s', 7, int)
+@@ -1340,7 +1340,7 @@ struct target_winsize {
+ #define TARGET_MAP_NONBLOCK	0x10000		/* do not block on IO */
+ #define TARGET_MAP_STACK        0x20000         /* ignored */
+ #define TARGET_MAP_HUGETLB      0x40000         /* create a huge page mapping */
+-#elif defined(TARGET_ALPHA)
++#elif defined(TARGET_ALPHA) || defined(TARGET_SW64)
+ #define TARGET_MAP_ANONYMOUS	0x10		/* don't use a file */
+ #define TARGET_MAP_FIXED	0x100		/* Interpret addr exactly */
+ #define TARGET_MAP_GROWSDOWN	0x01000		/* stack-like segment */
+-- 
+2.43.0
+
