@@ -28,3 +28,4 @@
 | 24    | [Traditional Feast: Nginx Spagetthi](challenge-24/) | web | BitK, XeR |
 | 25    | TODO | | |
 | 26    | [Tamagoyaki](challenge-26/) | pwn | UDP - Blue Water |
+| 27    | [Pot Of Gold](challenge-27/) | pwn, reversing | blasty |
