@@ -1,0 +1,32 @@
+[package]
+name = "ecsimple"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.59.0"
+authors = ["jeppeter <jeppeter@gmail.com>"]
+description = """
+Rust simple implementation for Elliptic Curve Cryptography
+"""
+license = "MIT/Apache-2.0"
+
+repository = "https://github.com/jeppeter/ecsimple"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+num-traits = "^0.2"
+lazy_static = "^1.4.0"
+chrono = "^0.4.0"
+num-bigint = "^0.4.3"
+hex = "^0.4.3"
+rand_core = "^0.6.4"
+rand = "^0.8.5"
+asn1obj = "^0.1.6"
+asn1obj_codegen = "^0.1.0"
+serde_json = "^1.0.42"
+sm3  = "^0.4.2"
+rand_chacha = "0.3"
+tokio = { version = "1", features = ["sync"] }
+
+[features]
+debug_mode = []

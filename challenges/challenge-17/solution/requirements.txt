@@ -1,0 +1,4 @@
+python-can==4.3
+ecdsa==0.18
+websockets==12.0
+pwntools==4.11

@@ -1,0 +1,25 @@
+[package]
+name = "controller"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+socketcan = { version = "3.3", features = ["tokio"] }
+tokio = { version = "1", features = [
+    "macros",
+    "rt",
+    "sync",
+    "fs",
+    "io-util",
+    "time"
+] }
+rand_chacha = "0.3"
+rand = "0.8"
+futures-util = "0.3"
+sha2 = "0.10.8"
+openssl = "0.10"
+ecsimple = { path = "../ecsimple" }
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
