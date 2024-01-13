@@ -4,7 +4,7 @@ Here you will find the materials for the challenges used in the 37C3 Potluck CTF
 
 | **#** | **Name**                                                                                                                    | **Category**            | **Author**                                         |
 |-------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------|----------------------------------------------------|
-| 1     | [Cake of Paranoia](challenge-01/)                                                                                           | sandbox                 | Addison Crump                                      |
+| 1     | [Cake of Paranoia](challenge-01/)                                                                                           | sandbox                 | [Addison Crump](https://addisoncrump.info)        |
 | 2     | N/A (Not used in the event)                                                                                                 | N/A                     | N/A                                                |
 | 3     | [abc](challenge-03/)                                                                                                        | cryptography            | dorian                                             |
 | 4     | Charming Circuit Challenge (coming soon)                                                                                    | reversing               | Tethys & kriztw                                    |
@@ -22,7 +22,7 @@ Here you will find the materials for the challenges used in the 37C3 Potluck CTF
 | 16    | [Upside-down Cake](challenge-16/)                                                                                           | cryptography            | Neobeo                                             |
 | 17a   | [Cookmaster 1](challenge-17/)                                                                                               | cryptography, reversing | gmerz & cluosh from We_0wn_Y0u                     |
 | 17b   | [Cookmaster 2](challenge-17/)                                                                                               | pwn                     | gmerz & cluosh from We_0wn_Y0u                     |
-| 18    | [lima beans with lemon and lime](challenge-18/)                                                                             | cryptography            | Pwnagaukar, DagurB                                 |
+| 18    | [lima beans with lemon and lime](challenge-18/)                                                                             | cryptography            | Pwnagaukar, [DagurB](https://dagurb.com)           |
 | 19    | [Ezrop](challenge-19/)                                                                                                      | pwn                     | S2G, Carixo                                        |
 | 20    | N/A (Not used in the event)                                                                                                 | N/A                     | N/A                                                |
 | 21    | [Schrödinger's P1G](challenge-21/)                                                                                          | pwn                     | uz56764                                            |
