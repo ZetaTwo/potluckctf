@@ -1,0 +1,8 @@
+MaterialProperties(
+  base_color: Rgba(
+    red: 0.75,
+    green: 0.75,
+    blue: 0.75,
+    alpha: 1.0
+  ),
+)

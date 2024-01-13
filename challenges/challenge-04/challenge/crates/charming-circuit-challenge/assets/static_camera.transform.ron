@@ -1,0 +1,11 @@
+StaticTransform(
+  translation: Vec3(
+    -127.0,
+    18.0,
+    371.0,
+  ),
+  euler: EulerAngles(
+    yaw: -70.0,
+    pitch: -30.0
+  ),
+)

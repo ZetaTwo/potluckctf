@@ -1,0 +1,160 @@
+(
+  resources: {},
+  entities: {
+    1: (
+      components: {
+        "bevy_transform::components::transform::Transform": (
+          translation: (
+            x: 0.0,
+            y: 0.0,
+            z: 10.0,
+          ),
+          rotation: (
+            x: 0.0,
+            y: 0.7,
+            z: 0.0,
+            w: 1.0,
+          ),
+          scale: (
+            x: 0.7,
+            y: 0.7,
+            z: 0.7,
+          ),
+        ),
+        "charming_circuit_challenge::sign::Sign": (
+          text: "← Tutorial area\n\n     Challenge area →",
+          translation: (
+            x: 0.5,
+            y: 5.0,
+            z: 3.0,
+          ),
+          font_size: 36.0,
+        )
+      },
+    ),
+    2: (
+      components: {
+        "bevy_transform::components::transform::Transform": (
+          translation: (
+            x: -250.0,
+            y: 0.0,
+            z: 40.0,
+          ),
+          rotation: (
+            x: 0.0,
+            y: 0.7,
+            z: 0.0,
+            w: 1.0,
+          ),
+          scale: (
+            x: 1.5,
+            y: 3.5,
+            z: 1.5,
+          ),
+        ),
+        "charming_circuit_challenge::sign::Sign": (
+          text: "potluck{",
+          translation: (
+            x: 0.5,
+            y: 4.4,
+            z: 2.0,
+          ),
+          font_size: 48.0,
+        )
+      },
+    ),
+    3: (
+      components: {
+        "bevy_transform::components::transform::Transform": (
+          translation: (
+            x: -465.0,
+            y: 0.0,
+            z: 40.0,
+          ),
+          rotation: (
+            x: 0.0,
+            y: 0.7,
+            z: 0.0,
+            w: 1.0,
+          ),
+          scale: (
+            x: 1.5,
+            y: 3.5,
+            z: 1.5,
+          ),
+        ),
+        "charming_circuit_challenge::sign::Sign": (
+          text: "}",
+          translation: (
+            x: 0.5,
+            y: 4.4,
+            z: 2.0,
+          ),
+          font_size: 48.0,
+        )
+      },
+    ),
+    4: (
+      components: {
+        "bevy_transform::components::transform::Transform": (
+          translation: (
+            x: -15.0,
+            y: 0.0,
+            z: 40.0,
+          ),
+          rotation: (
+            x: 0.0,
+            y: 0.7,
+            z: 0.0,
+            w: 1.0,
+          ),
+          scale: (
+            x: 1.5,
+            y: 3.5,
+            z: 1.5,
+          ),
+        ),
+        "charming_circuit_challenge::sign::Sign": (
+          text: "Counter:",
+          translation: (
+            x: 0.5,
+            y: 4.4,
+            z: 2.0,
+          ),
+          font_size: 48.0,
+        )
+      },
+    ),
+    5: (
+      components: {
+        "bevy_transform::components::transform::Transform": (
+          translation: (
+            x: -15.0,
+            y: 0.0,
+            z: 40.0,
+          ),
+          rotation: (
+            x: 0.0,
+            y: 0.7,
+            z: 0.0,
+            w: 1.0,
+          ),
+          scale: (
+            x: 1.5,
+            y: 1.5,
+            z: 1.5,
+          ),
+        ),
+        "charming_circuit_challenge::sign::Sign": (
+          text: "Wait for the counter to reach zero\n\nThen the flag is over there\n                -----------------------→",
+          translation: (
+            x: 0.5,
+            y: 5.0,
+            z: 3.0,
+          ),
+          font_size: 20.0,
+        )
+      },
+    ),
+  }
+)

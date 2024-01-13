@@ -1,0 +1,376 @@
+use crate::{
+  ast::*,
+  error::LexicalError,
+  grammar_helper::sp,
+  lexer::Token,
+  get_span, ErrorCtx,
+};
+
+use codespan::ByteIndex;
+use codespan_reporting::diagnostic::{Label, LabelStyle};
+use fnv::FnvHashMap;
+use lalrpop_util::ParseError;
+
+use std::collections::hash_map::Entry;
+
+grammar<'input, 'ctx>(ctx: &'ctx mut ErrorCtx);
+
+extern {
+  type Location = ByteIndex;
+  type Error = LexicalError;
+
+  enum Token<'input> {
+    "{" => Token::BraceOpen,
+    "}" => Token::BraceClose,
+    "(" => Token::ParOpen,
+    ")" => Token::ParClose,
+    "[" => Token::BracketOpen,
+    "]" => Token::BracketClose,
+    "." => Token::Dot,
+    ".." => Token::DotDot,
+    "," => Token::Comma,
+    ";" => Token::Semicolon,
+    "+" => Token::Plus,
+    "-" => Token::Minus,
+    "*" => Token::Mul,
+    "/" => Token::Div,
+    "%" => Token::Mod,
+    "&" => Token::And,
+    "|" => Token::Or,
+    "^" => Token::Xor,
+    "&&" => Token::BAnd,
+    "||" => Token::BOr,
+    "!" => Token::Not,
+    "=" => Token::Assign,
+    "==" => Token::Equals,
+    "!=" => Token::NotEquals,
+    "<" => Token::Less,
+    "<=" => Token::LessEq,
+    ">" => Token::Greater,
+    ">=" => Token::GreaterEq,
+    "fn" => Token::Fn,
+    "return" => Token::Return,
+    "for" => Token::For,
+    "in" => Token::In,
+    "if" => Token::If,
+    "else" => Token::Else,
+    "box" => Token::Box,
+    "wire" => Token::Wire,
+    "head" => Token::Head,
+    "tail" => Token::Tail,
+    "delete" => Token::Delete,
+    "forward" => Token::Forward,
+    "back" => Token::Back,
+    "left" => Token::Left,
+    "right" => Token::Right,
+    "up" => Token::Up,
+    "down" => Token::Down,
+    "look" => Token::Look,
+    "roll" => Token::Roll,
+    "true" => Token::True,
+    "false" => Token::False,
+    ident_literal => Token::IdentLiteral(<&'input str>),
+    int_literal => Token::IntegerLiteral(<&'input str>),
+  }
+}
+
+pub Program: Program =
+  <fns:FnOrError*> => {
+    let mut out = FnvHashMap::default();
+    for f in fns {
+      if let Some(f) = f {
+        match out.entry(f.name.name.clone()) {
+          Entry::Vacant(entry) => {
+            entry.insert(f);
+          }
+          Entry::Occupied(entry) => {
+            ctx.emit_error("Multiple functions with the same name are not allowed", vec![
+              Label::new(
+                LabelStyle::Primary,
+                ctx.file_id,
+                f.name.span.start().into()..f.name.span.end().into(),
+              ).with_message("Duplicate function was here"),
+              Label::new(
+                LabelStyle::Secondary,
+                ctx.file_id,
+                entry.get().name.span.start().into()..entry.get().name.span.end().into(),
+              ).with_message("Original function was here"),
+            ]);
+          }
+        }
+      }
+    }
+    Program { fns: out }
+  };
+
+FnOrError: Option<Fn> = {
+  <value: Fn> => Some(value),
+  <error_recovery:!> => {
+    ctx.emit_error_simple(get_span(&error_recovery.error), &format!("{}", error_recovery.error), None);
+    None
+  },
+};
+
+Fn: Fn = {
+    <l: @L>
+      <fn_token: SimpleToken<"fn">>
+      <name:Ident>
+      <start_paren: SimpleToken<"(">>
+      <end_paren: SimpleToken<")">>
+      <block:Block>
+    <r: @R>
+  =>
+    Fn { span: sp(l, r), fn_token, name, start_paren, args: None, end_paren, block },
+
+    <l: @L>
+      <fn_token: SimpleToken<"fn">>
+      <name:Ident>
+      <start_paren: SimpleToken<"(">>
+      <first: Ident>
+      <more: (SimpleToken<","> Ident)*>
+      <final_comma: SimpleToken<",">?>
+      <end_paren: SimpleToken<")">>
+      <block:Block>
+    <r: @R>
+  =>
+    Fn {
+      span: sp(l, r),
+      fn_token,
+      name,
+      start_paren,
+      args: Some(FnArgs {
+        first,
+        more,
+        final_comma,
+      }),
+      end_paren,
+      block
+  },
+};
+
+Block: Block =
+    <l: @L>
+      <start_brace: SimpleToken<"{">>
+      <statements:Statement*>
+      <end_brace: SimpleToken<"}">>
+    <r: @R>
+  =>
+    Block { span: sp(l, r), start_brace, statements, end_brace };
+
+Statement: Statement = {
+  <l: @L>
+    <kind: StatementKind>
+    <semicolon: SimpleToken<";">>
+  <r: @R>
+  =>
+    Statement { span: sp(l, r), kind, semicolon: Some(semicolon) },
+
+  <l: @L>
+    <for_: SimpleToken<"for">>
+    <var: Ident>
+    <in_: SimpleToken<"in">>
+    <start: Expr>
+    <dotdot: SimpleToken<"..">>
+    <end: Expr>
+    <block: Block>
+  <r: @R>
+  => Statement { span: sp(l, r), kind: StatementKind::For { for_, var, in_, start, dotdot, end, block }, semicolon: None },
+
+  <l: @L>
+    <if_: SimpleToken<"if">>
+    <expr: Expr>
+    <block: Block>
+    <elifs: ElifGroup*>
+    <else_: ElseGroup?>
+  <r: @R>
+  => {
+    Statement { span: sp(l, r), kind: StatementKind::If { if_, expr, block, elifs, else_ }, semicolon: None }
+  },
+
+  <l: @L>
+    <block: Block>
+  <r: @R>
+  => Statement { span: sp(l, r), kind: StatementKind::Block(block), semicolon: None },
+};
+
+ElifGroup: ElifGroup =
+  <else_: SimpleToken<"else">>
+  <if_: SimpleToken<"if">>
+  <expr: Expr>
+  <block: Block> => ElifGroup { else_, if_, expr, block };
+
+ElseGroup: ElseGroup =
+  <else_: SimpleToken<"else">>
+  <block: Block> => ElseGroup { else_, block };
+
+StatementKind: StatementKind = {
+  <keyword: SimpleToken<"box">> => StatementKind::Box { keyword },
+  <keyword: SimpleToken<"wire">> => StatementKind::Wire { keyword },
+  <keyword: SimpleToken<"head">> => StatementKind::Head { keyword },
+  <keyword: SimpleToken<"tail">> => StatementKind::Tail { keyword },
+  <keyword: SimpleToken<"delete">> => StatementKind::Delete { keyword },
+  <keyword: SimpleToken<"forward">> <value: Expr?> => StatementKind::Forward { keyword, value },
+  <keyword: SimpleToken<"back">> <value: Expr?> => StatementKind::Back { keyword, value },
+  <keyword: SimpleToken<"left">> <value: Expr?> => StatementKind::Left { keyword, value },
+  <keyword: SimpleToken<"right">> <value: Expr?> => StatementKind::Right { keyword, value },
+  <keyword: SimpleToken<"up">> <value: Expr?> => StatementKind::Up { keyword, value },
+  <keyword: SimpleToken<"down">> <value: Expr?> => StatementKind::Down { keyword, value },
+  <keyword: SimpleToken<"look">> <direction: SimpleToken<"left">> => StatementKind::LookLeft { keyword, direction },
+  <keyword: SimpleToken<"look">> <direction: SimpleToken<"right">> => StatementKind::LookRight { keyword, direction },
+  <keyword: SimpleToken<"look">> <direction: SimpleToken<"back">> => StatementKind::LookBack { keyword, direction },
+  <keyword: SimpleToken<"look">> <direction: SimpleToken<"up">> => StatementKind::LookUp { keyword, direction },
+  <keyword: SimpleToken<"look">> <direction: SimpleToken<"down">> => StatementKind::LookDown { keyword, direction },
+  <keyword: SimpleToken<"roll">> <direction: SimpleToken<"left">> => StatementKind::RollLeft { keyword, direction },
+  <keyword: SimpleToken<"roll">> <direction: SimpleToken<"right">> => StatementKind::RollRight { keyword, direction },
+  <left: AssignTarget> <eq: SimpleToken<"=">> <right: Expr> => StatementKind::Assign {
+    left,
+    eq,
+    right
+  },
+  <e: Expr> => StatementKind::Expr(e),
+  <keyword: SimpleToken<"return">> <expr: Expr> => StatementKind::Return { keyword, expr },
+};
+
+AssignTarget: AssignTarget = {
+  <Ident> => AssignTarget::Variable(<>),
+  <idents: (Ident SimpleToken<",">)+> <final_ident: Ident?> => {
+    let mut idents = idents.into_iter();
+    let mut rest = Vec::new();
+    let (init, mut comma) = idents.next().unwrap();
+    for (ident, next_comma) in idents {
+      rest.push((comma, ident));
+      comma = next_comma;
+    }
+    let final_comma = if let Some(final_ident) = final_ident {
+      rest.push((comma, final_ident));
+      None
+    } else {
+      Some(comma)
+    };
+    AssignTarget::Tuple {
+      init, rest, final_comma
+    }
+  }
+}
+
+Expr: Expr = Expr_<ExprKind0>;
+
+Expr_<KindRule>: Expr =
+  <l: @L>
+    <kind: KindRule>
+  <r: @R> => Expr { span: sp(l, r), kind };
+
+ExprKind0: ExprKind = ExprKind1;
+ExprKind1: ExprKind = ExprKind2;
+ExprKind2: ExprKind = ExprKind3;
+ExprKind3: ExprKind = ExprKind4;
+
+ExprKind4: ExprKind = {
+  <left: Expr_<ExprKind4>> <op: SimpleToken<"||">> <right:Expr_<ExprKind5>> => ExprKind::BOr { left: Box::new(left), op, right: Box::new(right) },
+  ExprKind5,
+};
+
+ExprKind5: ExprKind = {
+  <left: Expr_<ExprKind5>> <op: SimpleToken<"&&">> <right:Expr_<ExprKind6>> => ExprKind::BAnd { left: Box::new(left), op, right: Box::new(right) },
+  ExprKind6,
+};
+
+ExprKind7: ExprKind = {
+  <left: Expr_<ExprKind7>> <op: SimpleToken<"|">> <right:Expr_<ExprKind8>> => ExprKind::Or { left: Box::new(left), op, right: Box::new(right) },
+  ExprKind8,
+};
+
+ExprKind8: ExprKind = {
+  <left: Expr_<ExprKind8>> <op: SimpleToken<"^">> <right:Expr_<ExprKind9>> => ExprKind::Xor { left: Box::new(left), op, right: Box::new(right) },
+  ExprKind9,
+};
+
+ExprKind9: ExprKind = {
+  <left: Expr_<ExprKind9>> <op: SimpleToken<"&">> <right:Expr_<ExprKind10>> => ExprKind::And { left: Box::new(left), op, right: Box::new(right) },
+  ExprKind10,
+};
+
+ExprKind10: ExprKind = ExprKind11;
+
+ExprKind11: ExprKind = {
+  <left: Expr_<ExprKind11>> <op: SimpleToken<"+">> <right:Expr_<ExprKind12>> => ExprKind::Plus { left: Box::new(left), op, right: Box::new(right) },
+  <left: Expr_<ExprKind11>> <op: SimpleToken<"-">> <right:Expr_<ExprKind12>> => ExprKind::Minus { left: Box::new(left), op, right: Box::new(right) },
+  ExprKind12,
+};
+
+ExprKind12: ExprKind = {
+  <left: Expr_<ExprKind12>> <op: SimpleToken<"*">> <right:Expr_<AtomicExprKind>> => ExprKind::Mul { left: Box::new(left), op, right: Box::new(right) },
+  <left: Expr_<ExprKind12>> <op: SimpleToken<"/">> <right:Expr_<AtomicExprKind>> => ExprKind::Div { left: Box::new(left), op, right: Box::new(right) },
+  <left: Expr_<ExprKind12>> <op: SimpleToken<"%">> <right:Expr_<AtomicExprKind>> => ExprKind::Mod { left: Box::new(left), op, right: Box::new(right) },
+  ExprKind13,
+};
+
+ExprKind13: ExprKind = {
+  <op: SimpleToken<"!">> <expr: Expr_<ExprKind13>> => ExprKind::Not { op, expr: Box::new(expr) },
+  AtomicExprKind,
+};
+
+AtomicExprKind: ExprKind ={
+  <Ident> => ExprKind::Variable(<>),
+  <Int> => ExprKind::Int(<>),
+  "true" => ExprKind::Bool(true),
+  "false" => ExprKind::Bool(false),
+  <start: SimpleToken<"(">>
+    <init: Expr>
+    <rest: (SimpleToken<","> Expr)*>
+    <final_comma: SimpleToken<",">?>
+  <end: SimpleToken<")">>
+    => {
+      if rest.is_empty() && final_comma.is_none() {
+        ExprKind::Paren { start, inner: Box::new(init), end }
+      } else {
+        ExprKind::Tuple { start, init: Box::new(init), rest, final_comma, end }
+      }
+    },
+  <name: Ident> <start_paren: SimpleToken<"(">> <end_paren: SimpleToken<")">> => ExprKind::Call { name, start_paren, args: None, end_paren },
+  <name: Ident> <start_paren: SimpleToken<"(">>
+    <first: Expr>
+    <more: (SimpleToken<","> Expr)*>
+    <final_comma: SimpleToken<",">?>
+  <end_paren: SimpleToken<")">> => ExprKind::Call { name, start_paren, args: Some(CallArgs { first: Box::new(first), more, final_comma }), end_paren },
+};
+
+Ident: Ident =
+  <l: @L> <name: ident_literal> <r: @R> => Ident { span: sp(l, r), name: name.to_owned() };
+
+Int: Int =
+  <l: @L> <sign: SimpleToken<"-">?> <vl: @L> <value: int_literal> <vr: @R> <r: @R> =>? {
+    let value = value.chars().filter(|&c| c != '_').collect::<String>();
+    let mut value = value.as_str();
+    let mut radix = 10;
+    if value.starts_with("0x") {
+      value = &value[2..];
+      radix = 16;
+    } else if value.starts_with("0b") {
+      value = &value[2..];
+      radix = 2;
+    } else if value.starts_with("0o") {
+      value = &value[2..];
+      radix = 8;
+    }
+    let mut value_interpreted = i128::from_str_radix(value, radix)
+      .map_err(|_| ParseError::User { error: LexicalError::new("Bad integer", sp(l, r)) })?;
+    if sign.is_some() {
+      value_interpreted = -value_interpreted;
+    }
+    Ok(Int { sign, span: sp(l, r), value: SimpleToken { span: sp(vl, vr) }, value_interpreted })
+  };
+
+SimpleToken<Rule>: SimpleToken =
+  <l: @L> Rule <r: @R> => SimpleToken { span: sp(l, r) };
+
+// Put this one at the bottom because it fucks with my syntax highlighter
+ExprKind6: ExprKind = {
+  <left: Expr_<ExprKind6>> <eq: SimpleToken<"==">> <right: Expr_<ExprKind7>> => ExprKind::Equals { left: Box::new(left), eq, right: Box::new(right)},
+  <left: Expr_<ExprKind6>> <neq: SimpleToken<"!=">> <right: Expr_<ExprKind7>> => ExprKind::NotEquals { left: Box::new(left), neq, right: Box::new(right) },
+  <left: Expr_<ExprKind6>> <less: SimpleToken<"<">> <right: Expr_<ExprKind7>> => ExprKind::Less { left: Box::new(left), less, right: Box::new(right) },
+  <left: Expr_<ExprKind6>> <less_eq: SimpleToken<"<=">> <right: Expr_<ExprKind7>> => ExprKind::LessEq { left: Box::new(left), less_eq, right: Box::new(right) },
+  <left: Expr_<ExprKind6>> <greater: SimpleToken<">">> <right: Expr_<ExprKind7>> => ExprKind::Greater { left: Box::new(left), greater, right: Box::new(right) },
+  <left: Expr_<ExprKind6>> <greater_eq: SimpleToken<">=">> <right: Expr_<ExprKind7>> => ExprKind::GreaterEq { left: Box::new(left), greater_eq, right: Box::new(right) },
+  ExprKind7
+};

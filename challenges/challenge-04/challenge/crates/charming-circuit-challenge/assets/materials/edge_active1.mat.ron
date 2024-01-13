@@ -1,0 +1,4 @@
+MaterialProperties(
+  inherit: "materials/edges.mat.ron",
+  emissive_texture: "textures/edge_active1.png",
+)

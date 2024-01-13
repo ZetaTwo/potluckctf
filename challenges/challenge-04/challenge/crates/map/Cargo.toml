@@ -1,0 +1,9 @@
+[package]
+name = "map"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+glam = { version = "0.24.2", features = ["serde"] }
+indexmap = { version = "2.1.0", features = ["serde"] }
+serde = { version = "1.0.193", features = ["derive"] }

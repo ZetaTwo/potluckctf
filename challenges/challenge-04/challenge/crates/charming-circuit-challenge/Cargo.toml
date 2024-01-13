@@ -1,0 +1,36 @@
+[package]
+name = "charming-circuit-challenge"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy = { version = "0.12.0", default-features = false, features = [
+  "animation",
+  "bevy_asset",
+  "bevy_winit",
+  "bevy_core_pipeline",
+  "bevy_pbr",
+  "bevy_render",
+  "bevy_text",
+  "bevy_ui",
+  "multi-threaded",
+  "png",
+  "hdr",
+  "jpeg",
+  "x11",
+  "tonemapping_luts",
+  "default_font",
+  "webgl2",
+] }
+bevy_xpbd_3d = "0.3.2"
+ron = "0.8.1"
+serde = { version = "1.0.193", features = ["derive"] }
+thiserror = "1.0.50"
+wirelang = { path = "../wirelang", optional = true }
+map = { path = "../map" }
+bincode = "1.3.3"
+bevy_text_mesh = "0.9.0"
+
+[features]
+static-camera = []
+embed = []

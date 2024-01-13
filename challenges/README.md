@@ -7,7 +7,7 @@ Here you will find the materials for the challenges used in the 37C3 Potluck CTF
 | 1     | [Cake of Paranoia](challenge-01/)                                                                                           | sandbox                 | [Addison Crump](https://addisoncrump.info)        |
 | 2     | N/A (Not used in the event)                                                                                                 | N/A                     | N/A                                                |
 | 3     | [abc](challenge-03/)                                                                                                        | cryptography            | dorian                                             |
-| 4     | Charming Circuit Challenge (coming soon)                                                                                    | reversing               | Tethys & kriztw                                    |
+| 4     | [Charming Circuit Challenge](challenge-04/)                                                                                 | reversing               | Tethys & kriztw                                    |
 | 5     | [savaoury](challenge-05/)                                                                                                   | web                     | thegrandpew - Blue Water                           |
 | 6     | [Hypertext O's](challenge-06/)                                                                                              | reversing               | [Leeky](https://bytecode.re/)                      |
 | 7     | [bear-err](challenge-07/)                                                                                                   | pwn, web                | Firzen                                             |
@@ -33,7 +33,7 @@ Here you will find the materials for the challenges used in the 37C3 Potluck CTF
 | 26    | [Tamagoyaki](challenge-26/) ([author repo](https://github.com/UDPctf/CTF-challenges/tree/main/Potluck-CTF-2023/Tamagoyaki)) | pwn                     | UDP - Blue Water                                   |
 | 27    | [Pot Of Gold](challenge-27/)                                                                                                | pwn, reversing          | blasty                                             |
 | 28    | [tacocat](challenge-28/)                                                                                                    | misc                    | Les Amateurs: HELLOPERSON, unvariant.winter, stuxf |
-| 29    | [REhoST](challenge-29/) ([author repo](https://github.com/Liikt/REhoST))                                                    | reversing, misc         | Liikt                                              |
+| 29    | [REhoST](challenge-29/) ([author repo](https://github.com/Liikt/REhoST))                                                    | reversing, misc         | [Liikt](https://blog.liikt.xyz)                    |
 
 ## License
 

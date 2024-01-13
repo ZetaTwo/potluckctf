@@ -1,0 +1,10 @@
+MaterialProperties(
+  inherit: "materials/glass.mat.ron",
+  emissive: Rgba(
+    red: 10.0,
+    green: 10.0,
+    blue: 10.0,
+    alpha: 1.0,
+  ),
+  animated: true,
+)

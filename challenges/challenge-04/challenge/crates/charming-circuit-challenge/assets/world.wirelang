@@ -1,0 +1,1246 @@
+fn min(a, b) {
+  if a < b {
+    return a;
+  }
+  return b;
+}
+
+fn max(a, b) {
+  if a > b {
+    return a;
+  }
+  return b;
+}
+
+fn wall(h, w) {
+  for _ in 0..w {
+    {
+      for _ in 0..h {
+        box;
+        up;
+      }
+    }
+    forward;
+  }
+  if w > 0 {
+    back;
+  }
+}
+
+fn wires(c) {
+  for _ in 0..c {
+    wire; forward;
+  }
+  if c > 0 {
+    back;
+  }
+}
+
+fn floor(w, d) {
+  roll right;
+  wall(w, d);
+  roll left;
+}
+
+fn booth(w) {
+  d = 6;
+  { floor(w + 2, d + 2); }
+  wall(7, d + 2);
+  look right;
+  wall(8, w + 2);
+  look right;
+  wall(7, d + 2);
+  look back;
+}
+
+fn enter_booth(w) {
+  d = 6;
+  look back;
+  up 2;
+  back d;
+  right (w + 1) / 2;
+}
+
+fn loop3(offset, dir) {
+  offset = offset % 3;
+  dir = dir % 2;
+  if dir == 0 {
+    if offset == 0 {
+      wire; up; tail; forward; down; head;
+    } else if offset == 1 {
+      tail; up; head; forward; down; wire;
+    } else {
+      head; up; wire; forward; down; tail;
+    }
+  } else {
+    if offset == 0 {
+      tail; up; wire; forward; down; head;
+    } else if offset == 1 {
+        head; up; tail; forward; down; wire;
+    } else {
+      wire; up; head; forward; down; tail;
+    }
+  }
+  forward;
+}
+
+fn loop4(offset, dir) {
+  offset = offset % 4;
+  dir = dir % 2;
+  if dir == 0 {
+    if offset == 0 {
+      up; wire; up; forward; tail; down; forward; head; down; back; wire;
+    } else if offset == 1 {
+      up; tail; up; forward; head; down; forward; wire; down; back; wire;
+    } else if offset == 2 {
+      up; head; up; forward; wire; down; forward; wire; down; back; tail;
+    } else {
+      up; wire; up; forward; wire; down; forward; tail; down; back; head;
+    }
+  } else {
+    if offset == 0 {
+      up; wire; up; forward; wire; down; forward; head; down; back; tail;
+    } else if offset == 1 {
+      up; tail; up; forward; wire; down; forward; wire; down; back; head;
+    } else if offset == 2 {
+      up; head; up; forward; tail; down; forward; wire; down; back; wire;
+    } else {
+      up; wire; up; forward; head; down; forward; tail; down; back; wire;
+    }
+  }
+  forward 2;
+}
+
+fn node(offset) {
+  if offset == 0 {
+    head;
+  } else if offset == 1 {
+    tail;
+  } else {
+    wire;
+  }
+}
+
+fn loop6(offset) {
+  offset = ((offset % 6) + 6) % 6;
+  offset = (offset + 1) % 6; node(offset);
+  offset = (offset + 1) % 6; forward; up; node(offset);
+  offset = (offset + 1) % 6; forward; node(offset);
+  offset = (offset + 1) % 6; forward; down; node(offset);
+  offset = (offset + 1) % 6; back; down; node(offset);
+  offset = (offset + 1) % 6; back; node(offset);
+  forward 2; up;
+}
+
+fn loop8() {
+  look up;
+  forward; wires(2); forward; look down;
+  forward; wires(2); forward; look down;
+  forward; tail; forward; head; forward; look down;
+  forward; wires(2); forward; look down;
+
+  look down; forward 4;
+}
+
+fn loop12(pulses) {
+  look up;
+  forward; wires(3); forward; look down;
+  forward; wires(3); forward; look down;
+  forward; wires(3); forward; look down;
+  forward; wires(3); forward; look down;
+
+  look down;
+
+  {
+    c = 1;
+    forward 2;
+
+    for _ in 0..4 {
+      if pulses & c != 0 {
+        tail; forward; head;
+      } else {
+        forward;
+      }
+      forward; look up; forward 2;
+      c = c + c;
+    }
+  }
+
+  forward 5;
+}
+
+fn reverse_diode() {
+    wire;
+    forward;
+    { up; wire; } { down; wire; }
+    forward;
+    { up; wire; } wire; { down; wire; }
+    forward;
+    wire;
+}
+
+fn diode() {
+    wire;
+    forward;
+    { up; wire; } wire; { down; wire; }
+    forward;
+    { up; wire; } { down; wire; }
+    forward;
+    wire;
+}
+
+fn or() {
+  wire;
+  { left 2; wire; }
+  { right 2; wire; }
+  forward;
+  wire;
+  { left; wire; }
+  { right; wire; }
+  forward;
+  wire;
+}
+
+fn right_raised_or() {
+  wire;
+  { left 2; wire; }
+  { right 2; up; wire; }
+  forward;
+  wire;
+  { left; wire; }
+  { right; wire; }
+  forward;
+  wire;
+}
+
+fn left_raised_or() {
+  wire;
+  { left 2; up; wire; }
+  { right 2; wire; }
+  forward;
+  wire;
+  { left; wire; }
+  { right; wire; }
+  forward;
+  wire;
+}
+
+fn xor() {
+  wire;
+  { left 2; wire; }
+  { right 2; wire; }
+  forward;
+  wire;
+  { left; wire; up; wire; }
+  { right; wire; up; wire; }
+  forward;
+  wire;
+}
+
+fn and_not_left() {
+  wire;
+  { left 2; wire; }
+  { right 2; wire; }
+  forward;
+  wire;
+  { left; wire; up; wire; down 2; wire; }
+  { right; wire; }
+  forward;
+  wire;
+}
+
+fn and_not_right() {
+  wire;
+  { left 2; wire; }
+  { right 2; wire; }
+  forward;
+  wire;
+  { left; wire; }
+  { right; wire; up; wire; down 2; wire; }
+  forward;
+  wire;
+}
+
+fn half_adder(output_left) {
+  left 2; forward;
+  { left 2; up; wire; }
+  { left 2; down; wire; }
+  { right 2; up; wire; }
+  { right 2; down; wire; }
+  forward;
+  {
+      up 2;
+      xor();
+      forward; up; wire;
+      forward; wire;
+      forward; wire;
+      forward; down; wire;
+      if output_left {
+        forward; down; wire;
+        forward; down; left; wire;
+      } else {
+        forward; down; right; wire;
+        forward; down; right; wire;
+      }
+  }
+  { down 2; or(); }
+  {
+      forward 2; roll left;
+      and_not_right();
+      roll right;
+      for _ in 0..4 { forward; left; wire; }
+  }
+}
+
+fn half_adder_xor(output_left, pad_length) {
+  left 2; forward;
+  { left 2; wire; }
+  { right 2; wire; }
+  forward;
+  xor();
+  if output_left {
+    forward; left; wire;
+    forward; wire;
+  } else {
+    for _ in 0..2 { forward; right; wire; }
+  }
+  if pad_length {
+    wires(5);
+  }
+}
+
+fn adder(size) {
+  for l in 0..size-1 {
+    {
+      for _ in 0..l {
+        { wires(11); }
+        left 6;
+      }
+      for i in l..size-1 {
+        { half_adder(i != l); }
+        left 6;
+      }
+      { half_adder_xor(true, true); }
+    }
+    forward 10;
+  }
+  for _ in 0..size-1 {
+    { wires(7); }
+    left 6;
+  }
+  half_adder_xor(false, false);
+  right (size - 1) * 6;
+}
+
+fn make_integer(bits, dist, value) {
+  for _ in 0..bits {
+    if value & 1 != 0 {
+      head; forward; tail; back;
+    } else {
+      wire; forward; wire; back;
+    }
+    left dist;
+    value = value / 2;
+  }
+  if bits != 0 {
+    back dist;
+  }
+}
+
+fn booth1() {
+  booth(5);
+  {
+    enter_booth(5);
+    look left;
+    back;
+    loop3(0, 0);
+    right;
+    look right;
+    wires(5);
+  }
+}
+
+fn booth2() {
+  booth(6);
+  {
+    enter_booth(6);
+    look left;
+    back;
+    loop4(0, 0);
+    right;
+    look right;
+    wires(5);
+  }
+}
+
+fn booth3() {
+  booth(7);
+  {
+    enter_booth(7);
+    look left;
+    back 2;
+    loop8();
+    right;
+    look right;
+    wires(5);
+  }
+}
+
+fn booth4() {
+  booth(7);
+  {
+    enter_booth(7);
+    look left;
+    back 2;
+    loop8();
+    right;
+    look right;
+    wires(3);
+    { up; wire; }
+    wires(3);
+  }
+}
+
+fn booth5() {
+  booth(7);
+  {
+    enter_booth(7);
+    look left;
+    back 2;
+    loop8();
+    right;
+    look right;
+    wires(3);
+    { up; wire; }
+    { down; wire; }
+    wires(3);
+  }
+}
+
+fn booth6() {
+  booth(7);
+  {
+    enter_booth(7);
+    look left;
+    back 2;
+    loop8();
+    right;
+    look right;
+    wires(2);
+    diode();
+    wires(2);
+  }
+}
+
+fn booth7() {
+  booth(7);
+  {
+    enter_booth(7);
+    look left;
+    back 2;
+    loop8();
+    right;
+    look right;
+    wires(2);
+    reverse_diode();
+    wires(2);
+  }
+}
+
+fn twogate_setup() {
+  { left 2; look left; loop12(3); }
+  { right 2; look right; loop12(5); }
+  down; forward;
+  { left 2; wire; }
+  { right 2; wire; }
+  forward;
+}
+
+fn booth8() {
+  booth(13);
+  {
+    enter_booth(13);
+    twogate_setup();
+    or();
+    wires(3);
+  }
+}
+
+fn booth9() {
+  booth(13);
+  {
+    enter_booth(13);
+    twogate_setup();
+    xor();
+    wires(3);
+  }
+}
+
+fn booth10() {
+  booth(13);
+  {
+    enter_booth(13);
+    up;
+    twogate_setup();
+    and_not_left();
+    wires(3);
+  }
+}
+
+fn booth11() {
+  booth(13);
+  {
+    enter_booth(13);
+    up;
+    twogate_setup();
+    and_not_right();
+    wires(3);
+  }
+}
+
+fn booths() {
+  {
+    _, _, zbefore = getpos;
+    booth1();
+    booth2();
+    booth3();
+    booth4();
+    booth5();
+    booth6();
+    booth7();
+    booth8();
+    booth9();
+    booth10();
+    booth11();
+    _, _, zafter = getpos;
+    length = zafter - zbefore + 1;
+  }
+  {
+    back; up; look right;
+    { floor(9, length); }
+    back; down; look right; back;
+    wall(1, 11);
+    look left;
+    wall(1, length+2);
+    look left;
+    wall(1, 11);
+  }
+
+  look right;
+  forward length + 5;
+}
+
+fn or_gate_split_and_continue(n, k, desired_length) {
+  wires(n);
+  { for _ in 0..2 { forward; up; wire; } }
+  for _ in 0..2 { forward; down; wire; }
+  wires(desired_length - 6*k + 2);
+}
+
+fn make_or_gates(n, desired_length) {
+  {
+    for _ in 0..n {
+      { wires(n*6); }
+      left 6;
+    }
+  }
+
+  {
+    left (n-1)*6;
+    forward; down; right; wire;
+    forward; down; right; wire;
+    right; right; right_raised_or();
+    forward; right; wire;
+    forward; right; wire;
+
+    for _ in 0..n/2-2 {
+      forward; right; wire;
+      forward; right; wire;
+      right 2; right_raised_or();
+      forward; right; wire;
+      forward; right; wire;
+    }
+  }
+
+  {
+    forward; down; left; wire;
+    forward; down; left; wire;
+    left 2; left_raised_or();
+    forward; left; wire;
+    forward; left; wire;
+
+    for _ in 0..n/2-2 {
+      forward; left; wire;
+      forward; left; wire;
+      left 2; left_raised_or();
+      forward; left; wire;
+      forward; left; wire;
+    }
+
+    forward; left 3; or();
+
+    {
+      for _ in 0..6 { forward; left; wire; }
+      { or_gate_split_and_continue(3*n-5, n, desired_length); }
+      for i in 1..n/2 {
+        for _ in 0..6 { forward; left; wire; }
+        { or_gate_split_and_continue(3*n-i*6-5, n, desired_length); }
+      }
+    }
+    {
+      { forward 2; or_gate_split_and_continue(3*n-1, n, desired_length); }
+      for i in 1..n/2 {
+        for _ in 0..6 { forward; right; wire; }
+        { or_gate_split_and_continue(3*n-i*6 + 1, n, desired_length); }
+      }
+
+      for _ in 0..2 { forward; down; right; wire; }
+      for _ in 0..1 + 26 { forward; right; wire; }
+    }
+  }
+
+  forward n*6 - 1;
+}
+
+fn or_gate_bypass(n) {
+  down 3; left 2; back;
+  for _ in 0..n {
+    { wire; down; forward; wires(10*n - 7); }
+    right 6;
+  }
+}
+
+fn make_counter(n, desired_length) {
+  make_or_gates(n, desired_length);
+  adder(n);
+  for i in 0..n {
+    { wires(desired_length - 16*n + 6); }
+    left 6;
+  }
+}
+
+fn mul11(n) {
+  {
+    for i in 0..n {
+      {
+        { wires(10); }
+        if i + 1 < n {{
+          for _ in 0..3 { forward; left; up; wire; }
+          for _ in 0..3 { forward; left; wire; }
+          { for _ in 0..3 { forward; left; down; wire; } }
+          if i + 3 < n {
+            for _ in 0..3 { forward; up; left; wire; }
+            for _ in 0..12 { forward; left; wire; }
+            wires(10*(n-3));
+            for _ in 0..6 { forward; down; wire; }
+          }
+        }}
+      }
+      left 6;
+    }
+  }
+  { wires(10*(n-1) + 6); }
+  forward 9; left 6;
+  adder(n-1);
+  right 6;
+  for _ in 0..3 {
+    { wires(10*(n-3) - 2); }
+    left 6;
+  }
+  {
+    for _ in 3..n {
+      { wires(2); }
+      left 6;
+    }
+  }
+  forward;
+  adder(n-3);
+  right 18;
+}
+
+fn end_choice() {
+  {
+    down 4; left 3;
+    forward; left; wire;
+    {
+      for _ in 0..4 { forward; up; wire; }
+    }
+    wires(6);
+    {
+      for _ in 0..4 { forward; up; wire; }
+    }
+    wires(4);
+  }
+
+  {
+    for _ in 0..4 { forward; down; wire; }
+    wires(6);
+  }
+  wires(6);
+  left 2; xor();
+  for _ in 0..2 { forward; right; wire; }
+  forward; left 2;
+  {
+    down 4; and_not_right();
+    forward; left; up; wire;
+    for _ in 0..3 { forward; up; wire; }
+  }
+  and_not_right();
+  for _ in 0..2 { forward; right; wire; }
+  wires(3);
+}
+
+fn make_state(n, is_alive_entry, add_constant) {
+  {
+    left 6*(n-1) + 3; down 4;
+    forward is_alive_entry;
+    for i in 0..n {
+      {
+        wires(30*n - 41 - is_alive_entry - 6*i);
+      }
+      for _ in 0..6 {
+        forward; right; wire;
+      }
+    }
+  }
+  mul11(n);
+  {
+    left 3;
+    for _ in 0..n {
+      if add_constant & 1 != 0 {
+        { for _ in 0..4 { wire; back; down; } }
+      }
+      add_constant = add_constant / 2;
+      left 6;
+    }
+  }
+  adder(n);
+}
+
+fn end_choice_and_loop(up_dist, back_dist) {
+  end_choice();
+  forward; up;
+  look up;
+  { left 3; wires(up_dist); }
+  wires(up_dist);
+  look down;
+  look back;
+  forward; up;
+  { right 3; wires(back_dist+1); }
+  wires(back_dist);
+  forward; down;
+  look down;
+  wires(up_dist);
+}
+
+fn make_end_choices_and_loops(state_bits, counter_bits, up_dist, back_dist) {
+  for _ in 0..state_bits {
+    { end_choice_and_loop(up_dist, back_dist); }
+    left 6;
+  }
+  left 4 * 6;
+  for _ in 0..counter_bits {
+    { end_choice_and_loop(up_dist, back_dist); }
+    left 6;
+  }
+}
+
+fn make_challenge(counter_bits, state_bits, add_constant, counter_value, state_value) {
+  right (counter_bits - 1) * 6;
+  { make_counter(counter_bits, 30*state_bits - 42); }
+  right 4 * 6;
+  right state_bits * 6;
+  {
+    make_state(state_bits, 6*(counter_bits-1) + 6*3 + 9, add_constant);
+    make_end_choices_and_loops(state_bits, counter_bits, 10, 30*state_bits - 25);
+  }
+
+  {
+    look back;
+    forward 1; up 11; right 3;
+    for _ in 0..(state_bits + 2) / 3 {
+      { decoder_and_display(3); }
+      right 18;
+    }
+    right 18;
+    for _ in 0..(counter_bits + 2) / 3 {
+      { decoder_and_display(3); }
+      right 18;
+    }
+  }
+
+  { up 11; make_integer(state_bits, 6, state_value); }
+  left state_bits * 6 + 4 * 6;
+  { up 11; make_integer(counter_bits, 6, counter_value); }
+}
+
+fn make_signal(bits, dist, value) {
+  if bits <= 0 { return 0; }
+  forward bits*dist - 1;
+  {
+    look back;
+    wire; forward;
+    for i in 0..bits {
+      if value & 1 != 0 {
+        head; forward; tail; forward;
+      } else {
+        wires(2); forward;
+      }
+      wires(dist - 2); forward;
+      value = value / 2;
+    }
+  }
+}
+
+fn make_multi_signal(wire_count, repeat_count, wire_spacing, signal_spacing, value) {
+  if wire_count <= 0 || repeat_count <= 0 { return 0; }
+
+  for i in 0..repeat_count {
+    {
+      cur_value = value;
+      for _ in 0..wire_count {
+        if cur_value & 1 != 0 {
+          { head; forward; tail; }
+        } else {
+          { wire; forward; wire; }
+        }
+        { forward 2; wires(signal_spacing - 2); }
+        cur_value = cur_value / 2;
+        left wire_spacing;
+      }
+    }
+    forward signal_spacing;
+  }
+}
+
+fn flipflop() {
+  forward 4; left;
+  {
+    right; wire;
+    forward; left; wire;
+    back; left; wire;
+    back; wire;
+    back; right; wire;
+    forward; right; wire;
+  }
+  { right; back 2; wire;}
+  { right; back 2; up; wire;}
+  { right 2; back 2; wire;}
+  { right 3; back 3; wire; }
+  { right 2; back 4; wire; }
+  { left; back 3; wire; { up; wire; } { down; wire; }}
+  { back 4; wire; }
+  forward 2; right; wire;
+}
+
+fn flipflop_reverse() {
+  forward 4; right;
+  {
+    left; wire;
+    forward; right; wire;
+    back; right; wire;
+    back; wire;
+    back; left; wire;
+    forward; left; wire;
+  }
+  { left; back 2; wire;}
+  { left; back 2; up; wire;}
+  { left 2; back 2; wire;}
+  { left 3; back 3; wire; }
+  { left 3; back 4; wire; }
+  { right; back 3; wire; { up; wire; } { down; wire; }}
+  { back 4; wire; }
+  forward 1;
+}
+
+fn signal_doubler() {
+  {
+    forward; up; left; wire;
+    up; back; wire;
+    up; right; wire;
+    forward; down; right; wire;
+    forward; wire;
+    forward; down; wire;
+  }
+  forward; down; wire;
+  forward; down; wire;
+  forward; up; wire;
+  up; wire;
+  { right; wire; }
+  forward; wire;
+}
+
+fn demux8(offset) {
+  {
+    {
+      for _ in 0..8 { forward; down; wire; }
+      { for _ in 0..4 { forward; down; wire; } wires(25); choice_tall(); }
+      { for _ in 0..4 { forward; up; wire; } wires(25); choice_tall(); }
+    }
+    {
+      for _ in 0..8 { forward; up; wire; }
+      { for _ in 0..4 { forward; down; wire; } wires(25); choice_tall(); }
+      { for _ in 0..4 { forward; up; wire; } wires(25); choice_tall(); }
+    }
+  }
+  right 6;
+  {
+    for _ in 0..4 { forward; down; wire; } wires(14); choice_tall();
+    {
+      for _ in 0..4 { forward; left; down; wire; }
+      for _ in 0..2 { forward; left; wire; }
+      wires(3);
+    }
+    down 4;
+    {
+      for _ in 0..2 { forward; down; wire; }
+      for _ in 0..6 { forward; left; down; wire; }
+    }
+  }
+  {
+    for _ in 0..4 { forward; up; wire; } wires(14); choice_tall();
+    {
+      for _ in 0..4 { forward; left; up; wire; }
+      for _ in 0..2 { forward; left; wire; }
+      wires(3);
+    }
+    {
+      down 4;
+      for _ in 0..6 { forward; left; wire; }
+      wires(3);
+    }
+  }
+  right 6;
+  {
+    { down 5; back; look down; wires(5); roll left; loop6(offset); }
+    choice_tall();
+    { for _ in 0..6 { forward; left; wire; } }
+    {
+      down 4;
+      forward; left; down; wire;
+      forward; left; down; wire;
+      forward; left; down; wire;
+      forward; left; down; wire;
+      forward; left;       wire;
+      forward; left;       wire;
+      forward;
+    }
+  }
+  up 12; left 12; forward 48;
+}
+
+fn rom_gate(input_up, input_down, output_up, output_down, allow_up, allow_down) {
+  if input_down { wire; }
+  up 2;
+  if input_down && input_up {
+    wire;
+    { left; wire; }
+    { right; wire; }
+  }
+  up 2;
+  if input_up { wire; }
+  forward; down;
+  if input_up { wire; }
+  down 2;
+  if input_down { wire; }
+  forward; up; wire;
+  if input_up && output_up && !allow_up {{
+    up 2; wire;
+    { left; wire; }
+    { right; wire; }
+  }}
+  if input_down && output_down && !allow_down {{
+    down 2; wire;
+    { left; wire; }
+    { right; wire; }
+  }}
+  forward; down;
+  if output_down { wire; }
+  if output_up {{ up 2; wire; }}
+  forward; down;
+  if output_down { wire; }
+  up 4;
+  if output_up { wire; }
+}
+
+fn rom_layer(count, values, output_up) {
+  {
+    for i in 0..count {
+      rom_gate(i > 0, true, output_up, true, false, values % 2 != 0);
+      down 8;
+      values = values / 2;
+    }
+  }
+  forward 4; up 4;
+}
+
+fn seven_segment_decoder(offset) {
+  demux8(offset);
+  //  AAA
+  // B   C
+  // B   C
+  // B   C
+  //  DDD
+  // E   F
+  // E   F
+  // E   F
+  //  GGG
+
+  {
+    for i in 0..8 {
+      { wires(1+4*i); }
+      down 4;
+    }
+  }
+
+  // G = { 0, 2, 3, 5, 6 }
+  rom_layer(8, 0b10110110, true);
+  // F = { 0, 1, 3, 4, 5, 6, 7 }
+  rom_layer(8, 0b11011111, true);
+  // E = { 0, 2, 6 }
+  rom_layer(8, 0b10100010, true);
+  // D = { 2, 3, 4, 5, 6 }
+  rom_layer(8, 0b00111110, true);
+  // C = { 0, 1, 2, 3, 4, 7 }
+  rom_layer(8, 0b11111001, true);
+  // B = { 0, 4, 5, 6 }
+  rom_layer(8, 0b10001110, true);
+  // A = { 0, 2, 3, 5, 6, 7 }
+  rom_layer(8, 0b10110111, false);
+  down 56; forward 4;
+  for i in 0..7 {
+    { wires(1+4*(6-i)); roll left; signal_doubler(); roll right; }
+    forward 4; up 4;
+  }
+  down 4;
+}
+
+fn segment(lanes, height) {
+  if lanes == 1 {
+    look up;
+    wires(height);
+    look down;
+    return 0;
+  }
+
+  for i in 1..lanes+1 {
+    {
+      for _ in 0..i {
+        wire; right 2;
+      }
+    }
+    up; left;
+  }
+  right;
+  for i in 0..height-2 {
+    {
+      if i % 2 == 0 {
+        right;
+        for j in 1..lanes {
+          wire;
+          right 2;
+        }
+      } else {
+        for j in 0..lanes {
+          wire;
+          right 2;
+        }
+      }
+    }
+    up;
+  }
+  for i in 1..lanes+1 {
+    {
+      for _ in 0..(lanes+1-i) {
+        wire; right 2;
+      }
+    }
+    up; right;
+  }
+  down; left;
+}
+
+fn display() {
+  right 6;
+  {
+    segment(2, 7);
+    up 2; left 2; roll left;
+    segment(2, 7);
+    up 2; left 2; roll left;
+    segment(2, 7);
+    {
+      up 2; left 2; roll left;
+      segment(2, 7);
+    }
+    up 4;
+    segment(2, 7);
+    up 2; left 2; roll left;
+    segment(2, 7);
+    up 2; left 2; roll left;
+    segment(2, 7);
+  }
+}
+
+fn decoder_and_display(offset) {
+  left;
+  {
+    forward;
+    for _ in 0..3 {
+      { flipflop_reverse(); }
+      right 6;
+    }
+  }
+  forward 6; right;
+  seven_segment_decoder(offset);
+  {
+    forward 16; down 17; right 8;
+    look left;
+    // { wall(30, 18); }
+    right;
+    { wall(30, 18); }
+  }
+  {
+    {
+      for _ in 0..5 { right; up; forward; wire; }
+      for _ in 0..5 { up; forward; wire; }
+      wires(8);
+    }
+    down 4;
+    {
+      for _ in 0..7 { right; up; forward; wire; }
+      for _ in 0..6 { up; forward; wire; }
+      wires(5);
+    }
+    down 4;
+    {
+      for _ in 0..7 { left; up; forward; wire; }
+      for _ in 0..10 { up; forward; wire; }
+      // wires(3);
+    }
+    down 4;
+    {
+      for _ in 0..5 { right; up; forward; wire; }
+      for _ in 0..5 { up; forward; wire; }
+      wires(8);
+    }
+    down 4;
+    {
+      for _ in 0..7 { right; up; forward; wire; }
+      for _ in 0..6 { up; forward; wire; }
+      wires(5);
+    }
+    down 4;
+    {
+      for _ in 0..7 { left; up; forward; wire; }
+      for _ in 0..10 { up; forward; wire; }
+    }
+    down 4;
+    {
+      for _ in 0..5 { left; up; forward; wire; }
+      for _ in 0..5 { up; forward; wire; }
+      wires(8);
+    }
+  }
+  forward 18;
+  display();
+}
+
+fn segment_playground() {
+  forward 80; up 16; right 12;
+  {
+    right 18;
+  {
+    right 3;
+    for i in 1..16 {
+      i = i + 3;
+      { left 3; make_multi_signal(3, 1, 6, 60, 0xffffffff ^ i); }
+      make_multi_signal(3, 1, 6, 60, i);
+    }
+  }
+  look back;
+
+  decoder_and_display(4);
+  }
+    {
+    right 3;
+    for i in 1..16 {
+      { left 3; make_multi_signal(3, 1, 6, 60, 0xffffffff ^ i); }
+      make_multi_signal(3, 1, 6, 60, i);
+    }
+  }
+  look back;
+
+  decoder_and_display(4);
+
+}
+
+fn choice_playground() {
+  look back;
+  back 7*6 + 4;
+  { down 4; make_signal(7, 6, 4 * (1 + 2)); }
+  make_signal(7, 6, 4 * (1 + 4));
+  choice_tall();
+}
+
+fn choice_shared() {
+
+  { wire; }
+  { down 4; wire; }
+  forward;
+  {
+    roll right;
+    right 2;
+    // wire;
+    {
+      right 2; up; wire;
+      right; up; forward 2; wire;
+      forward; wire;
+      forward; wire;
+      forward; wire;
+    }
+    {
+      left 2; up; wire;
+    }
+    {
+      forward; up 2; xor();
+      forward; left; wire;
+      forward; left; wire;
+      right 2; forward; and_not_left();
+    }
+
+    { left 2; down; wire; }
+    { right 2; down; wire; }
+    {
+      forward; down; 2; and_not_left();
+    }
+  }
+}
+
+fn choice_tall() {
+  choice_shared();
+  {
+    down 2; left; forward 3;
+    wires(6);
+    forward; down; wire;
+    forward; down; right; wire;
+  }
+
+  right 2; down 2; forward 8;
+  forward; up; left; wire;
+  forward; up; left; wire;
+}
+
+
+fn main() {
+  forward 20; left 13;
+  look left;
+  booths();
+
+  right 35;
+  up 6;
+  forward 40;
+
+  make_challenge(36, 32, 1362691243, 0o707000000005, 378305269);
+
+  // segment_playground();
+}

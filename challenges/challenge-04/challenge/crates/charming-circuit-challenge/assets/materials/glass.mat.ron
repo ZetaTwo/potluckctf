@@ -1,0 +1,22 @@
+MaterialProperties(
+  base_color: Rgba(
+    red: 0.3,
+    green: 0.3,
+    blue: 0.3,
+    alpha: 0.8
+  ),
+  perceptual_roughness: 0.5,
+  reflectance: 0.2,
+  ior: 1.55,
+  diffuse_transmission: 0.5,
+  specular_transmission: 0.7,
+  attenuation_distance: 20.0,
+  thickness: 1.8,
+  attenuation_color: Rgba(
+    red: 0.0,
+    green: 0.0,
+    blue: 0.0,
+    alpha: 0.4,
+  ),
+  // alpha_mode: "blend",
+)

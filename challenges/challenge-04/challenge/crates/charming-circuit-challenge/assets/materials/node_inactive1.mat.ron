@@ -1,0 +1,10 @@
+MaterialProperties(
+  inherit: "materials/nodes.mat.ron",
+    emissive: Rgba(
+    red: 0.0,
+    green: 0.4807260129020777,
+    blue: 2.4036300645103887,
+    alpha: 1.0,
+  ),
+  emissive_texture: "textures/node_inactive1.png",
+)

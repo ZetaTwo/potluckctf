@@ -1,0 +1,12 @@
+[package]
+name = "ttf2mesh-sys"
+version = "0.1.3"
+edition = "2018"
+description = "Rust FFI bindings for ttf2mesh"
+repository = "https://github.com/blaind/ttf2mesh-rs"
+license = "MIT"
+readme = "README.md"
+
+[build-dependencies]
+bindgen = "0.69"
+cc = "1.0"
