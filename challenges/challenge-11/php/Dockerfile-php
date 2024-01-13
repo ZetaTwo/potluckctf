@@ -1,0 +1,6 @@
+FROM php:apache-bullseye
+
+COPY ./index.php /var/www/html/
+COPY ./style.css /var/www/html/
+COPY ./49098094583_78bd8fb108_5k.jpg /var/www/html/
+COPY ./icons8-oven-64.png /var/www/html/

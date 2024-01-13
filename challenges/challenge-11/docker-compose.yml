@@ -1,0 +1,26 @@
+version: '3'
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile-nginx
+    ports:
+      - 31337:80
+
+  php:
+    build:
+      context: ./php
+      dockerfile: Dockerfile-php
+    depends_on:
+      - nginx
+
+  bot:
+    build:
+      context: ./bot
+      dockerfile: Dockerfile-bot
+    environment:
+      - FLAG=${FLAG}
+    depends_on:
+      - nginx
+      - php
+

@@ -1,0 +1,159 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  background-image: url("/49098094583_78bd8fb108.jpg");
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  box-shadow: 0px 0 50px 100px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  margin-top: 50px;
+  color: #ffffff;
+}
+
+img{
+  width: 135px;
+}
+
+textarea {
+  flex: 1;
+  width: calc(100% - 12px);
+  padding: 6px;
+  margin-bottom: 10px;
+  resize: none;
+  border: .2em solid #ffdae7;
+  border-radius: 1em;
+}
+
+textarea:focus {
+  outline:none;
+}
+
+select,
+input[type="submit"],
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: .2em solid #ffdae7;
+  border-radius: 1em;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.content {
+  display: flex;
+  margin-top: 60px;
+  height: calc(100% - 200px);
+  justify-content: center;
+}
+
+.input,
+.output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  border: .2em solid #ffdae7;
+  margin: 50px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 1em;
+  word-wrap: break-word;
+  max-width: 1000px;
+}
+
+.output-text{
+  flex: 1;
+  width: calc(100% - 12px);
+  height: 100px;
+  padding: 6px;
+  margin-bottom: 10px;
+  border: .2em solid #ffdae7;
+  border-radius: 1em;
+  overflow: scroll;
+}
+
+.options {
+  position: relative;
+  align-self: center;
+}
+
+.oven{
+  position: absolute;
+  width: 90px;
+  height: 200px;
+  overflow: hidden;
+  rotate: 90deg;
+  top: -130px;
+  line-height: 30px;
+}
+
+.oven::before{
+  content: "aaaaaaaaaaaaaaaaaaaa\A aaaaaaaaaaaaaaaaaaaa\A aaaaaaaaaaaaaaaaaaaa";
+  white-space: pre-wrap;
+  position: absolute;
+  /*top: -35px;*/
+  left: 0;
+  font-size: 3em;
+  color: transparent;
+  text-decoration-style: wavy;
+  text-decoration-color: #ffffff63;
+  text-decoration-line: underline;
+  animation: cooking 5s linear infinite;
+}
+
+@keyframes cooking{
+  0% {
+    transform: translateX(-22px);
+  }
+  100% {
+    transform: translateX(-300px);
+  }
+}
+
+.info{
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  max-width: 200px;
+}
+
+a{
+  border: .2em solid #ffdae7;
+  border-radius: 1em;
+  background-color: #f9f9f9;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px;
+  margin-bottom: 10px;
+  width: 45%;
+}

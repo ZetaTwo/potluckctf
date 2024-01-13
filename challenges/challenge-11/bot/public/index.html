@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Encoderchef Adminbot</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <h1>Adminbot</h1>
+  <div class="content">
+    <div class="input">
+      <h2>Enter the URL</h2>
+      <form id="myForm">
+        <input type="text" id="url" name="url"><br><br>
+        <input id="submitbutton" type="submit" value="Submit">
+      </form>
+      <div id="response"></div>
+    </div>
+  </div>
+  </form>
+
+
+
+  <script>
+    document.getElementById('myForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      document.getElementById('response').innerText = "Your request is being processed...";
+      document.getElementById('submitbutton').disabled = true;
+
+      fetch(window.location.href, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ "url": document.getElementById('url').value })
+      })
+        .then(response => response.status == 503?"Too many requests, wait a moment. I can only process a request every 15s from you!":response.text())
+        .then(data => {
+          document.getElementById('response').innerText = data;
+          document.getElementById('submitbutton').disabled = false;
+        })
+        .catch(error => {
+          document.getElementById('response').innerText = "Something went wrong, js fetch failed?";
+          document.getElementById('submitbutton').disabled = true;
+          console.error('Error:', error);
+        });
+    });
+  </script>
+</body>
+
+</html>
