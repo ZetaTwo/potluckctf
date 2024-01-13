@@ -26,3 +26,5 @@
 | 22    | TODO | | |
 | 23    | TODO | | |
 | 24    | [Traditional Feast: Nginx Spagetthi](challenge-24/) | web | BitK, XeR |
+| 25    | TODO | | |
+| 26    | [Tamagoyaki](challenge-26/) | pwn | UDP - Blue Water |
