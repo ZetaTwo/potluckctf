@@ -13,3 +13,5 @@
 | 9     | [auxv](challenge-09/) | pwn | dfyz (Ivan Komarov) |
 | 10    | TODO | | |
 | 11    | [Encoderchef](challenge-11/) | web | ntomsic |
+| 12    | TODO | | |
+| 13    | [Emacro-wave cooking](challenge-13/) | misc | tabun-dareka |
