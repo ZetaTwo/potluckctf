@@ -8,3 +8,4 @@
 |       |          |              | |
 | 5     | [savaoury](challenge-05/)         | web             | thegrandpew - Blue Water |
 | 6      | [Hypertext O's](challenge-06/)          | reversing             | Leeky |
+| 7      | [bear-err](challenge-07/) | pwn, web | Firzen |
