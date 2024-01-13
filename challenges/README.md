@@ -7,4 +7,4 @@
 | 3     | [abc](challenge-03/)      | cryptography | dorian |
 |       |          |              | |
 | 5     | [savaoury](challenge-05/)         | web             | thegrandpew - Blue Water |
-|       |          |              | |
+| 6      | [Hypertext O's](challenge-06/)          | reversing             | Leeky |
