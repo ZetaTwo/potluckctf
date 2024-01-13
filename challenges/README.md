@@ -21,3 +21,8 @@
 | 17    | TODO | | |
 | 18    | [lima beans with lemon and lime](challenge-18/) | cryptography | Pwnagaukar, DagurB |
 | 19    | [Ezrop](challenge-19/) | pwn | S2G, Carixo |
+| 20    | TODO | | |
+| 21    | [Schrödinger's P1G](challenge-21/) | pwn | uz56764 |
+| 22    | TODO | | |
+| 23    | TODO | | |
+| 24    | [Traditional Feast: Nginx Spagetthi](challenge-24/) | web | BitK, XeR |
