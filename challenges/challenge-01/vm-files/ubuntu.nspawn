@@ -1,0 +1,11 @@
+[Exec]
+Boot=true
+PrivateUsers=false
+SystemCallFilter=add_key keyctl bpf
+
+[Network]
+Zone=guests
+Port=1337
+
+[Files]
+Bind=/dev/fuse

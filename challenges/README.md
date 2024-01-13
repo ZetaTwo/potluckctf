@@ -2,7 +2,7 @@
 
 | **#** | **Name** | **Category** | **Author** |
 |-------|----------|--------------|------------|
-| 1     | TODO         |              | |
+| 1     | [Cake of Paranoia](challenge-01/) | sandbox | Addison Crump |
 | 2     | N/A      | N/A          | N/A | 
 | 3     | [abc](challenge-03/)      | cryptography | dorian |
 | 4     |  TODO         |              | |

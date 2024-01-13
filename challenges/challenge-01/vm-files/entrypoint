@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while true; do
+  sleep .5
+  socat -s TCP-CONNECT:192.168.250.230:1337 -
+done
