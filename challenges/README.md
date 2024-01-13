@@ -29,3 +29,4 @@
 | 25    | TODO | | |
 | 26    | [Tamagoyaki](challenge-26/) | pwn | UDP - Blue Water |
 | 27    | [Pot Of Gold](challenge-27/) | pwn, reversing | blasty |
+| 28    | [tacocat](challenge-28/) | misc | Les Amateurs: HELLOPERSON, unvariant.winter, stuxf |
