@@ -1,0 +1,27 @@
+[package]
+name = "REhoST"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "firmware"
+path = "./src/firmware.rs"
+
+[[bin]]
+name = "peripheral"
+path = "./src/peripheral.rs"
+
+#[[bin]]
+#name = "secret"
+#path = "./src/secret.rs"
+
+[profile.release]
+panic = "abort"
+strip = true
+
+[profile.dev]
+panic = "abort"
+strip = true
+
+[dependencies]
+groestl = { version = "0.10.1", default-features = false }
