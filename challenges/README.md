@@ -18,3 +18,5 @@
 | 14    | [GACHAAAAAtkr](challenge-14/) | reversing | Project Sekai! |
 | 15    | [Santify](challenge-15/) | web | 13x1 |
 | 16    | [Upside-down Cake](challenge-16/) | cryptography | Neobeo |
+| 17    | TODO | | |
+| 18    | [lima beans with lemon and lime](challenge-18/) | cryptography | Pwnagaukar, DagurB |
