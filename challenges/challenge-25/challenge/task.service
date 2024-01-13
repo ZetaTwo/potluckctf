@@ -1,0 +1,14 @@
+[Unit]
+Description=task server
+After=network.target
+
+[Service]
+Type=simple
+User=task
+Group=task
+WorkingDirectory=/home/task
+ExecStart=/usr/bin/python3 server.py 28 600 ./run.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

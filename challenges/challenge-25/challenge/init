@@ -1,0 +1,21 @@
+#!/bin/sh
+
+mount -t devtmpfs devtmpfs /dev
+mount -t tmpfs tmpfs /tmp
+mount -t proc none /proc
+
+dmesg -n 1
+sysctl -wq kernel.dmesg_restrict=1
+sysctl -wq kernel.panic_on_warn=1
+sysctl -wq kernel.perf_event_paranoid=2
+sysctl -wq kernel.kptr_restrict=2
+
+
+echo 65536 > /proc/sys/kernel/pid_max
+
+chmod 400 /flag.txt
+chmod u+s /service
+
+setsid cttyhack setuidgid 1000 sh
+
+poweroff -d 1 -n -f
