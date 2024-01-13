@@ -13,7 +13,7 @@ Here you will find the materials for the challenges used in the 37C3 Potluck CTF
 | 7     | [bear-err](challenge-07/)                                                                                  | pwn, web                | Firzen                                             |
 | 8     | [Enchiladas](challenge-08/)                                                                                | reversing               | noobtracker, hanemile, maride                      |
 | 9     | [auxv](challenge-09/) ([author repo](https://github.com/dfyz/ctf-writeups/tree/master/potluck-2023/auxv))  | pwn                     | dfyz (Ivan Komarov)                                |
-| 10    | TODO                                                                                                       |                         |                                                    |
+| 10    | [Hungry Helmsman](challenge-10/)                                                                           | misc, kubernetes        |                                                    |
 | 11    | [Encoderchef](challenge-11/)                                                                               | web                     | ntomsic                                            |
 | 12    | TODO                                                                                                       |                         |                                                    |
 | 13    | [Emacro-wave cooking](challenge-13/)                                                                       | misc                    | tabun-dareka                                       |
