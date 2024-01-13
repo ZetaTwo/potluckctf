@@ -10,3 +10,4 @@
 | 6      | [Hypertext O's](challenge-06/)          | reversing             | Leeky |
 | 7      | [bear-err](challenge-07/) | pwn, web | Firzen |
 | 8     | [Enchiladas](challenge-08/) | reversing | noobtracker, hanemile, maride |
+| 9     | [auxv](challenge-09/) | pwn | dfyz (Ivan Komarov) |
