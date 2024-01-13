@@ -15,3 +15,4 @@
 | 11    | [Encoderchef](challenge-11/) | web | ntomsic |
 | 12    | TODO | | |
 | 13    | [Emacro-wave cooking](challenge-13/) | misc | tabun-dareka |
+| 14    | [GACHAAAAAtkr](challenge-14/) | reversing | Project Sekai! |
