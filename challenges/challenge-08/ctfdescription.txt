@@ -1,0 +1,19 @@
+Title: Enchilidas
+Description: {insert domain name where the records are hosted here and provide no further context (I've checked, you can find maride's mexico repo by searching for "mexico program dns mx records")}
+Flag: potluck{estas_muy_bien}
+Solution:
+    1. Notice that the domain has a bunch of really weird DNS MX records
+    2. Figure out that you're looking at mexico code (and find the documentation)
+    3. Implement the `eprint` instruction that I made up
+    4. Understand the code, deobfuscate it, ...
+    5. The solve script shows a way to crack the checksum that the program uses to determine whether the decription was successful
+    6. Realise that the decrypted output is a zstd file
+    7. Realise that the data contained is a .d64 floppy image (you can find that out by searching for the file length of 174848 bytes)
+    8. Throw the image at a C64 emulator and it will run a little BASIC script that displays the flag
+Q&A:
+    Q: Why is the encryption designed so incredibly poorly?
+    A: Welp, I'm not a cryptographer and I needed to come up with something that I could implement in mexico without absolutely losing it.
+    Q: How much of the code was generated, how much was hand-written?
+    A: The random `push/del`s are generated, the newlines are generated, the part where it pushes tha data and jumps into the routine that decrypts a block is generated, the `push/eprint`s are generated, that's it. I wrote most of it by hand and it was painful. But also fun.
+    Q: Do you actually think this is a good challenge?
+    A: I don't know if I'm being honest. I *believe* it's got an element of novelty (mexico is just *really* obscure) but I have no experience when it comes to writing CTFs. Or playing them, for that matter.
