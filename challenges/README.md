@@ -17,3 +17,4 @@
 | 13    | [Emacro-wave cooking](challenge-13/) | misc | tabun-dareka |
 | 14    | [GACHAAAAAtkr](challenge-14/) | reversing | Project Sekai! |
 | 15    | [Santify](challenge-15/) | web | 13x1 |
+| 16    | [Upside-down Cake](challenge-16/) | cryptography | Neobeo |
