@@ -20,3 +20,4 @@
 | 16    | [Upside-down Cake](challenge-16/) | cryptography | Neobeo |
 | 17    | TODO | | |
 | 18    | [lima beans with lemon and lime](challenge-18/) | cryptography | Pwnagaukar, DagurB |
+| 19    | [Ezrop](challenge-19/) | pwn | S2G, Carixo |

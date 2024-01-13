@@ -1,0 +1,5 @@
+services:
+  ezrop:
+    build: .
+    ports:
+      - "2727:2727"
