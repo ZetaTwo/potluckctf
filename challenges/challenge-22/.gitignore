@@ -1,0 +1,10 @@
+*.o
+*.elf
+*.hex
+*.bin
+.DS_STORE
+
+/private/dumped
+/private/app_checksum.c
+/private/fwupd.py
+/private/app.fw

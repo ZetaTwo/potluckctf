@@ -1,3 +1,7 @@
 [submodule "challenges/challenge-06/release_source/drivers/js/elk"]
 	path = challenges/challenge-06/release_source/drivers/js/elk
 	url = https://github.com/cesanta/elk.git
+
+[submodule "challenges/challenge-22/private/printf"]
+	path = challenges/challenge-22/private/printf
+	url = https://github.com/mpaland/printf.git
